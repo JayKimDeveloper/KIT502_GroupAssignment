@@ -92,7 +92,7 @@ The web application contains the following main pages:
 
 # Team Responsibilities
 
-## Backend + Database + Documentation
+## Backend + Database + Managing (YoungHyun Kim)
 
 Responsible for backend development and database design.
 
