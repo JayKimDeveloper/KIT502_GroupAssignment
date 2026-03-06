@@ -28,6 +28,17 @@ The project is implemented in **two stages**:
 
 ---
 
+## Color Palette
+| Role | Color | HEX | Preview |
+|------|-------|-----|---------|
+| Primary | Warm Orange | `#E76F51` | ![](https://placehold.co/30x30/E76F51/E76F51.png) |
+| Secondary | Burgundy | `#7A1F2B` | ![](https://placehold.co/30x30/7A1F2B/7A1F2B.png) |
+| Accent | Golden | `#F4A261` | ![](https://placehold.co/30x30/F4A261/F4A261.png) |
+| Background | Cream | `#FFF7ED` | ![](https://placehold.co/30x30/FFF7ED/FFF7ED.png) |
+| Surface | Ivory | `#FFE8D6` | ![](https://placehold.co/30x30/FFE8D6/FFE8D6.png) |
+| Text | Dark Brown | `#3A1F1F` | ![](https://placehold.co/30x30/3A1F1F/3A1F1F.png) |
+
+
 # System Roles
 
 The system supports **four types of users**.
