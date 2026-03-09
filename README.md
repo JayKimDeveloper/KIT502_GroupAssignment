@@ -101,16 +101,29 @@ The web application contains the following main pages:
 
 ---
 
+---
+
+# Documentation
+
+| File | Description |
+|------|-------------|
+| [Shared CSS Guide](docs/shared-css-guide.md) | How to use shared.css — layout, navbar, buttons, footer |
+
+---
+
+
 # Team Responsibilities
 
 ## Backend + Database + Managing (YoungHyun Kim)
 
 Responsible for backend development and database design.
 
-### Assignment 1
+### Assignment 1   (Gunick)
 - Design **database schema**
 - Create **ER Diagram**
 - Define system tables
+- Design site navigation
+- Make Shared CSS
 
 Main tables include:
 
@@ -147,7 +160,6 @@ Responsibilities include:
 Responsible for **public-facing pages and UI layout**.
 
 #### Assignment 1
-- Design site navigation
 - Implement landing page
 - Create event list layout
 
@@ -159,7 +171,7 @@ Responsible for **public-facing pages and UI layout**.
 
 ---
 
-## Frontend Developer B  
+## Frontend Developer B  (Sidd)
 ### Authentication Pages
 
 Responsible for **user authentication interfaces**.
@@ -190,7 +202,7 @@ Connect forms with backend:
 
 ---
 
-## Frontend Developer C  
+## Frontend Developer C  (Paragun)
 ### Event & Admin Interfaces
 
 Responsible for **event management and admin pages**.
