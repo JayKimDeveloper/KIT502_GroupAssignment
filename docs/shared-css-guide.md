@@ -199,16 +199,3 @@ Use this as a starting point for every new page.
 ```
 
 ---
-
-## File Structure
-
-```
-project/
-├── shared.css        ← shared styles (do not edit without checking with the team)
-├── index.html
-├── register.html
-├── login.html
-├── events.html
-├── create-event.html
-└── admin.html
-```
