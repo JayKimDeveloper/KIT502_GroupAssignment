@@ -207,6 +207,8 @@ Connect forms with backend:
 
 Responsible for **event management and admin pages**.
 
+Prototype Site design **https://indigo-run-05357047.figma.site/**
+
 #### Assignment 1
 
 Create:
