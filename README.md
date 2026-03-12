@@ -1,4 +1,4 @@
-# UTAS Student Tech Events
+# UTAS Student Tech Event
 
 **UTAS Student Tech Events** is a web application developed for **KIT502 Web Development** at the **University of Tasmania**.
 
@@ -118,7 +118,7 @@ The web application contains the following main pages:
 
 Responsible for backend development and database design.
 
-### Assignment 1   (Gunick)
+### Assignment 1
 - Design **database schema**
 - Create **ER Diagram**
 - Define system tables
@@ -154,7 +154,7 @@ Responsibilities include:
 
 ---
 
-## Frontend Developer A  
+## Frontend Developer A  (Gunneet)
 ### Public Pages & Layout
 
 Responsible for **public-facing pages and UI layout**.
@@ -202,7 +202,7 @@ Connect forms with backend:
 
 ---
 
-## Frontend Developer C  (Paragun)
+## Frontend Developer C  (Pragun)
 ### Event & Admin Interfaces
 
 Responsible for **event management and admin pages**.
