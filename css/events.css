@@ -1,0 +1,28 @@
+.events-grid {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+
+}
+
+.event {
+
+    background: var(--surface);
+    padding: 20px;
+    border-radius: 8px;
+
+}
+
+.event h3 {
+
+    margin-bottom: 10px;
+
+}
+
+.event p {
+
+    margin-bottom: 10px;
+
+}
