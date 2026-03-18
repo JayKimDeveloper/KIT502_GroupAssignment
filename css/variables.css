@@ -1,0 +1,169 @@
+:root {
+    --primary:    #E76F51; 
+    --secondary:  #7A1F2B;   
+    --accent:     #F4A261;  
+    --bg:         #FFF7ED;  
+    --surface:    #FFE8D6;  
+    --text:       #3A1F1F;  
+}
+
+* {
+  box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFF7ED;     
+    color: #3A1F1F;
+    line-height: 1.6;                 
+}
+
+a {
+    color: #E76F51;
+    text-decoration-style: none;
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+
+header {
+    background-color: var(--surface);   
+}
+
+.btn-primary {
+    background-color: var(--primary);   
+}
+
+h1, h2, h3 {
+    color: var(--secondary);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.page {
+  padding-top: 64px; 
+  min-height: 100vh;
+}
+
+/* ─── Navbar ─────────────────────────────── */
+
+.navbar {
+  position: fixed;          /* fixed at the top */
+  top: 0; left: 0; right: 0;
+  height: 64px;
+  background: #FFF7ED;
+  border-bottom: 1px solid #E8D5C4;
+  display: flex;
+  align-items: center;      
+  z-index: 100;             
+}
+
+/* make .container inside navbar */
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* left logo, right button */
+  width: 100%;
+}
+
+.nav-brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #7A1F2B; /* 버건디 */
+}
+
+/* highlight orange color */
+.nav-brand span {
+  color: #E76F51;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;        /* spacing between link */
+  list-style: none;
+}
+
+.nav-links a {
+  color: #7B5E5E;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px; /* pill shape */
+  transition: 0.15s;   /* hover motion */
+  text-decoration: none;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #E76F51;
+  background: rgba(231, 111, 81, 0.1);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* commmon botton style0 — btn-primary, btn-outline */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* fill button */
+.btn-primary {
+  background: #E76F51;
+  color: #fff;
+  border-color: #E76F51;
+}
+
+.btn-primary:hover {
+  background: #C85A3D; /* 살짝 어둡게 */
+  color: #fff;
+}
+
+/* only shape button */
+.btn-outline {
+  background: transparent;
+  color: #E76F51;
+  border-color: #E76F51;
+}
+
+.btn-outline:hover {
+  background: #E76F51;
+  color: #fff;
+}
+
+
+/* ─── Footer ─────────────────────────────── */
+.footer {
+  background: #ffe8d6;
+  color: #000;
+  padding: 40px 0 20px;
+  margin-top: 60px;
+  text-align: center;
+}
+
+.footer-bottom {
+  margin-top: 30px;
+  padding-top: 20px;
+  font-size: 0.8rem;
+  color: #000;
+  text-align: center;
+}
