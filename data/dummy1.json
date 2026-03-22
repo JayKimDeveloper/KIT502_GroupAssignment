@@ -1,5 +1,0 @@
-[
-    {"id": 1, "name": "HEAL MELB", "location":"Melbourne", "description":"This is an event for health conference in March 31, 2026", "date": "31/03/2026", "price": 30.00, "currencey": "AUD"}, 
-    {"id": 10, "name": "Australian Open", "location":"Melbourne", "description":"Grandslam", "date": "15/01/2026", "price": 45.00, "currencey": "AUD"},
-    {"id": 21, "name": "Conference", "location":"Melbourne", "description":"Opening Ceremony for a local library", "date": "21/02/2026", "price": 65.00, "currencey": "AUD"}
-]
