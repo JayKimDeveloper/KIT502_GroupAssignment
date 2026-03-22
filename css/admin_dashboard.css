@@ -1,0 +1,260 @@
+.admin-dashboard-page {
+    padding-bottom: 70px;
+}
+
+.admin-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.nav-icon {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav-icon::before {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.user-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid #e2d3c8;
+    border-radius: 14px;
+    padding: 2px 12px 2px 4px;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+
+.page-header {
+    margin-bottom: 34px;
+}
+
+.page-title {
+    font-size: 3.8rem;
+    line-height: 1.05;
+    margin-bottom: 10px;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.page-subtitle {
+    font-size: 1.15rem;
+    color: var(--text);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    margin-bottom: 34px;
+}
+
+.stats-card {
+    background: #efd8c7;
+    border: 1px solid #e3c4af;
+    border-radius: 20px;
+    padding: 28px 30px;
+    box-shadow: 0 4px 12px rgba(58, 31, 31, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+}
+
+.stats-info h3 {
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 16px;
+}
+
+.stats-info p {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.stats-icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: rgba(231, 111, 81, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.stats-icon::before {
+    font-size: 1.7rem;
+    line-height: 1;
+}
+
+.users-icon::before {
+    content: "👥";
+}
+
+.events-icon::before {
+    content: "📅";
+}
+
+.published-icon::before {
+    content: "✅";
+}
+
+.registrations-icon::before {
+    content: "📝";
+}
+
+.dashboard-panel {
+    background: #efd8c7;
+    border: 1px solid #e3c4af;
+    border-radius: 22px;
+    padding: 30px;
+    margin-bottom: 28px;
+}
+
+.panel-header {
+    margin-bottom: 22px;
+}
+
+.panel-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1050px;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+    text-align: left;
+    vertical-align: middle;
+    padding: 16px 12px;
+    border-bottom: 1px solid #dcc1af;
+    color: var(--text);
+    font-size: 0.98rem;
+}
+
+.dashboard-table th {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.role-badge,
+.status-badge,
+.draft-badge {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+}
+
+.role-badge {
+    background: #8d1f36;
+}
+
+.status-badge {
+    background: var(--primary);
+}
+
+.draft-badge {
+    background: #8d1f36;
+}
+
+.view-text {
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.warning-text {
+    color: #ff2336;
+    font-weight: 600;
+}
+
+.actions-cell {
+    white-space: nowrap;
+}
+
+.action-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+.action-btn::before {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.edit-btn::before {
+    content: "✎";
+}
+
+.delete-btn::before {
+    content: "🗑";
+}
+
+@media (max-width: 1200px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-dashboard-page {
+        padding-bottom: 50px;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-panel,
+    .stats-card {
+        padding: 22px;
+    }
+
+    .admin-nav-actions {
+        display: none;
+    }
+}

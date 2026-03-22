@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | TechEvents UTAS</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/admin_dashboard.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-brand">TechEvents UTAS</a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="create_event.html">Create Event</a></li>
+                <li><a href="manage_events.html">Manage Events</a></li>
+                <li><a href="admin_dashboard.html" class="active">Admin</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline">Log in</a>
+                <a href="register.html" class="btn btn-primary">Sign up</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page admin-dashboard-page">
+        <div class="container">
+
+            <section class="page-header">
+                <h1 class="page-title">Admin Dashboard</h1>
+                <p class="page-subtitle">Manage users, events, and view system statistics</p>
+            </section>
+
+            <section class="stats-grid">
+                <div class="stats-card">
+                    <div class="stats-info">
+                        <h3>Total Users</h3>
+                        <p>4</p>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-info">
+                        <h3>Total Events</h3>
+                        <p>4</p>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-info">
+                        <h3>Published Events</h3>
+                        <p>3</p>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-info">
+                        <h3>Total Registrations</h3>
+                        <p>175</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-panel">
+                <div class="panel-header">
+                    <h2>User Management</h2>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Registered</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>John Smith</td>
+                                <td>john.smith@utas.edu.au</td>
+                                <td><span class="role-badge">Attendee</span></td>
+                                <td>2025-01-15</td>
+                                <td><span class="status-badge">Active</span></td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn edit-btn" aria-label="Edit"></button>
+                                    <button type="button" class="action-btn delete-btn" aria-label="Delete"></button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Sarah Johnson</td>
+                                <td>sarah.johnson@utas.edu.au</td>
+                                <td><span class="role-badge">Organiser</span></td>
+                                <td>2025-01-10</td>
+                                <td><span class="status-badge">Active</span></td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn edit-btn" aria-label="Edit"></button>
+                                    <button type="button" class="action-btn delete-btn" aria-label="Delete"></button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Michael Brown</td>
+                                <td>michael.brown@utas.edu.au</td>
+                                <td><span class="role-badge">Attendee</span></td>
+                                <td>2025-02-01</td>
+                                <td><span class="status-badge">Active</span></td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn edit-btn" aria-label="Edit"></button>
+                                    <button type="button" class="action-btn delete-btn" aria-label="Delete"></button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Emma Wilson</td>
+                                <td>emma.wilson@utas.edu.au</td>
+                                <td><span class="role-badge">Organiser</span></td>
+                                <td>2025-01-20</td>
+                                <td><span class="status-badge">Active</span></td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn edit-btn" aria-label="Edit"></button>
+                                    <button type="button" class="action-btn delete-btn" aria-label="Delete"></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="dashboard-panel">
+                <div class="panel-header">
+                    <h2>Event Management</h2>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Event Title</th>
+                                <th>Organiser</th>
+                                <th>Date</th>
+                                <th>Capacity</th>
+                                <th>Registered</th>
+                                <th>Status</th>
+                                <th>View</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>AI Hackathon 2025</td>
+                                <td>Sarah Johnson</td>
+                                <td>12 June 2025</td>
+                                <td>100</td>
+                                <td>50</td>
+                                <td><span class="status-badge">Published</span></td>
+                                <td class="view-text">View</td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn edit-btn" aria-label="Edit"></button>
+                                </td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn delete-btn" aria-label="Delete"></button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Cyber Security Workshop</td>
+                                <td>Emma Wilson</td>
+                                <td>20 June 2025</td>
+                                <td>50</td>
+                                <td>30</td>
+                                <td><span class="status-badge">Published</span></td>
+                                <td class="view-text">View</td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn edit-btn" aria-label="Edit"></button>
+                                </td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn delete-btn" aria-label="Delete"></button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Tech Industry Panel</td>
+                                <td>Sarah Johnson</td>
+                                <td>25 June 2025</td>
+                                <td>75</td>
+                                <td class="warning-text">80</td>
+                                <td><span class="status-badge">Published</span></td>
+                                <td class="view-text">View</td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn edit-btn" aria-label="Edit"></button>
+                                </td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn delete-btn" aria-label="Delete"></button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Web Development Bootcamp</td>
+                                <td>Emma Wilson</td>
+                                <td>5 July 2025</td>
+                                <td>30</td>
+                                <td>15</td>
+                                <td><span class="draft-badge">Draft</span></td>
+                                <td class="view-text">View</td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn edit-btn" aria-label="Edit"></button>
+                                </td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn delete-btn" aria-label="Delete"></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>TechEvents UTAS — connecting students with the tech community.</p>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                © 2025 TechEvents UTAS. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
