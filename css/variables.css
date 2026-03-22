@@ -77,7 +77,8 @@ h1, h2, h3 {
 .nav-brand {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #7A1F2B; /* 버건디 */
+  text-decoration: none;
+  color: #7A1F2B; 
 }
 
 /* highlight orange color */
@@ -134,7 +135,7 @@ h1, h2, h3 {
 }
 
 .btn-primary:hover {
-  background: #C85A3D; /* 살짝 어둡게 */
+  background: #C85A3D; /* make more darker */
   color: #fff;
 }
 
