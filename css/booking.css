@@ -1,0 +1,71 @@
+.booking-container {
+            display: flex;
+            gap: 40px;
+            margin: 40px auto;
+            max-width: 900px;
+        }
+        .booking-form, .order-summary {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 32px 28px;
+            flex: 1;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        .booking-form label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .booking-form input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 18px;
+            border: 1px solid #E8D5C4;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+        .ticket-qty {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+        .ticket-btn {
+            background: var(--surface);
+            border: 1px solid #E8D5C4;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .booking-form .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .order-summary {
+            min-width: 300px;
+            max-width: 340px;
+        }
+        .order-summary h3 {
+            margin-top: 0;
+        }
+        .order-summary .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .booking-policy {
+            background: #F9DCC4;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 18px;
+            font-size: 0.97rem;
+        }
+        @media (max-width: 900px) {
+            .booking-container {
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
