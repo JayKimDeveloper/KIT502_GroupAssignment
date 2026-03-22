@@ -1,0 +1,13 @@
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#f8e6db;color:#2b1d1a;}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 60px;background:#f5d7c8;}
+header button{padding:10px 20px;border-radius:12px;border:1px solid #e76f51;background:transparent;cursor:pointer;}
+header button:hover{background:#e76f51;color:#fff;}
+.primary{background:#e76f51;color:#fff;border:none;}
+.hero{padding:80px 60px;max-width:700px;}
+.hero h1{font-size:48px;margin-bottom:20px;}
+.hero p{font-size:18px;margin-bottom:30px;color:#5a4a42;}
+.hero button{padding:14px 28px;border-radius:12px;}
+.form-container{width:350px;margin:120px auto;padding:40px;background:#fff;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);text-align:center;}
+.form-container input{width:100%;padding:12px;margin:10px 0;border-radius:10px;border:1px solid #ddd;}
+.form-container button{width:100%;padding:12px;margin-top:15px;border-radius:12px;border:none;background:#e76f51;color:white;}
