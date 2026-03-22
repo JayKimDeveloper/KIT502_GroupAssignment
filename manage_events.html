@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Events | TechEvents UTAS</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/manage_events.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-brand">TechEvents UTAS</a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="create_event.html">Create Event</a></li>
+                <li><a href="manage_events.html" class="active">Manage Events</a></li>
+                <li><a href="admin_dashboard.html">Admin</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline">Log in</a>
+                <a href="register.html" class="btn btn-primary">Sign up</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="manage-events-page">
+        <div class="container">
+
+            <div class="manage-header">
+                <div>
+                    <h1 class="page-title">Manage Events</h1>
+                    <p class="page-subtitle">Create, edit, and manage your events</p>
+                </div>
+
+                <a href="create_event.html" class="create-btn">
+                    <span>+</span>
+                    Create New Event
+                </a>
+            </div>
+
+            <section class="stats-grid">
+                <div class="stats-card">
+                    <h3>Total Events</h3>
+                    <p>3</p>
+                </div>
+
+                <div class="stats-card">
+                    <h3>Tickets Sold</h3>
+                    <p>75</p>
+                </div>
+
+                <div class="stats-card">
+                    <h3>Total Revenue</h3>
+                    <p class="revenue-text">$725</p>
+                </div>
+            </section>
+
+            <section class="events-panel">
+                <div class="panel-header">
+                    <h2>Your Events</h2>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="events-table">
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Price</th>
+                                <th>Tickets</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>AI Hackathon 2025</td>
+                                <td><span class="category-badge">Hackathon</span></td>
+                                <td>12 June 2025</td>
+                                <td>Hobart Campus</td>
+                                <td>$10</td>
+                                <td>
+                                    <div class="ticket-info">
+                                        <strong>50 / 100</strong>
+                                        <span>50 left</span>
+                                    </div>
+                                </td>
+                                <td><span class="status-badge">published</span></td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn" title="View">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                    </button>
+
+                                    <button type="button" class="action-btn" title="Edit">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                            <path d="M12 20h9"></path>
+                                            <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                                        </svg>
+                                    </button>
+
+                                    <button type="button" class="action-btn delete-btn" title="Delete">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                            <path d="M3 6h18"></path>
+                                            <path d="M8 6V4h8v2"></path>
+                                            <path d="M19 6l-1 14H6L5 6"></path>
+                                            <path d="M10 11v6"></path>
+                                            <path d="M14 11v6"></path>
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Cyber Security Workshop</td>
+                                <td><span class="category-badge">Workshop</span></td>
+                                <td>20 June 2025</td>
+                                <td>Launceston Campus</td>
+                                <td>Free</td>
+                                <td>
+                                    <div class="ticket-info">
+                                        <strong>10 / 40</strong>
+                                        <span>30 left</span>
+                                    </div>
+                                </td>
+                                <td><span class="status-badge">published</span></td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn" title="View">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                    </button>
+
+                                    <button type="button" class="action-btn" title="Edit">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                            <path d="M12 20h9"></path>
+                                            <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                                        </svg>
+                                    </button>
+
+                                    <button type="button" class="action-btn delete-btn" title="Delete">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                            <path d="M3 6h18"></path>
+                                            <path d="M8 6V4h8v2"></path>
+                                            <path d="M19 6l-1 14H6L5 6"></path>
+                                            <path d="M10 11v6"></path>
+                                            <path d="M14 11v6"></path>
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Web Development Bootcamp</td>
+                                <td><span class="category-badge">Workshop</span></td>
+                                <td>5 July 2025</td>
+                                <td>Launceston Campus</td>
+                                <td>$15</td>
+                                <td>
+                                    <div class="ticket-info">
+                                        <strong>15 / 30</strong>
+                                        <span>15 left</span>
+                                    </div>
+                                </td>
+                                <td><span class="status-badge">published</span></td>
+                                <td class="actions-cell">
+                                    <button type="button" class="action-btn" title="View">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                    </button>
+
+                                    <button type="button" class="action-btn" title="Edit">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                            <path d="M12 20h9"></path>
+                                            <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                                        </svg>
+                                    </button>
+
+                                    <button type="button" class="action-btn delete-btn" title="Delete">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                            <path d="M3 6h18"></path>
+                                            <path d="M8 6V4h8v2"></path>
+                                            <path d="M19 6l-1 14H6L5 6"></path>
+                                            <path d="M10 11v6"></path>
+                                            <path d="M14 11v6"></path>
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>TechEvents UTAS — connecting students with the tech community.</p>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                © 2025 TechEvents UTAS
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
