@@ -56,7 +56,7 @@ h1, h2, h3 {
 /* ─── Navbar ─────────────────────────────── */
 
 .navbar {
-  position: fixed;          /* fixed at the top */
+  position: sticky;          /* fixed at the top */
   top: 0; left: 0; right: 0;
   height: 64px;
   background: #FFF7ED;
