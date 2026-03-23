@@ -40,49 +40,50 @@
                 <form id="createEventForm">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" id="title" name="title" placeholder="Enter event title">
+                        <input type="text" id="title" name="title" placeholder="Enter event title" required>
                     </div>
 
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <input type="text" id="description" name="description" placeholder="Enter event description">
+                        <input type="text" id="description" name="description" placeholder="Enter event description" required>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group half">
                             <label for="start_date">Start Date</label>
-                            <input type="datetime-local" id="start_date" name="start_date">
+                            <input type="datetime-local" id="start_date" name="start_date" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group half">
                             <label for="end_date">End Date</label>
-                            <input type="datetime-local" id="end_date" name="end_date">
+                            <input type="datetime-local" id="end_date" name="end_date" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="location">Location</label>
-                        <input type="text" id="location" name="location" placeholder="Enter event location">
+                        <input type="text" id="location" name="location" placeholder="Enter event location" required>
                     </div>
 
                     <div class="form-group">
                         <label for="capacity">Capacity</label>
-                        <input type="number" id="capacity" name="capacity" placeholder="Enter maximum capacity">
+                        <input type="number" id="capacity" name="capacity" placeholder="Maximum capacity is 2" value="2" required>
                     </div>
 
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="number" id="price" name="price" placeholder="Enter price">
+                        <input type="number" id="price" name="price" placeholder="Enter price" required>
                     </div>
 
                     <div class="form-group">
                         <label for="status">Status</label>
-                        <select id="status" name="status">
+                        <select id="status" name="status" required>
                             <option value="">Select event status</option>
                             <option value="draft">Draft</option>
-                            <option value="published">Published</option>
+                            <option value="confirmed">Confirmed </option>
+                            <option value="cancelled">Cancelled</option>
                         </select>
                     </div>
 
@@ -92,7 +93,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="reset" class="btn btn-outline">Reset</button>
+                        <button type="reset" class="btn btn-outline" id="resetBtn">Reset</button>
                         <button type="submit" class="btn btn-primary">Create Event</button>
                     </div>
                 </form>
@@ -111,5 +112,6 @@
         </div>
     </footer>
 
+<script src="js/create_event.js"></script>
 </body>
 </html>

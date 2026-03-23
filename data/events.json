@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "title": "Web Development Bootcamp",
+    "category": "Workshop",
+    "description": "Learn HTML, CSS and JavaScript in a practical beginner friendly session.",
+    "organiser": "Emma Wilson",
+    "dateTime": "2025-07-05T14:00",
+    "location": "Launceston Campus",
+    "price": 15,
+    "sold": 1,
+    "capacity": 2,
+    "status": "Draft"
+  },
+  {
+    "id": 2,
+    "title": "Cyber Security Workshop",
+    "category": "Workshop",
+    "description": "A simple session about cyber safety, passwords and common online risks.",
+    "organiser": "Emma Wilson",
+    "dateTime": "2025-06-20T10:30",
+    "location": "Launceston Campus",
+    "price": 0,
+    "sold": 2,
+    "capacity": 2,
+    "status": "Confirmed"
+  },
+  {
+    "id": 3,
+    "title": "AI Hackathon 2025",
+    "category": "Hackathon",
+    "description": "Students solve real world problems using AI ideas, teamwork and creativity.",
+    "organiser": "Sarah Johnson",
+    "dateTime": "2025-06-12T09:00",
+    "location": "Hobart Campus",
+    "price": 10,
+    "sold": 1,
+    "capacity": 2,
+    "status": "Confirmed"
+  },
+  {
+    "id": 4,
+    "title": "Cloud Computing Seminar",
+    "category": "Seminar",
+    "description": "An introduction to cloud computing, hosting, storage and modern platforms.",
+    "organiser": "Sarah Johnson",
+    "dateTime": "2025-05-28T13:15",
+    "location": "Online",
+    "price": 5,
+    "sold": 0,
+    "capacity": 2,
+    "status": "Cancelled"
+  }
+]
