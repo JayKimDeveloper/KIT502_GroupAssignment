@@ -1,63 +1,29 @@
-let events = [
-    {
-        id: 1,
-        title: "Web Development Bootcamp",
-        category: "Workshop",
-        description: "Learn HTML, CSS and JavaScript in a practical beginner friendly session.",
-        organiser: "TechEvents UTAS",
-        dateTime: "2025-07-05T14:00",
-        location: "Launceston Campus",
-        price: 15,
-        sold: 1,
-        capacity: 2,
-        status: "Confirmed"
-    },
-    {
-        id: 2,
-        title: "Cyber Security Workshop",
-        category: "Workshop",
-        description: "A simple session about cyber safety, passwords and common online risks.",
-        organiser: "UTAS IT Club",
-        dateTime: "2025-06-20T10:30",
-        location: "Launceston Campus",
-        price: 0,
-        sold: 0,
-        capacity: 2,
-        status: "Draft"
-    },
-    {
-        id: 3,
-        title: "AI Hackathon 2025",
-        category: "Hackathon",
-        description: "Students solve real world problems using AI ideas, teamwork and creativity.",
-        organiser: "TechEvents UTAS",
-        dateTime: "2025-06-12T09:00",
-        location: "Hobart Campus",
-        price: 10,
-        sold: 2,
-        capacity: 2,
-        status: "Confirmed"
-    },
-    {
-        id: 4,
-        title: "Cloud Computing Seminar",
-        category: "Seminar",
-        description: "An introduction to cloud computing, hosting, storage and modern platforms.",
-        organiser: "School of ICT",
-        dateTime: "2025-05-28T13:15",
-        location: "Online",
-        price: 22,
-        sold: 1,
-        capacity: 2,
-        status: "Cancelled"
-    }
-];
+const eventStorageKey = "techevents_events";
 
-document.addEventListener("DOMContentLoaded", function () {
+let events = [];
+
+document.addEventListener("DOMContentLoaded", async function () {
+    await loadEvents();
     sortEvents();
     showStats();
     showEvents();
 });
+
+async function loadEvents() {
+    const savedEvents = localStorage.getItem(eventStorageKey);
+
+    if (savedEvents) {
+        events = JSON.parse(savedEvents);
+    } else {
+        const response = await fetch("data/events.json");
+        events = await response.json();
+        saveEvents();
+    }
+}
+
+function saveEvents() {
+    localStorage.setItem(eventStorageKey, JSON.stringify(events));
+}
 
 function sortEvents() {
     events.sort(function (a, b) {
@@ -71,8 +37,8 @@ function showStats() {
     let totalRevenue = 0;
 
     for (let i = 0; i < events.length; i++) {
-        totalTickets = totalTickets + events[i].sold;
-        totalRevenue = totalRevenue + (events[i].sold * events[i].price);
+        totalTickets += events[i].sold;
+        totalRevenue += events[i].sold * events[i].price;
     }
 
     document.getElementById("totalEvents").textContent = totalEvents;
@@ -149,7 +115,8 @@ function viewEvent(id) {
         "Date & Time: " + formatDateTime(event.dateTime) + "\n" +
         "Location: " + event.location + "\n" +
         "Price: " + formatPrice(event.price) + "\n" +
-        "Status: " + event.status
+        "Status: " + event.status + "\n" +
+        "Tickets: " + event.sold + " / " + event.capacity
     );
 }
 
@@ -170,11 +137,6 @@ function editEvent(id) {
         return;
     }
 
-    if (countWords(newDescription) > 100) {
-        alert("Description must be 100 words or less.");
-        return;
-    }
-
     let newOrganiser = prompt("Edit organiser:", event.organiser);
     if (newOrganiser === null || newOrganiser.trim() === "") {
         return;
@@ -185,21 +147,15 @@ function editEvent(id) {
         return;
     }
 
-    newStatus = newStatus.trim();
-
-    if (
-        newStatus !== "Draft" &&
-        newStatus !== "Confirmed" &&
-        newStatus !== "Cancelled"
-    ) {
-        alert("Status must be Draft, Confirmed, or Cancelled.");
-        return;
-    }
-
     event.title = newTitle.trim();
     event.description = newDescription.trim();
     event.organiser = newOrganiser.trim();
-    event.status = newStatus;
+    event.status = newStatus.trim();
+    event.capacity = 2;
+
+    if (event.sold > 2) {
+        event.sold = 2;
+    }
 
     sortEvents();
     showStats();
@@ -209,18 +165,16 @@ function editEvent(id) {
 }
 
 function deleteEvent(id) {
-    let isConfirmed = confirm("Are you sure you want to delete this event?");
+    let confirmed = confirm("Are you sure you want to delete this event?");
 
-    if (!isConfirmed) {
+    if (!confirmed) {
         return;
     }
 
-    for (let i = 0; i < events.length; i++) {
-        if (events[i].id === id) {
-            events.splice(i, 1);
-            break;
-        }
-    }
+    events = events.filter(function (event) {
+        return event.id !== id;
+    });
+
 
     showStats();
     showEvents();
@@ -236,17 +190,4 @@ function getEventById(id) {
     }
 
     return null;
-}
-
-function countWords(text) {
-    let words = text.trim().split(/\s+/);
-    let total = 0;
-
-    for (let i = 0; i < words.length; i++) {
-        if (words[i] !== "") {
-            total++;
-        }
-    }
-
-    return total;
 }
