@@ -1,3 +1,7 @@
+
+/*
+Color Palette from : colorhunt.co
+*/
 :root {
     --primary:    #E76F51; 
     --secondary:  #7A1F2B;   
@@ -15,8 +19,8 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #FFF7ED;     
-    color: #3A1F1F;
+    background-color: var(--bg);     
+    color: var(--text);
     line-height: 1.6;                 
 }
 
@@ -152,7 +156,12 @@ h1, h2, h3 {
 }
 
 
-/* ─── Footer ─────────────────────────────── */
+/**
+*
+*
+*
+*
+*/
 .footer {
   background: #ffe8d6;
   color: #000;

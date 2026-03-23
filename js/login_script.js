@@ -23,17 +23,23 @@ function signup() {
   window.location.href = "login.html";
 }
 
-function login() {
-  let email = document.getElementById("loginEmail").value;
-  let password = document.getElementById("loginPassword").value;
 
-  let storedEmail = localStorage.getItem("email");
-  let storedPassword = localStorage.getItem("password");
 
-  if (email === storedEmail && password === storedPassword) {
-    alert("Login successful!");
+/**
+ * Check the login data form
+ * 1. email format
+ * 2. password blank
+*/ 
+document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    let email = document.getElementById("loginEmail").value.trim();
+    let password = document.getElementById("loginPassword").value.trim();
+
+    if (email === "" || password === "") {
+        alert("Please fill in all fields.");
+        return;
+    }
+
     window.location.href = "index.html";
-  } else {
-    alert("Invalid credentials");
-  }
-}
+});
