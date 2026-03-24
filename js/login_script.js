@@ -41,5 +41,7 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
         return;
     }
 
+    alert("login success")
+
     window.location.href = "index.html";
 });

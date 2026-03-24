@@ -16,15 +16,15 @@ $(document).ready(function(e){
         }
 
         // email format check
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
+        const emailCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailCheck.test(email)) {
             alert('Please enter a valid email address.');
             return;
         }
 
         // password format check
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
-        if (!passwordRegex.test(password)) {
+        const passwordCheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
+        if (!passwordCheck.test(password)) {
             alert('Password must be at least 6 characters and include uppercase, lowercase, and a special character.');
             return;
         }
