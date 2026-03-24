@@ -79,11 +79,120 @@
 }
 
 
+.register-box {
+    display: flex;
+    min-height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    margin: 40px auto;
+    max-width: 900px;
+}
 
+/* Left panel style */
+.register-panel {
+    flex: 1;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 48px 36px;
+    text-align: center;
+    gap: 16px;
+}
 
-/* Mobile */
+.register-panel h2 {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.register-panel p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.btn-panel {
+    margin-top: 16px;
+    background: transparent;
+    color: #FFF7ED;
+    border: 2px solid #FFF7ED;
+    border-radius: 24px;
+    padding: 10px 32px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-panel:hover {
+    background: #FFF7ED;
+    color: var(--primary);
+}
+
+/* Right side form */
+.register-form-box {
+    flex: 1.2;
+    background: #FFF7ED;
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.register-form-box h2 {
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 1.8rem;
+}
+
+.register-form-box .form-group {
+    margin-bottom: 18px;
+}
+
+.register-form-box .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.register-form-box .form-group input,
+.register-form-box .form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #E8D5C4;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.register-form-box .form-group input:focus,
+.register-form-box .form-group select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(231, 111, 81, 0.15);
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+/* Mobile supporting */
 @media (max-width: 950px) {
     .login-wrapper {
         flex-direction: column;
+    }
+    .register-box {
+        flex-direction: column;
+    }
+
+    .register-panel {
+        padding: 32px 24px;
     }
 }
