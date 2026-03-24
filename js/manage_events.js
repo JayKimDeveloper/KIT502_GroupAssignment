@@ -10,15 +10,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 async function loadEvents() {
-    const savedEvents = localStorage.getItem(eventStorageKey);
-
-    if (savedEvents) {
-        events = JSON.parse(savedEvents);
-    } else {
-        const response = await fetch("data/events.json");
-        events = await response.json();
-        saveEvents();
-    }
+    const response = await fetch("data/events.json");
+    events = await response.json();
 }
 
 function saveEvents() {

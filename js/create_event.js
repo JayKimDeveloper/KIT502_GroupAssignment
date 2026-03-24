@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("createEventForm");
     const resetButton = document.getElementById("resetBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+    
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -28,6 +30,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        if (capacity < 1 || capacity > 2) {
+           alert("Capacity must be between 1 and 2.");
+            return;
+        }
+
         if (endDate < startDate) {
             alert("End date cannot be before start date.");
             return;
@@ -39,5 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     resetButton.addEventListener("click", function () {
         alert("Form has been reset");
+    });
+
+    cancelBtn.addEventListener("click", function () {
+        if (confirm("Are you sure you want to cancel? All changes will be lost.")) {
+            window.location.href = "index.html";
+        }
     });
 });

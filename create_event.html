@@ -69,7 +69,7 @@
 
                     <div class="form-group">
                         <label for="capacity">Capacity</label>
-                        <input type="number" id="capacity" name="capacity" placeholder="Enter maximum capacity">
+                        <input type="number" id="capacity" name="capacity" placeholder="Enter maximum capacity" min="1" max="2">
                     </div>
 
                     <div class="form-group">
@@ -82,7 +82,8 @@
                         <select id="status" name="status">
                             <option value="">Select event status</option>
                             <option value="draft">Draft</option>
-                            <option value="published">Published</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="cancelled">Cancelled</option>
                         </select>
                     </div>
 
@@ -91,8 +92,8 @@
                         <input type="file" id="image" name="image">
                     </div>
                     <div class="form-actions">  
-                        <button type="reset" class="btn btn-outline" id="resetBtn" onclick="window.location.href='index.html'">Cancel</button>
-                        <button type="reset" class="btn btn-outline">Reset</button>
+                        <button type="button" class="btn btn-outline" id="cancelBtn">Cancel</button>
+                        <button type="reset" class="btn btn-outline" id="resetBtn">Reset</button>
                         <button type="submit" class="btn btn-primary">Create Event</button>
                     </div>
                 </form>
