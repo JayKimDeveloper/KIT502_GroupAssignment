@@ -1,3 +1,12 @@
+/**
+* Author: YoungHyun Kim
+* : Common CSS
+* Rules: 
+*      - 01. Basically pallete color is comming from this css
+       - 02. Setting the Navbar, Footer and Buttons
+*/
+
+
 
 /*
 Color Palette from : colorhunt.co
@@ -9,6 +18,7 @@ Color Palette from : colorhunt.co
     --bg:         #FFF7ED;  
     --surface:    #FFE8D6;  
     --text:       #3A1F1F;  
+    --form:       #f0dccd;
 }
 
 * {
@@ -27,10 +37,19 @@ body {
 a {
     color: #E76F51;
     text-decoration-style: none;
+    text-decoration: none;
 }
 
 a:hover {
     color: var(--accent);
+}
+
+.nav-brand:hover {
+    color: var(--accent);  /* Tech */
+}
+
+.nav-brand:hover span {
+    color: var(--accent);  /* Event */
 }
 
 
@@ -57,24 +76,26 @@ h1, h2, h3 {
   min-height: 100vh;
 }
 
-/* ─── Navbar ─────────────────────────────── */
+/* 
+* ------ nav bar --------
+*/
 
 .navbar {
   position: sticky;          /* fixed at the top */
-  top: 0; left: 0; right: 0;
-  height: 64px;
-  background: #FFF7ED;
+  top: 0; left: 0; right: 0; 
+  height: 64px;           /* Height setting */
+  background: var(--bg);
   border-bottom: 1px solid #E8D5C4;
   display: flex;
   align-items: center;      
   z-index: 100;             
 }
 
-/* make .container inside navbar */
+/* make navbar */
 .navbar .container {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* left logo, right button */
+  justify-content: space-between; /* Left Logo, right side button */
   width: 100%;
 }
 
@@ -82,12 +103,12 @@ h1, h2, h3 {
   font-size: 1.2rem;
   font-weight: 700;
   text-decoration: none;
-  color: #7A1F2B; 
+  color: var(--secondary); 
 }
 
 /* highlight orange color */
 .nav-brand span {
-  color: #E76F51;
+  color: var(--primary);
 }
 
 .nav-links {
@@ -108,8 +129,8 @@ h1, h2, h3 {
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: #E76F51;
-  background: rgba(231, 111, 81, 0.1);
+  color: var(--primary);
+  background: rgba(222, 104, 74, 0.1);
 }
 
 .nav-actions {
@@ -117,7 +138,10 @@ h1, h2, h3 {
   gap: 8px;
 }
 
-/* commmon botton style0 — btn-primary, btn-outline */
+/* 
+* commmon botton style - 1
+* btn-primary, btn-outline 
+*/
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -131,7 +155,7 @@ h1, h2, h3 {
   font-family: 'Poppins', sans-serif;
 }
 
-/* fill button */
+/* Setting btn color */
 .btn-primary {
   background: #E76F51;
   color: #fff;
@@ -139,11 +163,11 @@ h1, h2, h3 {
 }
 
 .btn-primary:hover {
-  background: #C85A3D; /* make more darker */
+  background: #C85A3D; /* Make darker color for hover action */
   color: #fff;
 }
 
-/* only shape button */
+/* Shape button */
 .btn-outline {
   background: transparent;
   color: #E76F51;
@@ -157,10 +181,8 @@ h1, h2, h3 {
 
 
 /**
-*
-*
-*
-*
+* Footer
+* Put identity about our group prj and uni info
 */
 .footer {
   background: #ffe8d6;

@@ -44,6 +44,15 @@
 
 
           <form id="login-form">
+
+            <label for="role">Role</label>
+            <select id="role" name="role">
+                <option value="">Select your role</option>
+                <option value="organiser">Organiser</option>
+                <option value="attendee">Attendee</option>
+            </select>
+
+
             <div class="form-group">
                 <label for="loginEmail">Email</label>
                 <input type="email" id="loginEmail" placeholder="Email" required>
@@ -55,7 +64,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
-            <p>Don't have an account? <a href="sign_up.html">Sign Up</a></p>
+            <p>Don't have an account? <a href="register.html">Sign Up</a></p>
           </form>
       </div>
 

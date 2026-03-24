@@ -1,7 +1,7 @@
 .login-form-box {
     max-width: 950px;
-    height: 500px;
-    background-color: #f0dccd;
+    height: 600px;
+    background-color: var(--form);
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
@@ -60,7 +60,7 @@
     margin-bottom: 8px;
 }
 
-.login-form-box .form-group input {
+.login-form-box .form-group input, select{
     width: 100%;
     padding: 14px 16px;
     border: none;
@@ -79,6 +79,10 @@
 }
 
 
+
+/**
+* -- Register CSS
+*/
 .register-box {
     display: flex;
     min-height: 600px;
@@ -104,12 +108,13 @@
 }
 
 .register-panel h2 {
-    color: white;
+    color: (--text);
     font-size: 1.8rem;
     font-weight: 700;
 }
 
 .register-panel p {
+    color: var(--text);
     font-size: 0.95rem;
     opacity: 0.9;
     line-height: 1.6;
@@ -135,6 +140,7 @@
 .register-form-box {
     flex: 1.2;
     background: #FFF7ED;
+    background: var(--form);
     padding: 48px 40px;
     display: flex;
     flex-direction: column;
