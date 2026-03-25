@@ -112,7 +112,7 @@ The project is divided among 4 team members:
 
 ---
 
-### Gunneet (`guneet0526kaur-lang`) — Public Pages
+### Guneet (`guneet0526kaur-lang`) — Public Pages
 
 - Landing page
 - Events page
