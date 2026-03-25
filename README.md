@@ -1,22 +1,10 @@
 # 🎓 UTAS Student Tech Events
 
 > **KIT502 Web Development** | University of Tasmania
+> **URL: https://github.com/JayKimDeveloper/KIT502_GroupAssignment
 
 A web application that gives UTAS students one place to find, organise, and join technology-related events — workshops, tech talks, hackathons, and networking sessions.
 
----
-
-## 📋 Table of Contents
-
-- [Project Overview](#project-overview)
-- [Development Stages](#development-stages)
-- [Color Palette](#color-palette)
-- [System Roles](#system-roles)
-- [Features](#features)
-- [Pages](#pages)
-- [Team Responsibilities](#team-responsibilities)
-- [Database Design](#database-design)
-- [Technology Stack](#technology-stack)
 
 ---
 
@@ -151,6 +139,14 @@ Responsible for event management and administrative interfaces.
 
 ---
 
+### Expectations within the team, including work quality standards:
+
+- Communications: Communications via WhatsApp
+- Internal submission deadline: 3 days prior to closing limit completed by weekend
+- Job Quality: Check Before Commit, Cross-Review After Commit
+- Share of duties: Each member is responsible for developing at least one screen and function
+- Mutual Support: Check with each other on WhatsApp or feature reviews to see if they missed anything and ask for help
+
 ## Database Design
 
 
@@ -251,10 +247,10 @@ CREATE TABLE activies_logs_TB (
 
 ### Assignment 1 (Frontend)
 
-- HTML
-- CSS
-- JavaScript
-- jQuery
+- jQuery — v3.7.1 — https://code.jquery.com/jquery-3.7.1.min.js
+- Google Fonts (Poppins) — https://fonts.googleapis.com/css?family=Poppins
+- Google Material Icons — https://fonts.googleapis.com/icon?family=Material+Icons
+
 
 ### Assignment 2 (Full-stack)
 
