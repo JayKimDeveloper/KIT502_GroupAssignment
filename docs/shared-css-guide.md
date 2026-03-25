@@ -1,7 +1,6 @@
 # shared.css Guide
 
 Base stylesheet for all pages in the TechEvents UTAS project.  
-Every team member must link this file before writing any page-specific styles.
 
 ---
 
