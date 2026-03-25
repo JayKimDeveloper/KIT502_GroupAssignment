@@ -1,82 +1,85 @@
-# UTAS Student Tech Event
+# 🎓 UTAS Student Tech Events
 
-**UTAS Student Tech Events** is a web application developed for **KIT502 Web Development** at the **University of Tasmania**.
+> **KIT502 Web Development** | University of Tasmania
 
-The platform allows UTAS students to **discover, organise, and participate in technology-related events** such as workshops, tech talks, hackathons, and career networking sessions.
-
-Users can register as attendees or organisers, browse events, book tickets, and administrators can manage the entire system.
+A web application that gives UTAS students one place to find, organise, and join technology-related events — workshops, tech talks, hackathons, and networking sessions.
 
 ---
 
-# Project Overview
+## 📋 Table of Contents
 
-This system is an **Event Management and Ticket Booking Platform** designed specifically for university students.
+- [Project Overview](#project-overview)
+- [Development Stages](#development-stages)
+- [Color Palette](#color-palette)
+- [System Roles](#system-roles)
+- [Features](#features)
+- [Pages](#pages)
+- [Team Responsibilities](#team-responsibilities)
+- [Database Design](#database-design)
+- [Technology Stack](#technology-stack)
 
-The platform provides the following capabilities:
+---
 
-- Visitors can browse available events.
-- Students can register as attendees and book tickets.
-- Organisers can create and manage events.
-- Administrators can manage users, events, and platform activity.
+## Project Overview
 
-The project is implemented in **two stages**:
+UTAS Student Tech Events is designed for different types of users:
 
-| Stage | Description |
-|------|-------------|
-| **Assignment 1** | Frontend design and database planning |
-| **Assignment 2** | Full-stack implementation using Laravel |
+- **Visitors** — Browse available events
+- **Students (Attendees)** — Register and book tickets
+- **Organisers** — Post and manage events
+- **Administrators** — Oversee the platform as a whole
+
+The project is developed in two stages: frontend design & database planning (Assignment 1), then full-stack implementation using Laravel (Assignment 2).
+
+---
+
+## Development Stages
+
+| Stage | Focus |
+|-------|-------|
+| Assignment 1 | Frontend design and database planning |
+| Assignment 2 | Full-stack implementation using Laravel |
 
 ---
 
 ## Color Palette
-| Role | Color | HEX | Preview |
-|------|-------|-----|---------|
-| Primary | Warm Orange | `#E76F51` | ![](https://placehold.co/30x30/E76F51/E76F51.png) |
-| Secondary | Burgundy | `#7A1F2B` | ![](https://placehold.co/30x30/7A1F2B/7A1F2B.png) |
-| Accent | Golden | `#F4A261` | ![](https://placehold.co/30x30/F4A261/F4A261.png) |
-| Background | Cream | `#FFF7ED` | ![](https://placehold.co/30x30/FFF7ED/FFF7ED.png) |
-| Surface | Ivory | `#FFE8D6` | ![](https://placehold.co/30x30/FFE8D6/FFE8D6.png) |
-| Text | Dark Brown | `#3A1F1F` | ![](https://placehold.co/30x30/3A1F1F/3A1F1F.png) |
 
+> Source: [colorhunt.co](https://colorhunt.co)
 
-# System Roles
-
-The system supports **four types of users**.
-
-### Visitor
-- Can browse the landing page and event listings
-- Cannot purchase tickets
-
-### Attendee
-- Can register an account
-- Can browse and book events
-- Can view registered events
-- Can cancel bookings before the cutoff date
-
-### Organiser
-- Can create new events
-- Can edit and delete their events
-- Can view attendees registered for their events
-
-### Admin
-- Can manage all users
-- Can manage all events
-- Can view system statistics
+| Role | Color Name | HEX |
+|------|-----------|-----|
+| Primary | Warm Orange | `#E76F51` |
+| Secondary | Burgundy | `#7A1F2B` |
+| Accent | Golden | `#F4A261` |
+| Background | Cream | `#FFF7ED` |
+| Surface | Ivory | `#FFE8D6` |
+| Text | Dark Brown | `#3A1F1F` |
 
 ---
 
-# Core Features
+## System Roles
 
-The system includes the following **core functionalities**:
+| Role | Description |
+|------|-------------|
+| **Visitor** | Can browse the landing page and view events. Cannot book tickets or modify anything. |
+| **Attendee** | Can view events, book tickets, check registered events, and cancel bookings before the deadline. |
+| **Organiser** | Can create, update, and delete events. Can also view attendee lists for their own events. |
+| **Admin** | Highest level of access. Can manage users and organisers, review all events, and view system statistics. |
 
-- **User Registration and Login**
-- **Role-based Access Control**
-- **Event Creation and Management**
-- **Ticket Booking System**
-- **Event Filtering and Browsing**
-- **Admin Dashboard with Statistics**
+---
 
-### Advanced Features (Optional)
+## Features
+
+### Core Features
+
+- User Registration and Login
+- Role-based Access Control
+- Event Creation and Management
+- Ticket Booking System
+- Event Filtering and Browsing
+- Admin Dashboard with Statistics
+
+### Advanced Features *(Optional)*
 
 - Notification system
 - Payment simulation
@@ -85,193 +88,178 @@ The system includes the following **core functionalities**:
 
 ---
 
-# System Pages
+## Pages
 
-The web application contains the following main pages:
-
-| Page | Description |
-|-----|-------------|
-| **Landing Page** | Displays website introduction and latest events |
-| **Registration Page** | Allows users to create an account |
-| **Login Page** | Allows registered users to log in |
-| **Event Page** | Displays available events |
-| **Create Event Page** | Allows organisers to create events |
-| **Event Management Page** | Allows organisers to manage events |
-| **Admin Dashboard** | Displays statistics and system controls |
+| Page | Purpose |
+|------|---------|
+| Landing Page | Displays website information and featured events |
+| Registration Page | Allows new users to create an account |
+| Login Page | Allows existing users to sign in |
+| Event Page | Displays the list of available events |
+| Create Event Page | Organiser can create/add a new event |
+| Event Management Page | Allows organiser/admin to update or delete existing events |
+| Admin Dashboard | Displays users, events, and system statistics |
 
 ---
 
----
+## Team Responsibilities
 
-# Documentation
-
-| File | Description |
-|------|-------------|
-| [Shared CSS Guide](docs/shared-css-guide.md) | How to use shared.css — layout, navbar, buttons, footer |
-
----
+### Team Progress with Time line
+<img src="./docs/TeamProgress.png">
 
 
-# Team Responsibilities
-
-## Backend + Database + Managing (YoungHyun Kim)
-
-Responsible for backend development and database design.
-
-### Assignment 1
-- Design **database schema**
-- Create **ER Diagram**
-- Define system tables
-- Design site navigation
-- Make Shared CSS
-
-Main tables include:
-
-- `users`
-- `events`
-- `bookings`
-- `waitlist`
-- `notifications`
-
-Also responsible for:
-
-- Project documentation
-- README preparation
-- Backend architecture planning
-
-### Assignment 2
-
-Responsibilities include:
-
-- Laravel project setup
-- Database connection
-- Authentication system
-- Role-based access control
-- Event CRUD functionality
-- Ticket booking system
-- Admin dashboard implementation
-- Final documentation and demo preparation
+The project is divided among 4 team members:
 
 ---
 
-## Frontend Developer A  (Gunneet)
-### Public Pages & Layout
+### YoungHyun Kim (`JayKimyh`) — Backend + Database + Managing
 
-Responsible for **public-facing pages and UI layout**.
-
-#### Assignment 1
-- Implement landing page
-- Create event list layout
-
-#### Assignment 2
-- Connect landing page with database
-- Display latest events dynamically
-- Implement event filtering
-- Connect ticket purchase button
+- Project initial setup
+- README
+- ERD & Schema
+- Login page
+- Nav bar
+- Signup validation
+- Merge management
 
 ---
 
-## Frontend Developer B  (Sidd)
-### Authentication Pages
+### Gunneet (`guneet0526kaur-lang`) — Public Pages
 
-Responsible for **user authentication interfaces**.
-
-#### Assignment 1
-
-Implement:
-
-- Registration form
-- Login form
-- Form validation using **JavaScript / jQuery**
-
-Validation includes:
-
-- Empty field validation
-- Email format validation
-- Password confirmation
-- Password policy validation
-
-#### Assignment 2
-
-Connect forms with backend:
-
-- Database registration
-- Login authentication
-- Error message display
-- Logout functionality
+- Landing page
+- Events page
+- CSS (`landing` / `events` / `variables`)
+- Image assets
 
 ---
 
-## Frontend Developer C  (Pragun)
-### Event & Admin Interfaces
+### Siddharth (Sidd) — Authentication
 
-Responsible for **event management and admin pages**.
+- Register page
+- Login page *(committed by `JayKimyh` on Mar 22)*
 
-Prototype Site design [link](https://www.figma.com/make/mbiRK198FnSLMnX3Euy4T8/TechEvents-UTAS-Website-Design?t=8Ns6RzjFmbkbWmbQ-1)
+---
 
-#### Assignment 1
+### Pragun — Event & Admin Interfaces
 
-Create:
+Responsible for event management and administrative interfaces.
 
+- Web page design using Figma — [View Prototype](https://www.figma.com/make/mbiRK198FnSLMnX3Euy4T8/TechEvents-UTAS-Website-Design?t=8Ns6RzjFmbkbWmbQ-1)
 - Event creation form
-- Event management page with dummy events
-- Admin dashboard layout
-
-#### Assignment 2
-
-Implement:
-
-- Event creation linked to database
-- Organiser event management
-- Attendee registration management
-- Admin dashboard statistics
+- Event management page with dummy events *(shared JSON file)*
+- Admin dashboard layout *(shared JSON file)*
 
 ---
 
-# Database Design
+## Database Design
 
-The system database includes the following **core entities**.
 
-| Table | Purpose |
-|------|--------|
-| **users** | Stores user accounts and roles |
-| **events** | Stores event details |
-| **bookings** | Stores ticket registrations |
-| **waitlist** | Stores waiting users for full events |
-| **notifications** | Stores system notifications |
+### ERD Design
+<img src="./docs/KIT502_GrupAssERD.drawio.png">
 
-An **ER Diagram** and **Database Schema** will be submitted as part of **Assignment 1**.
+
+### Schema
+
+```sql
+/**
+ * Author: YoungHyun Kim
+ * Version: 0.1
+ */
+
+-- User Table (supports admin, organiser, attendee roles)
+CREATE TABLE user_TB (
+    login_id      VARCHAR(100) NOT NULL,
+    password      VARCHAR(255) NOT NULL,
+    first_name    VARCHAR(30)  NOT NULL,
+    last_name     VARCHAR(30)  NOT NULL,
+    location      VARCHAR(100) NOT NULL,
+    role          ENUM('admin', 'organiser', 'attendee') NOT NULL,
+    email         VARCHAR(100) NOT NULL,
+    update_date   DATE         NOT NULL,
+    register_date DATE         NOT NULL,
+    PRIMARY KEY (login_id)
+);
+
+-- Event Category Table
+CREATE TABLE category_TB (
+    category_id   INT          NOT NULL,
+    category_name VARCHAR(100) NOT NULL,
+    PRIMARY KEY (category_id)
+);
+
+-- Event Table
+CREATE TABLE event_TB (
+    event_id     CHAR(12)     NOT NULL,
+    title        VARCHAR(100) NOT NULL,
+    description  TEXT         NOT NULL,
+    login_id     VARCHAR(100) NOT NULL,
+    img_url      VARCHAR(100),
+    ticket_price INT          NOT NULL,
+    capacity     INT          NOT NULL,
+    status       ENUM('Draft', 'Confirmed', 'Cancelled') NOT NULL,
+    category_ID  INT          NOT NULL,
+    start_date   DATE         NOT NULL,
+    end_date     DATE         NOT NULL,
+    update_date  DATE         NOT NULL,
+    PRIMARY KEY (event_id),
+    FOREIGN KEY (login_id)    REFERENCES user_TB(login_id),
+    FOREIGN KEY (category_ID) REFERENCES category_TB(category_id)
+);
+
+-- Booking Table
+CREATE TABLE booking_TB (
+    booking_id   CHAR(12)     NOT NULL,
+    booking_date DATE         NOT NULL,
+    member_cnt   INT          NOT NULL,
+    event_id     CHAR(12)     NOT NULL,
+    login_id     VARCHAR(100) NOT NULL,
+    PRIMARY KEY (booking_id),
+    FOREIGN KEY (event_id)  REFERENCES event_TB(event_id),
+    FOREIGN KEY (login_id)  REFERENCES user_TB(login_id)
+);
+
+-- Notification Table (Beta v0.1)
+CREATE TABLE notification_TB (
+    notification_id VARCHAR(12)  NOT NULL,
+    login_id        VARCHAR(100) NOT NULL,
+    booking_id      CHAR(12)     NOT NULL,
+    type            VARCHAR(100) NOT NULL,
+    message         TEXT,
+    is_read         TINYINT(1)   NOT NULL,
+    update_date     DATE         NOT NULL,
+    PRIMARY KEY (notification_id),
+    FOREIGN KEY (login_id)   REFERENCES user_TB(login_id),
+    FOREIGN KEY (booking_id) REFERENCES booking_TB(booking_id)
+);
+
+-- Activity Logs Table
+CREATE TABLE activies_logs_TB (
+    log_id          VARCHAR(25)  NOT NULL,
+    login_id        VARCHAR(100) NOT NULL,
+    action_type     VARCHAR(50)  NOT NULL,
+    action_category VARCHAR(50)  NOT NULL,
+    new_value       VARCHAR(255),
+    create_date     DATE         NOT NULL,
+    PRIMARY KEY (log_id),
+    FOREIGN KEY (login_id) REFERENCES user_TB(login_id)
+);
+```
 
 ---
 
-# Technology Stack
+## Technology Stack
 
-### Frontend
+### Assignment 1 (Frontend)
+
 - HTML
 - CSS
 - JavaScript
 - jQuery
 
-### Backend
-- Laravel 10
-- PHP 8.2
+### Assignment 2 (Full-stack)
 
-### Database
-- MySQL
-- SQLite
-
-### Development Environment
-- Usermin
+- Laravel (PHP)
 
 ---
 
-# Installation (Assignment 2)
-
-The Laravel project will be installed inside the **group workspace**.
-
-Example setup:
-
-```bash
-cd ~/public_html
-laravel-install
-mv myApp /groupwork/kit502-group-XX/
+*UTAS Student Tech Events — KIT502 Web Development, University of Tasmania*
