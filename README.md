@@ -54,6 +54,10 @@ The project is developed in two stages: frontend design & database planning (Ass
 | **Organiser** | Can create, update, and delete events. Can also view attendee lists for their own events. |
 | **Admin** | Highest level of access. Can manage users and organisers, review all events, and view system statistics. |
 
+
+## setup Guide
+> ** [setup] (docs/shared-css-guide.md)
+
 ---
 
 ## Features
@@ -75,6 +79,7 @@ The project is developed in two stages: frontend design & database planning (Ass
 - Monthly event calendar
 
 ---
+
 
 ## Pages
 
@@ -132,7 +137,7 @@ The project is divided among 4 team members:
 
 Responsible for event management and administrative interfaces.
 
-- Web page design using Figma — [View Prototype](https://www.figma.com/make/mbiRK198FnSLMnX3Euy4T8/TechEvents-UTAS-Website-Design?t=8Ns6RzjFmbkbWmbQ-1)
+- Web page design using Figma
 - Event creation form
 - Event management page with dummy events *(shared JSON file)*
 - Admin dashboard layout *(shared JSON file)*
