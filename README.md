@@ -128,7 +128,7 @@ The project is divided among 4 team members:
 
 ---
 
-### Pragun — Event & Admin Interfaces
+### Pragun (`pragun11`)— Event & Admin Interfaces
 
 Responsible for event management and administrative interfaces.
 
