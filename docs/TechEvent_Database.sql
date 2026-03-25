@@ -16,8 +16,8 @@ CREATE TABLE user_TB (
     location VARCHAR(100) NOT NULL,
     role ENUM('admin', 'organiser', 'attendee') NOT NULL,
     email VARCHAR(100) NOT NULL,
-    update_date DATE NOT NULL,
-    register_date DATE NOT NULL,
+    update_date DATETIME NOT NULL,
+    register_date DATETIME NOT NULL,
     PRIMARY KEY (login_id)
 );
 
@@ -45,12 +45,12 @@ CREATE TABLE event_TB (
     capacity INT NOT NULL,
     status ENUM('Draft', 'Confirmed', 'Cancelled') NOT NULL,
     category_ID INT NOT NULL,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
-    update_date DATE NOT NULL,
+    start_date DATETIME NOT NULL,
+    end_date DATETIME NOT NULL,
+    update_date DATETIME NOT NULL,
     PRIMARY KEY (event_id),
     FOREIGN KEY (login_id) REFERENCES user_TB(login_id),
-    FOREIGN KEY (category_ID) REFERENCES Category(category_id)
+    FOREIGN KEY (category_ID) REFERENCES category_TB(category_id)
 );
 
 /**
@@ -59,7 +59,7 @@ CREATE TABLE event_TB (
 */
 CREATE TABLE booking_TB (
     booking_id CHAR(12) NOT NULL,
-    booking_date DATE NOT NULL,
+    booking_date DATETIME NOT NULL,
     member_cnt INT NOT NULL,
     event_id CHAR(12) NOT NULL,
     login_id VARCHAR(100) NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE notification_TB (
     type VARCHAR(100) NOT NULL,
     message TEXT,
     is_read TINYINT(1) NOT NULL,
-    update_date DATE NOT NULL,
+    update_date DATETIME NOT NULL,
     PRIMARY KEY (notification_id),
     FOREIGN KEY (login_id) REFERENCES user_TB(login_id),
     FOREIGN KEY (booking_id) REFERENCES booking_TB(booking_id)
@@ -96,7 +96,7 @@ CREATE TABLE activies_logs_TB (
     action_type VARCHAR(50) NOT NULL,
     action_category VARCHAR(50) NOT NULL,
     new_value VARCHAR(255),
-    create_date DATE NOT NULL,
+    create_date DATETIME NOT NULL,
     PRIMARY KEY (log_id),
     FOREIGN KEY (login_id) REFERENCES user_TB(login_id)
 );
