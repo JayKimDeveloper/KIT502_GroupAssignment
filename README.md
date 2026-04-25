@@ -1,266 +1,66 @@
-# 🎓 UTAS Student Tech Events
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-> **KIT502 Web Development** | University of Tasmania
-> **URL: https://github.com/JayKimDeveloper/KIT502_GroupAssignment
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-A web application that gives UTAS students one place to find, organise, and join technology-related events — workshops, tech talks, hackathons, and networking sessions.
+## About Laravel
 
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
----
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-## Project Overview
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-UTAS Student Tech Events is designed for different types of users:
+## Learning Laravel
 
-- **Visitors** — Browse available events
-- **Students (Attendees)** — Register and book tickets
-- **Organisers** — Post and manage events
-- **Administrators** — Oversee the platform as a whole
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-The project is developed in two stages: frontend design & database planning (Assignment 1), then full-stack implementation using Laravel (Assignment 2).
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
----
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Development Stages
+## Laravel Sponsors
 
-| Stage | Focus |
-|-------|-------|
-| Assignment 1 | Frontend design and database planning |
-| Assignment 2 | Full-stack implementation using Laravel |
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
----
+### Premium Partners
 
-## Color Palette
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[WebReinvent](https://webreinvent.com/)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Jump24](https://jump24.co.uk)**
+- **[Redberry](https://redberry.international/laravel/)**
+- **[Active Logic](https://activelogic.com)**
+- **[byte5](https://byte5.de)**
+- **[OP.GG](https://op.gg)**
 
-> Source: [colorhunt.co](https://colorhunt.co)
+## Contributing
 
-| Role | Color Name | HEX |
-|------|-----------|-----|
-| Primary | Warm Orange | `#E76F51` |
-| Secondary | Burgundy | `#7A1F2B` |
-| Accent | Golden | `#F4A261` |
-| Background | Cream | `#FFF7ED` |
-| Surface | Ivory | `#FFE8D6` |
-| Text | Dark Brown | `#3A1F1F` |
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
----
+## Code of Conduct
 
-## System Roles
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-| Role | Description |
-|------|-------------|
-| **Visitor** | Can browse the landing page and view events. Cannot book tickets or modify anything. |
-| **Attendee** | Can view events, book tickets, check registered events, and cancel bookings before the deadline. |
-| **Organiser** | Can create, update, and delete events. Can also view attendee lists for their own events. |
-| **Admin** | Highest level of access. Can manage users and organisers, review all events, and view system statistics. |
+## Security Vulnerabilities
 
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## setup Guide
-> ** [setup] (docs/shared-css-guide.md)
+## License
 
----
-
-## Features
-
-### Core Features
-
-- User Registration and Login
-- Role-based Access Control
-- Event Creation and Management
-- Ticket Booking System
-- Event Filtering and Browsing
-- Admin Dashboard with Statistics
-
-### Advanced Features *(Optional)*
-
-- Notification system
-- Payment simulation
-- Waitlist system when events are full
-- Monthly event calendar
-
----
-
-
-## Pages
-
-| Page | Purpose |
-|------|---------|
-| Landing Page | Displays website information and featured events |
-| Registration Page | Allows new users to create an account |
-| Login Page | Allows existing users to sign in |
-| Event Page | Displays the list of available events |
-| Create Event Page | Organiser can create/add a new event |
-| Event Management Page | Allows organiser/admin to update or delete existing events |
-| Admin Dashboard | Displays users, events, and system statistics |
-
----
-
-## Team Responsibilities
-
-### Team Progress with Time line
-<img src="./docs/TeamProgress.png">
-
-
-The project is divided among 4 team members:
-
----
-
-### YoungHyun Kim (`JayKimyh`) — Backend + Database + Managing
-
-- Project initial setup
-- README
-- ERD & Schema
-- Login page
-- Nav bar
-- Signup validation
-- Merge management
-
----
-
-### Guneet (`guneet0526kaur-lang`) — Public Pages
-
-- Landing page
-- Events page
-- CSS (`landing` / `events` / `variables`)
-- Image assets
-
----
-
-### Siddharth (Sidd) — Authentication
-
-- Register page
-- Login page *(committed by `JayKimyh` on Mar 22)*
-
----
-
-### Pragun (`pragun11`)— Event & Admin Interfaces
-
-Responsible for event management and administrative interfaces.
-
-- Web page design using Figma
-- Event creation form
-- Event management page with dummy events *(shared JSON file)*
-- Admin dashboard layout *(shared JSON file)*
-
----
-
-### Expectations within the team, including work quality standards:
-
-- Communications: Communications via WhatsApp
-- Internal submission deadline: 3 days prior to closing limit completed by weekend
-- Job Quality: Check Before Commit, Cross-Review After Commit
-- Share of duties: Each member is responsible for developing at least one screen and function
-- Mutual Support: Check with each other on WhatsApp or feature reviews to see if they missed anything and ask for help
-
-## Database Design
-
-
-### ERD Design
-<img src="./docs/KIT502_GrupAssERD.drawio.png">
-
-
-### Schema
-
-```sql
-/**
- * Author: YoungHyun Kim
- * Version: 0.1
- */
-
--- User Table (supports admin, organiser, attendee roles)
-CREATE TABLE user_TB (
-    login_id      VARCHAR(100) NOT NULL,
-    password      VARCHAR(255) NOT NULL,
-    first_name    VARCHAR(30)  NOT NULL,
-    last_name     VARCHAR(30)  NOT NULL,
-    location      VARCHAR(100) NOT NULL,
-    role          ENUM('admin', 'organiser', 'attendee') NOT NULL,
-    email         VARCHAR(100) NOT NULL,
-    update_date   DATE         NOT NULL,
-    register_date DATE         NOT NULL,
-    PRIMARY KEY (login_id)
-);
-
--- Event Category Table
-CREATE TABLE category_TB (
-    category_id   INT          NOT NULL,
-    category_name VARCHAR(100) NOT NULL,
-    PRIMARY KEY (category_id)
-);
-
--- Event Table
-CREATE TABLE event_TB (
-    event_id     CHAR(12)     NOT NULL,
-    title        VARCHAR(100) NOT NULL,
-    description  TEXT         NOT NULL,
-    login_id     VARCHAR(100) NOT NULL,
-    img_url      VARCHAR(100),
-    ticket_price INT          NOT NULL,
-    capacity     INT          NOT NULL,
-    status       ENUM('Draft', 'Confirmed', 'Cancelled') NOT NULL,
-    category_ID  INT          NOT NULL,
-    start_date   DATE         NOT NULL,
-    end_date     DATE         NOT NULL,
-    update_date  DATE         NOT NULL,
-    PRIMARY KEY (event_id),
-    FOREIGN KEY (login_id)    REFERENCES user_TB(login_id),
-    FOREIGN KEY (category_ID) REFERENCES category_TB(category_id)
-);
-
--- Booking Table
-CREATE TABLE booking_TB (
-    booking_id   CHAR(12)     NOT NULL,
-    booking_date DATE         NOT NULL,
-    member_cnt   INT          NOT NULL,
-    event_id     CHAR(12)     NOT NULL,
-    login_id     VARCHAR(100) NOT NULL,
-    PRIMARY KEY (booking_id),
-    FOREIGN KEY (event_id)  REFERENCES event_TB(event_id),
-    FOREIGN KEY (login_id)  REFERENCES user_TB(login_id)
-);
-
--- Notification Table (Beta v0.1)
-CREATE TABLE notification_TB (
-    notification_id VARCHAR(12)  NOT NULL,
-    login_id        VARCHAR(100) NOT NULL,
-    booking_id      CHAR(12)     NOT NULL,
-    type            VARCHAR(100) NOT NULL,
-    message         TEXT,
-    is_read         TINYINT(1)   NOT NULL,
-    update_date     DATE         NOT NULL,
-    PRIMARY KEY (notification_id),
-    FOREIGN KEY (login_id)   REFERENCES user_TB(login_id),
-    FOREIGN KEY (booking_id) REFERENCES booking_TB(booking_id)
-);
-
--- Activity Logs Table
-CREATE TABLE activies_logs_TB (
-    log_id          VARCHAR(25)  NOT NULL,
-    login_id        VARCHAR(100) NOT NULL,
-    action_type     VARCHAR(50)  NOT NULL,
-    action_category VARCHAR(50)  NOT NULL,
-    new_value       VARCHAR(255),
-    create_date     DATE         NOT NULL,
-    PRIMARY KEY (log_id),
-    FOREIGN KEY (login_id) REFERENCES user_TB(login_id)
-);
-```
-
----
-
-## Technology Stack
-
-### Assignment 1 (Frontend)
-
-- jQuery — v3.7.1 — https://code.jquery.com/jquery-3.7.1.min.js
-- Google Fonts (Poppins) — https://fonts.googleapis.com/css?family=Poppins
-- Google Material Icons — https://fonts.googleapis.com/icon?family=Material+Icons
-
-
-### Assignment 2 (Full-stack)
-
-- Laravel (PHP)
-
----
-
-*UTAS Student Tech Events — KIT502 Web Development, University of Tasmania*
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
