@@ -1,66 +1,484 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎓 UTAS Student Tech Events
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> **KIT502 Web Development** | University of Tasmania  
+> **Repository:** https://github.com/JayKimDeveloper/KIT502_GroupAssignment
 
-## About Laravel
+UTAS Student Tech Events is a web application that gives UTAS students one place to find, organise, and join technology-related events, including workshops, tech talks, hackathons, and networking sessions.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The project was first developed as a static frontend and database design project for Assignment 1. It has now been migrated into a Laravel-based project structure for Assignment 2 full-stack implementation.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Project Overview
 
-## Learning Laravel
+UTAS Student Tech Events is designed for different types of users:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Visitors** — Browse available events
+- **Students / Attendees** — Register, log in, and book tickets
+- **Organisers** — Create, update, and manage events
+- **Administrators** — Oversee users, events, and platform-level information
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+The system aims to provide a simple event management platform where university-related technology events can be published, browsed, and booked through a role-based web application.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Development Stages
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Stage | Focus | Status |
+|-------|-------|--------|
+| Assignment 1 | Frontend design and database planning | Completed |
+| Assignment 2 | Full-stack implementation using Laravel | In progress |
 
-### Premium Partners
+### Current Assignment 2 Progress
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- Static frontend migrated into Laravel project structure
+- HTML pages converted into Laravel Blade templates
+- CSS, JavaScript, image, and data assets moved into the Laravel `public` directory
+- Laravel web routes configured
+- Local development server tested with `php artisan serve`
+- Backend authentication, event CRUD, booking, and admin logic are planned for the next implementation stage
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Technology Stack
 
-## Code of Conduct
+### Frontend
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- HTML
+- CSS
+- JavaScript
+- jQuery v3.7.1
+- Google Fonts: Poppins
+- Google Material Icons
 
-## Security Vulnerabilities
+### Backend / Full-stack
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Laravel 10
+- PHP 8.2
+- Blade templates
+- SQLite for local development
+- MySQL for school server deployment
+- Composer
+- Git / GitHub
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Project Structure
+
+```text
+KIT502_GroupAssignment/
+├── app/
+├── bootstrap/
+├── config/
+├── database/
+├── docs/
+├── event_details/
+├── public/
+│   ├── css/
+│   ├── data/
+│   ├── images/
+│   └── js/
+├── resources/
+│   └── views/
+├── routes/
+│   └── web.php
+├── storage/
+├── tests/
+├── README.md
+├── composer.json
+├── composer.lock
+├── package.json
+├── artisan
+└── vite.config.js
+```
+
+---
+
+## Current Routes
+
+The following pages are currently connected through Laravel routes:
+
+| Route | Page |
+|-------|------|
+| `/` | Landing Page |
+| `/login` | Login Page |
+| `/register` | Registration Page |
+| `/events` | Events Page |
+| `/booking` | Booking Page |
+| `/create-event` | Create Event Page |
+| `/manage-events` | Event Management Page |
+| `/admin-dashboard` | Admin Dashboard |
+
+---
+
+## Local Setup Guide
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/JayKimDeveloper/KIT502_GroupAssignment.git
+cd KIT502_GroupAssignment
+```
+
+### 2. Install Dependencies
+
+```bash
+composer install
+```
+
+### 3. Create Environment File
+
+```bash
+cp .env.example .env
+```
+
+### 4. Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+### 5. Configure SQLite for Local Development
+
+Create the SQLite database file:
+
+```bash
+touch database/database.sqlite
+```
+
+Update `.env`:
+
+```env
+DB_CONNECTION=sqlite
+DB_DATABASE=/absolute/path/to/KIT502_GroupAssignment/database/database.sqlite
+```
+
+Example for macOS:
+
+```env
+DB_CONNECTION=sqlite
+DB_DATABASE=/Users/your-username/Documents/UTAS/KIT502/groupAssignment/KIT502_GroupAssignment/database/database.sqlite
+```
+
+### 6. Run Migrations
+
+```bash
+php artisan migrate
+```
+
+### 7. Start Local Development Server
+
+```bash
+php artisan serve
+```
+
+Open the project in a browser:
+
+```text
+http://127.0.0.1:8000
+```
+
+---
+
+## School Server Deployment Plan
+
+The project will be deployed to the university-provided internal server for final testing and submission.
+
+Recommended deployment workflow:
+
+```bash
+git pull
+composer install
+php artisan migrate
+php artisan config:clear
+php artisan cache:clear
+```
+
+For the school server, update `.env` to use MySQL credentials provided by the university.
+
+Example:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=school_database_name
+DB_USERNAME=school_database_user
+DB_PASSWORD=school_database_password
+```
+
+Sensitive files such as `.env`, database files, logs, and local tool metadata should not be committed to Git.
+
+---
+
+## Color Palette
+
+> Source: [colorhunt.co](https://colorhunt.co)
+
+| Role | Color Name | HEX |
+|------|------------|-----|
+| Primary | Warm Orange | `#E76F51` |
+| Secondary | Burgundy | `#7A1F2B` |
+| Accent | Golden | `#F4A261` |
+| Background | Cream | `#FFF7ED` |
+| Surface | Ivory | `#FFE8D6` |
+| Text | Dark Brown | `#3A1F1F` |
+
+---
+
+## System Roles
+
+| Role | Description |
+|------|-------------|
+| **Visitor** | Can browse the landing page and view events. Cannot book tickets or modify anything. |
+| **Attendee** | Can view events, book tickets, check registered events, and cancel bookings before the deadline. |
+| **Organiser** | Can create, update, and delete events. Can also view attendee lists for their own events. |
+| **Admin** | Highest level of access. Can manage users and organisers, review all events, and view system statistics. |
+
+---
+
+## Features
+
+### Core Features
+
+- User registration and login
+- Role-based access control
+- Event creation and management
+- Ticket booking system
+- Event filtering and browsing
+- Admin dashboard with statistics
+
+### Advanced Features *(Optional)*
+
+- Notification system
+- Payment simulation
+- Waitlist system when events are full
+- Monthly event calendar
+
+---
+
+## Pages
+
+| Page | Purpose |
+|------|---------|
+| Landing Page | Displays website information and featured events |
+| Registration Page | Allows new users to create an account |
+| Login Page | Allows existing users to sign in |
+| Events Page | Displays the list of available events |
+| Booking Page | Allows attendees to book tickets |
+| Create Event Page | Allows organisers to create a new event |
+| Event Management Page | Allows organisers/admins to update or delete existing events |
+| Admin Dashboard | Displays users, events, and system statistics |
+
+---
+
+## Team Responsibilities
+
+### Team Progress Timeline
+
+<img src="./docs/TeamProgress.png">
+
+The project is divided among four team members.
+
+---
+
+### YoungHyun Kim (`JayKimyh`) — Backend + Database + Management
+
+- Project setup
+- README management
+- ERD and schema design
+- Login page
+- Navigation bar
+- Signup validation
+- Merge management
+- Laravel project structure migration
+- Login, Signup develop 
+
+---
+
+### Guneet (`guneet0526kaur-lang`) — Public Pages
+
+- Landing page
+- Events page
+- CSS for landing, events, and variables
+- Image assets
+
+---
+
+### Siddharth (Sidd) — Authentication
+
+- Register page
+- Login page
+
+---
+
+### Pragun (`pragun11`) — Event & Admin Interfaces
+
+Responsible for event management and administrative interfaces.
+
+- Web page design using Figma
+- Event creation form
+- Event management page with dummy events
+- Admin dashboard layout
+- Shared JSON data files
+
+---
+
+## Team Expectations and Work Quality Standards
+
+- **Communication:** Team communication is mainly handled through WhatsApp.
+- **Internal Deadline:** Team members aim to complete assigned work at least three days before the final submission deadline.
+- **Work Quality:** Code should be checked before commit and reviewed after commit where possible.
+- **Task Distribution:** Each member is responsible for at least one screen and related functionality.
+- **Mutual Support:** Team members should ask questions, provide help, and review each other’s work when needed.
+
+---
+
+## Database Design
+
+### ERD Design
+
+<img src="./docs/KIT502_GrupAssERD.drawio.png">
+
+### Schema
+
+> Note:  
+> The following schema was originally designed during Assignment 1.  
+> It may be refactored during the Laravel migration process using Laravel migrations and Eloquent models.
+
+```sql
+/**
+ * Author: YoungHyun Kim
+ * Version: 0.1
+ */
+
+-- User Table (supports admin, organiser, attendee roles)
+CREATE TABLE user_TB (
+    login_id      VARCHAR(100) NOT NULL,
+    password      VARCHAR(255) NOT NULL,
+    first_name    VARCHAR(30)  NOT NULL,
+    last_name     VARCHAR(30)  NOT NULL,
+    location      VARCHAR(100) NOT NULL,
+    role          ENUM('admin', 'organiser', 'attendee') NOT NULL,
+    email         VARCHAR(100) NOT NULL,
+    update_date   DATE         NOT NULL,
+    register_date DATE         NOT NULL,
+    PRIMARY KEY (login_id)
+);
+
+-- Event Category Table
+CREATE TABLE category_TB (
+    category_id   INT          NOT NULL,
+    category_name VARCHAR(100) NOT NULL,
+    PRIMARY KEY (category_id)
+);
+
+-- Event Table
+CREATE TABLE event_TB (
+    event_id     CHAR(12)     NOT NULL,
+    title        VARCHAR(100) NOT NULL,
+    description  TEXT         NOT NULL,
+    login_id     VARCHAR(100) NOT NULL,
+    img_url      VARCHAR(100),
+    ticket_price INT          NOT NULL,
+    capacity     INT          NOT NULL,
+    status       ENUM('Draft', 'Confirmed', 'Cancelled') NOT NULL,
+    category_ID  INT          NOT NULL,
+    start_date   DATE         NOT NULL,
+    end_date     DATE         NOT NULL,
+    update_date  DATE         NOT NULL,
+    PRIMARY KEY (event_id),
+    FOREIGN KEY (login_id)    REFERENCES user_TB(login_id),
+    FOREIGN KEY (category_ID) REFERENCES category_TB(category_id)
+);
+
+-- Booking Table
+CREATE TABLE booking_TB (
+    booking_id   CHAR(12)     NOT NULL,
+    booking_date DATE         NOT NULL,
+    member_cnt   INT          NOT NULL,
+    event_id     CHAR(12)     NOT NULL,
+    login_id     VARCHAR(100) NOT NULL,
+    PRIMARY KEY (booking_id),
+    FOREIGN KEY (event_id)  REFERENCES event_TB(event_id),
+    FOREIGN KEY (login_id)  REFERENCES user_TB(login_id)
+);
+
+-- Notification Table (Beta v0.1)
+CREATE TABLE notification_TB (
+    notification_id VARCHAR(12)  NOT NULL,
+    login_id        VARCHAR(100) NOT NULL,
+    booking_id      CHAR(12)     NOT NULL,
+    type            VARCHAR(100) NOT NULL,
+    message         TEXT,
+    is_read         TINYINT(1)   NOT NULL,
+    update_date     DATE         NOT NULL,
+    PRIMARY KEY (notification_id),
+    FOREIGN KEY (login_id)   REFERENCES user_TB(login_id),
+    FOREIGN KEY (booking_id) REFERENCES booking_TB(booking_id)
+);
+
+-- Activity Logs Table
+CREATE TABLE activies_logs_TB (
+    log_id          VARCHAR(25)  NOT NULL,
+    login_id        VARCHAR(100) NOT NULL,
+    action_type     VARCHAR(50)  NOT NULL,
+    action_category VARCHAR(50)  NOT NULL,
+    new_value       VARCHAR(255),
+    create_date     DATE         NOT NULL,
+    PRIMARY KEY (log_id),
+    FOREIGN KEY (login_id) REFERENCES user_TB(login_id)
+);
+```
+
+---
+
+## Git and Security Notes
+
+The following files and folders should not be committed:
+
+- `.env`
+- `vendor/`
+- `node_modules/`
+- SQLite database files
+- Log files
+- Local tool metadata such as `.claude/`
+- Local editor settings such as `.vscode/`
+
+Before pushing, check sensitive files with:
+
+```bash
+git ls-files | grep -E "\.env|sqlite|pass|secret|key|log"
+```
+
+Only `.env.example` and normal Laravel configuration files should appear.
+
+---
+
+## Useful Laravel Commands
+
+```bash
+php artisan serve
+php artisan route:list
+php artisan migrate
+php artisan config:clear
+php artisan cache:clear
+```
+
+---
+
+## Future Development Plan
+
+The next stage of development will focus on:
+
+- Connecting registration and login pages to Laravel authentication
+- Implementing user roles
+- Creating event migrations, models, and controllers
+- Connecting event creation and event management pages to the database
+- Implementing ticket booking with capacity validation
+- Displaying dynamic event data from the database
+- Implementing admin dashboard statistics
+
+---
+
+*UTAS Student Tech Events — KIT502 Web Development, University of Tasmania*
