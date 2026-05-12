@@ -324,6 +324,100 @@ Responsible for event management and administrative interfaces.
 
 ---
 
+## Team Naming Rules
+
+To keep the Laravel project consistent and maintainable, all team members should follow the naming rules below.
+
+### General Naming Convention
+
+| Target | Rule | Example |
+|---|---|---|
+| Database tables | Plural `snake_case` | `users`, `events`, `bookings` |
+| Database columns | `snake_case` | `start_datetime`, `booking_reference` |
+| Form input names | `snake_case` | `password_confirmation`, `category_id` |
+| HTML IDs | `camelCase` | `createEventForm`, `bookingQuantity` |
+| JavaScript variables | `camelCase` | `eventTitle`, `bookingQuantity` |
+| CSS classes | `kebab-case` | `event-card`, `stats-card` |
+| Route names | Dot notation | `events.store`, `admin.dashboard` |
+
+### Fixed Value Naming
+
+#### User Roles
+
+Use lowercase values in the database and backend logic.
+
+```text
+admin
+organiser
+attendee
+```
+
+#### Event Statuses
+
+```text
+draft
+published
+cancelled
+```
+
+#### Booking Statuses
+
+```text
+confirmed
+cancelled
+```
+
+#### Payment Statuses
+
+```text
+free
+unpaid
+paid
+```
+
+### Form Input Naming
+
+#### Register Form
+
+```text
+role
+name
+email
+password
+password_confirmation
+```
+
+#### Login Form
+
+```text
+email
+password
+```
+
+#### Create Event Form
+
+```text
+title
+description
+category_id
+start_datetime
+end_datetime
+location
+capacity
+price
+status
+image
+```
+
+### Notes
+
+- Database values should use lowercase names where possible.
+- Form `name` attributes should match the controller validation keys.
+- Route names should be used with Laravel’s `route()` helper instead of hardcoded `.html` links.
+- Uploaded event images should use `image` as the form input name, but should be stored in the database as `image_path`.
+
+
+
 ## Team Expectations and Work Quality Standards
 
 - **Communication:** Team communication is mainly handled through WhatsApp.
