@@ -10,22 +10,8 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="nav-brand">Tech<span>Events</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="create_event.html">Create Event</a></li>
-                <li><a href="manage_events.html">Manage Events</a></li>
-                <li><a href="admin_dashboard.html">Admin</a></li>
-            </ul>
-            <div class="nav-actions">
-                <a href="login.html" class="btn btn-outline">Log in</a>
-                <a href="register.html" class="btn btn-primary">Sign up</a>
-            </div>
-        </div>
-    </nav>
+    
+    @include('partials.navbar')
 
     <div class="page">
     <div class="container">
@@ -35,7 +21,7 @@
             <div class="register-panel">
                 <h2>Welcome Back!</h2>
                 <p>Already have an account? Log in to continue your journey with us.</p>
-                <a href="login.html" class="btn btn-panel">Log In</a>
+                <a href="login" class="btn btn-panel">Log In</a>
             </div>
 
             <!-- Register form -->

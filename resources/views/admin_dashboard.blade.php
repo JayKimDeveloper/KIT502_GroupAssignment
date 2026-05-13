@@ -13,19 +13,19 @@
 
     <nav class="navbar">
         <div class="container">
-            <a href="index.html" class="nav-brand">Tech<span>Events</span></a>
+            <a href="index" class="nav-brand">Tech<span>Events</span></a>
 
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="create_event.html">Create Event</a></li>
-                <li><a href="manage_events.html">Manage Events</a></li>
-                <li><a href="admin_dashboard.html" class="active">Admin</a></li>
+                <li><a href="index">Home</a></li>
+                <li><a href="events">Events</a></li>
+                <li><a href="create_event">Create Event</a></li>
+                <li><a href="manage_events">Manage Events</a></li>
+                <li><a href="admin_dashboard" class="active">Admin</a></li>
             </ul>
 
             <div class="nav-actions">
-                <a href="login.html" class="btn btn-outline">Log in</a>
-                <a href="register.html" class="btn btn-primary">Sign up</a>
+                <a href="login" class="btn btn-outline">Log in</a>
+                <a href="register" class="btn btn-primary">Sign up</a>
             </div>
         </div>
     </nav>

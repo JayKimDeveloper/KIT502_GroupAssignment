@@ -36,7 +36,7 @@ $(document).ready(function(e){
         }
 
         // If success, move to index.html
-        window.location.href = 'index.html';
+        window.location.href = 'index';
 
 
     })

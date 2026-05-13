@@ -19,10 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::view('/', 'index');
+Route::view('/index', 'index');
 Route::view('/login', 'login');
 Route::view('/register', 'register');
 Route::view('/events', 'events');
 Route::view('/booking', 'booking');
-Route::view('/create-event', 'create_event');
-Route::view('/manage-events', 'manage_events');
-Route::view('/admin-dashboard', 'admin_dashboard');
+Route::view('/create_event', 'create_event');
+Route::view('/manage_events', 'manage_events');
+Route::view('/admin_dashboard', 'admin_dashboard');

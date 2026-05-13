@@ -1,9 +1,9 @@
 function goToLogin() {
-  window.location.href = "login.html";
+  window.location.href = "login";
 }
 
 function goToSignup() {
-  window.location.href = "signup.html";
+  window.location.href = "signup";
 }
 
 function signup() {
@@ -20,7 +20,7 @@ function signup() {
   localStorage.setItem("password", password);
 
   alert("Signup successful!");
-  window.location.href = "login.html";
+  window.location.href = "login";
 }
 
 
@@ -43,5 +43,5 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
 
     alert("login success")
 
-    window.location.href = "index.html";
+    window.location.href = "index";
 });
