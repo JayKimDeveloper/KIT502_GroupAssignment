@@ -112,7 +112,7 @@ The following pages are currently connected through Laravel routes:
 ---
 
 ## API GUIDE - ASSIGNMENT02, FINAL UPDATE - 13th/May
-(docs/API_LISTS.md)
+[API Document](docs/API_LISTS.md)
 
 ## Local Setup Guide
 
