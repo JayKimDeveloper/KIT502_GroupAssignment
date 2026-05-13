@@ -10,36 +10,64 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    use HasFactory, Notifiable;
+ 
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
     ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+ 
     protected $hidden = [
         'password',
         'remember_token',
     ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
+ 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'password' => 'hashed', // Laravel 10 auto-hashes on set
     ];
+ 
+    /* ------------------------------------------------------------------ */
+    /* Relationships                                                       */
+    /* ------------------------------------------------------------------ */
+ 
+    /** Events this user has created (when role = organiser/admin). */
+    public function organisedEvents(): HasMany
+    {
+        return $this->hasMany(Event::class, 'organiser_id');
+    }
+ 
+    /** Bookings this user has made (when role = attendee). */
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(Booking::class, 'attendee_id');
+    }
+ 
+    /** Notifications addressed to this user. */
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class);
+    }
+ 
+    /* ------------------------------------------------------------------ */
+    /* Role helpers — used in controllers/middleware for authorisation.    */
+    /* ------------------------------------------------------------------ */
+ 
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+ 
+    public function isOrganiser(): bool
+    {
+        return $this->role === 'organiser';
+    }
+ 
+    public function isAttendee(): bool
+    {
+        return $this->role === 'attendee';
+    }
+
 }

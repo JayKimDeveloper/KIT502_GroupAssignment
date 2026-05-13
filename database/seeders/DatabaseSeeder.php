@@ -12,11 +12,108 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $admin = User::create([
+            'name' => 'Admin',
+            'email' => 'admin@test',
+            'password' => Hash::make('admin123!@'),
+            'role' => 'admin',
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $organiser = User::create([
+            'name'     => 'Test Organiser',
+            'email'    => 'organiser@kit502.test',
+            'password' => Hash::make('Organiser@123'),
+            'role'     => 'organiser',
+        ]);
+ 
+        $attendee = User::create([
+            'name'     => 'Test Attendee',
+            'email'    => 'attendee@kit502.test',
+            'password' => Hash::make('Attendee@123'),
+            'role'     => 'attendee',
+        ]);
+ 
+        /* ---------- Categories ---------- */
+ 
+        $categories = collect([
+            'Workshop',
+            'Tech Talk',
+            'Hackathon',
+            'Networking',
+            'Conference',
+        ])->map(fn ($name) => Category::create(['name' => $name]));
+ 
+        /* ---------- Events ---------- */
+        // Four published events, all in the future, on different dates
+        // so reverse-chronological ordering on the management page is visible.
+ 
+        $eventsData = [
+            [
+                'title'       => 'Intro to Laravel for Students',
+                'description' => 'Hands-on workshop covering routing, Eloquent, and Blade. Bring a laptop.',
+                'days_ahead'  => 7,
+                'location'    => 'UTAS Sandy Bay, Room 101',
+                'capacity'    => 30,
+                'price'       => 0,
+                'category'    => 'Workshop',
+            ],
+            [
+                'title'       => 'Cybersecurity Career Panel',
+                'description' => 'Industry panel discussion with security professionals from Hobart.',
+                'days_ahead'  => 14,
+                'location'    => 'UTAS Centenary Building',
+                'capacity'    => 100,
+                'price'       => 5.00,
+                'category'    => 'Tech Talk',
+            ],
+            [
+                'title'       => 'UTAS Hackathon 2026',
+                'description' => '24-hour hackathon — build something that helps the community. Prizes for top three teams.',
+                'days_ahead'  => 21,
+                'location'    => 'IT Building, Sandy Bay',
+                'capacity'    => 50,
+                'price'       => 10.00,
+                'category'    => 'Hackathon',
+            ],
+            [
+                'title'       => 'Tech Networking Night',
+                'description' => 'Meet local developers, recruiters, and founders. Light refreshments provided.',
+                'days_ahead'  => 30,
+                'location'    => 'Hobart CBD, Tech Hub',
+                'capacity'    => 80,
+                'price'       => 0,
+                'category'    => 'Networking',
+            ],
+        ];
+ 
+        $events = collect();
+ 
+        foreach ($eventsData as $data) {
+            $events->push(Event::create([
+                'organiser_id'   => $organiser->id,
+                'category_id'    => $categories->firstWhere('name', $data['category'])->id,
+                'title'          => $data['title'],
+                'description'    => $data['description'],
+                'start_datetime' => now()->addDays($data['days_ahead'])->setTime(18, 0),
+                'end_datetime'   => now()->addDays($data['days_ahead'])->setTime(21, 0),
+                'location'       => $data['location'],
+                'capacity'       => $data['capacity'],
+                'price'          => $data['price'],
+                'status'         => 'published',
+                'image_path'     => null,
+            ]));
+        }
+ 
+        /* ---------- One sample booking ---------- */
+        // So the admin dashboard's "total registrations" stat isn't 0 at first run.
+ 
+        Booking::create([
+            'event_id'       => $events->first()->id,
+            'attendee_id'    => $attendee->id,
+            'status'         => 'confirmed',
+            'payment_status' => 'free',
+        ]);
+
+
     }
 }

@@ -38,7 +38,7 @@
                 <a href="login.html" class="btn btn-panel">Log In</a>
             </div>
 
-            <!-- Login form -->
+            <!-- Register form -->
             <div class="register-form-box">
                 <h2>Create Account</h2>
 
