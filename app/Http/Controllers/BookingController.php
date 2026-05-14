@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 
-class BookingcController extends Controller
+class BookingController extends Controller
 {
     //
         public function store(Request $request): JsonResponse
