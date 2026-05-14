@@ -21,3 +21,4 @@ npm-debug.log*
 # excel
 *.xlsx.claude/
 .vscode/
+.env
