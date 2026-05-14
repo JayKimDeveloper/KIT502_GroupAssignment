@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register | TechEvents UTAS</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/login_style.css">
+  <link rel="stylesheet" href="{{ asset('css/variables.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/login_style.css') }}">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
@@ -68,7 +68,6 @@
           </div>
       </div>
     </div>
-
-    <script src="js/register_script.js"></script>
+    <script src="{{ asset('js/register_script.js') }}"></script>
 </body>
 </html>
