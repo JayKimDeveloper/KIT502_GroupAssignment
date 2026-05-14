@@ -20,7 +20,7 @@
       <div class="login-box">
 
         <div class="login-form-image">
-          <img src="images/login_bg1.jpg">
+          <img src="{{ asset('images/login_bg1.jpg') }}" alt="Login background">
         </div>
 
         <div class="login-form-box">
@@ -59,6 +59,6 @@
     </div>
   </div>
 
-<script src="js/login_script.js"></script>
+<script src="{{ asset('js/login_script.js') }}"></script>
 </body>
 </html>
