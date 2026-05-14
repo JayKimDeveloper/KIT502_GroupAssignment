@@ -8,8 +8,8 @@
     <title>TechEvents UTAS</title>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="{{ asset('css/variables.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
 
 </head>
 
@@ -17,19 +17,19 @@
 
     <nav class="navbar">
         <div class="container">
-            <a href="index" class="nav-brand">Tech<span>Events</span></a>
+            <a href="{{ url('/index') }}" class="nav-brand">Tech<span>Events</span></a>
 
             <ul class="nav-links">
-                <li><a href="index">Home</a></li>
-                <li><a href="events">Events</a></li>
-                <li><a href="create_event" class="active">Create Event</a></li>
-                <li><a href="manage_events">Manage Events</a></li>
-                <li><a href="admin_dashboard">Admin</a></li>
+                <li><a href="{{ url('/index') }}">Home</a></li>
+                <li><a href="{{ url('/events') }}">Events</a></li>
+                <li><a href="{{ url('/create_event') }}" class="active">Create Event</a></li>
+                <li><a href="{{ url('/manage_events') }}">Manage Events</a></li>
+                <li><a href="{{ url('/admin_dashboard') }}">Admin</a></li>
             </ul>
 
             <div class="nav-actions">
-                <a href="login" class="btn btn-outline">Log in</a>
-                <a href="register" class="btn btn-primary">Sign up</a>
+                <a href="{{ url('/login') }}" class="btn btn-outline">Log in</a>
+                <a href="{{ url('/register') }}" class="btn btn-primary">Sign up</a>
             </div>
         </div>
     </nav>
@@ -44,7 +44,7 @@
                     <a href="events.html" class="btn btn-primary">Browse Events</a>
                 </div>
                 <div class="hero-image">
-                    <img src="images/landing.png" alt="Tech event">
+                    <img src="{{ asset('images/landing.png') }}" alt="Tech event">
                 </div>
             </div>
         </section>
@@ -56,7 +56,7 @@
                 <div class="event-grid">
                     <div class="event-card">
                         <div class="event-image">
-                            <img src="images/event1.png" alt="AI Hackathon">
+                            <img src="{{ asset('images/event1.png') }}" alt="AI Hackathon">
                         </div>
                         <div class="event-badge">Hackathon</div>
                         <h3>AI Hackathon 2025</h3>
@@ -70,7 +70,7 @@
 
                     <div class="event-card">
                         <div class="event-image">
-                            <img src="images/event2.png" alt="Cyber Security Workshop">
+                            <img src="{{ asset('images/event2.png') }}" alt="Cyber Security Workshop">
                         </div>
                         <div class="event-badge">Workshop</div>
                         <h3>Cyber Security Workshop</h3>

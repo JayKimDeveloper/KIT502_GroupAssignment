@@ -5,35 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Tickets | TechEvents UTAS</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/landing.css">
-    <link rel="stylesheet" href="css/events.css">
-    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="{{ asset('css/variables.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/events.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/booking.css') }}">
     
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
-            <a href="index" class="nav-brand">Tech<span>Events</span></a>
+            <a href="{{ url('/index') }}" class="nav-brand">Tech<span>Events</span></a>
 
             <ul class="nav-links">
-                <li><a href="index">Home</a></li>
-                <li><a href="events">Events</a></li>
-                <li><a href="create_event">Create Event</a></li>
-                <li><a href="manage_events">Manage Events</a></li>
-                <li><a href="admin_dashboard" class="active">Admin</a></li>
+                <li><a href="{{ url('/index') }}">Home</a></li>
+                <li><a href="{{ url('/events') }}">Events</a></li>
+                <li><a href="{{ url('/create_event') }}">Create Event</a></li>
+                <li><a href="{{ url('/manage_events') }}">Manage Events</a></li>
+                <li><a href="{{ url('/admin_dashboard') }}" class="active">Admin</a></li>
             </ul>
 
             <div class="nav-actions">
-                <a href="login" class="btn btn-outline">Log in</a>
-                <a href="register" class="btn btn-primary">Sign up</a>
+                <a href="{{ url('/login') }}" class="btn btn-outline">Log in</a>
+                <a href="{{ url('/register') }}" class="btn btn-primary">Sign up</a>
             </div>
         </div>
     </nav>
     
     <div class="page">
         <div class="container">
-            <a href="events" style="color: var(--primary); font-size: 1rem; display: inline-block; margin: 32px 0 0 0; text-decoration: none;">← Back to Event</a>
+            <a href="{{ url('/events') }}" style="color: var(--primary); font-size: 1rem; display: inline-block; margin: 32px 0 0 0; text-decoration: none;">← Back to Event</a>
             <div class="booking-container">
                 <form class="booking-form">
                     <h2 style="margin-bottom: 18px;">Complete Your Booking</h2>

@@ -49,7 +49,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
-            <p>Don't have an account? <a href="register">Sign Up</a></p>
+            <p>Don't have an account? <a href="{{ url('/register') }}">Sign Up</a></p>
           </form>
       </div>
 

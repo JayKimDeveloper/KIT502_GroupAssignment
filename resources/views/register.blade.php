@@ -21,7 +21,7 @@
             <div class="register-panel">
                 <h2>Welcome Back!</h2>
                 <p>Already have an account? Log in to continue your journey with us.</p>
-                <a href="login" class="btn btn-panel">Log In</a>
+                <a href="{{ url('/login') }}" class="btn btn-panel">Log In</a>
             </div>
 
             <!-- Register form -->

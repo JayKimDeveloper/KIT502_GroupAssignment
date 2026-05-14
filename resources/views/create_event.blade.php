@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Event - TechEvents</title>
 
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/create_event.css">
+    <link rel="stylesheet" href="{{ asset('css/variables.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/create_event.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <body>
 
     <nav class="navbar">
         <div class="container">
-            <a href="index" class="nav-brand">Tech<span>Events</span></a>
+            <a href="{{ url('/index') }}" class="nav-brand">Tech<span>Events</span></a>
 
             <ul class="nav-links">
-                <li><a href="index">Home</a></li>
-                <li><a href="events">Events</a></li>
-                <li><a href="create_event" class="active">Create Event</a></li>
-                <li><a href="manage_events">Manage Events</a></li>
-                <li><a href="admin_dashboard">Admin</a></li>
+                <li><a href="{{ url('/index') }}">Home</a></li>
+                <li><a href="{{ url('/events') }}">Events</a></li>
+                <li><a href="{{ url('/create_event') }}" class="active">Create Event</a></li>
+                <li><a href="{{ url('/manage_events') }}">Manage Events</a></li>
+                <li><a href="{{ url('/admin_dashboard') }}">Admin</a></li>
             </ul>
 
             <div class="nav-actions">
-                <a href="login" class="btn btn-outline">Log in</a>
-                <a href="register" class="btn btn-primary">Sign up</a>
+                <a href="{{ url('/login') }}" class="btn btn-outline">Log in</a>
+                <a href="{{ url('/register') }}" class="btn btn-primary">Sign up</a>
             </div>
         </div>
     </nav>
@@ -111,6 +111,6 @@
             </div>
         </div>
     </footer>
-    <script src="js/create_event.js"></script>
+    <script src="{{ asset('js/create_event.js') }}"></script>
 </body>
 </html>
