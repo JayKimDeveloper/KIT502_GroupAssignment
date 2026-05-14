@@ -33,6 +33,7 @@ Route::view('/booking', 'booking');
 Route::view('/create_event', 'create_event');
 Route::view('/manage_events', 'manage_events');
 Route::view('/admin_dashboard', 'admin_dashboard');
+Route::view('/test_api', 'Test_api');
 
 
 

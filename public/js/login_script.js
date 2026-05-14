@@ -1,47 +1,27 @@
 function goToLogin() {
-  window.location.href = "login";
+    window.location.href = "/login";
 }
-
+ 
 function goToSignup() {
-  window.location.href = "signup";
+    window.location.href = "/register";
 }
-
-function signup() {
-  let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
-  let password = document.getElementById("password").value;
-
-  if (name === "" || email === "" || password === "") {
-    alert("Please fill all fields");
-    return;
-  }
-
-  localStorage.setItem("email", email);
-  localStorage.setItem("password", password);
-
-  alert("Signup successful!");
-  window.location.href = "login";
-}
-
-
-
-/**
- * Check the login data form
- * 1. email format
- * 2. password blank
-*/ 
-document.getElementById('login-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    let email = document.getElementById("loginEmail").value.trim();
-    let password = document.getElementById("loginPassword").value.trim();
-
-    if (email === "" || password === "") {
-        alert("Please fill in all fields.");
+ 
+document.getElementById('login-form').addEventListener('submit', function (e) {
+    const email    = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+ 
+    // Block submit only if invalid; otherwise let the browser do its thing.
+    if (email === '' || password === '') {
+        e.preventDefault();
+        alert('Please fill in all fields.');
         return;
     }
-
-    alert("login success")
-
-    window.location.href = "index";
+ 
+    // Basic email format check.
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        e.preventDefault();
+        alert('Please enter a valid email address.');
+        return;
+    }
+ 
 });

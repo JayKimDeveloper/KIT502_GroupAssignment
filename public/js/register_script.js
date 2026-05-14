@@ -1,44 +1,36 @@
-$(document).ready(function(e){
-
-    $('#register-form').on('submit', function (e) {
+document.getElementById('register-form').addEventListener('submit', function (e) {
+    const role     = document.getElementById('role').value;
+    const name     = document.getElementById('name').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const confirm  = document.getElementById('confirmPassword').value;
+ 
+    // All fields required.
+    if (!role || !name || !email || !password || !confirm) {
         e.preventDefault();
-
-        const role = $('#role').val();
-        const name = $('#name').val().trim();
-        const email = $('#email').val().trim();
-        const password = $('#password').val().trim();
-        const confirmPassword = $('#confirmPassword').val().trim();
-
-        // Empty fields check
-        if (role === '' || name === '' || email === '' || password === '' || confirmPassword === '') {
-            alert('Please fill in all fields.');
-            return;
-        }
-
-        // email format check
-        const emailCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailCheck.test(email)) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-
-        // password format check
-        const passwordCheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
-        if (!passwordCheck.test(password)) {
-            alert('Password must be at least 6 characters and include uppercase, lowercase, and a special character.');
-            return;
-        }
-
-        // password match check
-        if (password !== confirmPassword) {
-            alert('Passwords do not match.');
-            return;
-        }
-
-        // If success, move to index.html
-        window.location.href = 'index';
-
-
-    })
-
-})
+        alert('Please fill in all fields.');
+        return;
+    }
+ 
+    // Email format.
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        e.preventDefault();
+        alert('Please enter a valid email address.');
+        return;
+    }
+ 
+    // Password and confirmation match.
+    if (password !== confirm) {
+        e.preventDefault();
+        alert('Password and Confirm Password do not match.');
+        return;
+    }
+ 
+    // Password policy: >=6, upper, lower, special.
+    if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{6,}/.test(password)) {
+        e.preventDefault();
+        alert('Password must be at least 6 characters and include uppercase, lowercase, and a special character.');
+        return;
+    }
+ 
+});
