@@ -5,8 +5,8 @@
   <title>Login</title>
   <title>Login | TechEvents UTAS</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-  <link rel="stylesheet" href="/css/variables.css" />
-  <link rel="stylesheet" href="/css/login_style.css">
+  <link rel="stylesheet" href="{{ asset('css/variables.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/login_style.css') }}">
 </head>
 <body>
 
