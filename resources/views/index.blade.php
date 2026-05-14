@@ -41,7 +41,7 @@
                 <div class="hero-text">
                     <h1><b>Discover Tech Events at UTAS</b></h1>
                     <p>Join workshops, hackathons, and networking events designed for technology enthusiasts.</p>
-                    <a href="events.html" class="btn btn-primary">Browse Events</a>
+                    <a href="{{ url('/events') }}" class="btn btn-primary">Browse Events</a>
                 </div>
                 <div class="hero-image">
                     <img src="{{ asset('images/landing.png') }}" alt="Tech event">

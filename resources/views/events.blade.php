@@ -18,19 +18,19 @@
 
     <nav class="navbar">
         <div class="container">
-            <a href="index.html" class="nav-brand">Tech<span>Events</span></a>
+            <a href="{{ url('/index') }}" class="nav-brand">Tech<span>Events</span></a>
 
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="events.html" class="active">Events</a></li>
-                <li><a href="create_event.html">Create Event</a></li>
-                <li><a href="manage_events.html">Manage Events</a></li>
-                <li><a href="admin_dashboard.html">Admin</a></li>
+                <li><a href="{{ url('/index') }}">Home</a></li>
+                <li><a href="{{ url('/events') }}" class="active">Events</a></li>
+                <li><a href="{{ url('/create_event') }}">Create Event</a></li>
+                <li><a href="{{ url('/manage_events') }}">Manage Events</a></li>
+                <li><a href="{{ url('/admin_dashboard') }}">Admin</a></li>
             </ul>
 
             <div class="nav-actions">
-                <a href="login.html" class="btn btn-outline">Log in</a>
-                <a href="register.html" class="btn btn-primary">Sign up</a>
+                <a href="{{ url('/login') }}" class="btn btn-outline">Log in</a>
+                <a href="{{ url('/register') }}" class="btn btn-primary">Sign up</a>
             </div>
         </div>
     </nav>

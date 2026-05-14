@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         alert("New event has been created");
-        window.location.href = "manage_events.html";
+        window.location.href = "manage_events";
     });
 
     resetButton.addEventListener("click", function () {
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cancelBtn.addEventListener("click", function () {
         if (confirm("Are you sure you want to cancel? All changes will be lost.")) {
-            window.location.href = "index.html";
+            window.location.href = "index";
         }
     });
 });
