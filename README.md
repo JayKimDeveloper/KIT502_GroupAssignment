@@ -1,24 +1,24 @@
 # 🎓 UTAS Student Tech Events
 
-> **KIT502 Web Development** | University of Tasmania  
+> **KIT502 Web Development** | University of Tasmania
 > **Repository:** https://github.com/JayKimDeveloper/KIT502_GroupAssignment
 
-UTAS Student Tech Events is a web application that gives UTAS students one place to find, organise, and join technology-related events, including workshops, tech talks, hackathons, and networking sessions.
+UTAS Student Tech Events is a web application that gives UTAS students one place to find, organise, and join technology-related events — workshops, tech talks, hackathons, and networking sessions.
 
-The project was first developed as a static frontend and database design project for Assignment 1. It has now been migrated into a Laravel-based project structure for Assignment 2 full-stack implementation.
+The project was first developed as a static frontend and database design project for Assignment 1. It has since been migrated to a Laravel-based full-stack application for Assignment 2.
 
 ---
 
 ## Project Overview
 
-UTAS Student Tech Events is designed for different types of users:
+UTAS Student Tech Events is designed for four types of users:
 
 - **Visitors** — Browse available events
-- **Students / Attendees** — Register, log in, and book tickets
-- **Organisers** — Create, update, and manage events
-- **Administrators** — Oversee users, events, and platform-level information
+- **Attendees** — Register, log in, book tickets
+- **Organisers** — Create, update, and manage their own events
+- **Administrators** — Manage all users and events, view platform statistics
 
-The system aims to provide a simple event management platform where university-related technology events can be published, browsed, and booked through a role-based web application.
+The system provides a role-based event management platform where university-related technology events can be published, browsed, and booked.
 
 ---
 
@@ -26,17 +26,32 @@ The system aims to provide a simple event management platform where university-r
 
 | Stage | Focus | Status |
 |-------|-------|--------|
-| Assignment 1 | Frontend design and database planning | Completed |
-| Assignment 2 | Full-stack implementation using Laravel | In progress |
+| Assignment 1 | Frontend design and database planning | ✅ Completed |
+| Assignment 2 | Full-stack Laravel implementation | 🧑‍🚒 In progress |
 
 ### Current Assignment 2 Progress
 
-- Static frontend migrated into Laravel project structure
-- HTML pages converted into Laravel Blade templates
-- CSS, JavaScript, image, and data assets moved into the Laravel `public` directory
-- Laravel web routes configured
-- Local development server tested with `php artisan serve`
-- Backend authentication, event CRUD, booking, and admin logic are planned for the next implementation stage
+**Backend (complete):**
+
+- Database migrations, Eloquent models, seeders
+- Session-based authentication (register / login / logout / me)
+- Events CRUD API + image upload + organiser ownership checks
+- Bookings API (ticket purchase, capacity check, cancellation cutoff)
+- Admin API (statistics, user management, role promotion/demotion)
+- Categories endpoint for filter and create-event dropdowns
+
+**Frontend (in progress):**
+
+- Static HTML pages migrated into Blade templates
+- Shared navbar partial with role-based menu visibility
+- Login / Register pages wired to backend
+- Event listing, create event, manage events, admin dashboard — being wired to API
+
+**Infrastructure:**
+
+- SQLite for local development
+- MySQL planned for school server deployment
+- API contract documented in `docs/API_LISTS.md`
 
 ---
 
@@ -44,9 +59,7 @@ The system aims to provide a simple event management platform where university-r
 
 ### Frontend
 
-- HTML
-- CSS
-- JavaScript
+- HTML, CSS, JavaScript
 - jQuery v3.7.1
 - Google Fonts: Poppins
 - Google Material Icons
@@ -56,63 +69,10 @@ The system aims to provide a simple event management platform where university-r
 - Laravel 10
 - PHP 8.2
 - Blade templates
-- SQLite for local development
-- MySQL for school server deployment
-- Composer
-- Git / GitHub
+- SQLite (local), MySQL (school server)
+- Composer, Git/GitHub
 
 ---
-
-## Project Structure
-
-```text
-KIT502_GroupAssignment/
-├── app/
-├── bootstrap/
-├── config/
-├── database/
-├── docs/
-├── event_details/
-├── public/
-│   ├── css/
-│   ├── data/
-│   ├── images/
-│   └── js/
-├── resources/
-│   └── views/
-├── routes/
-│   └── web.php
-├── storage/
-├── tests/
-├── README.md
-├── composer.json
-├── composer.lock
-├── package.json
-├── artisan
-└── vite.config.js
-```
-
----
-
-## Current Routes
-
-The following pages are currently connected through Laravel routes:
-
-| Route | Page |
-|-------|------|
-| `/` | Landing Page |
-| `/login` | Login Page |
-| `/register` | Registration Page |
-| `/events` | Events Page |
-| `/booking` | Booking Page |
-| `/create-event` | Create Event Page |
-| `/manage-events` | Event Management Page |
-| `/admin-dashboard` | Admin Dashboard |
-
----
-
-## API GUIDE - ASSIGNMENT02, FINAL UPDATE - 13th/May
-[API Document](docs/API_LISTS.md)
 
 ## Local Setup Guide
 
@@ -141,76 +101,240 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-### 5. Configure SQLite for Local Development
+### 5. Configure SQLite
 
-Create the SQLite database file:
+Create an empty SQLite database file:
 
 ```bash
 touch database/database.sqlite
 ```
 
-Update `.env`:
+Update `.env` so SQLite is used (the path is relative to Laravel's `database/` folder, so this works on every machine without editing):
 
 ```env
 DB_CONNECTION=sqlite
-DB_DATABASE=/absolute/path/to/KIT502_GroupAssignment/database/database.sqlite
+DB_DATABASE=database.sqlite
 ```
 
-Example for macOS:
+> If Laravel can't find the file with the relative path on your machine, use an absolute path instead:
+>
+> ```env
+> DB_DATABASE=/absolute/path/to/KIT502_GroupAssignment/database/database.sqlite
+> ```
 
-```env
-DB_CONNECTION=sqlite
-DB_DATABASE=/Users/your-username/Documents/UTAS/KIT502/groupAssignment/KIT502_GroupAssignment/database/database.sqlite
-```
-
-### 6. Run Migrations
+### 6. Run Migrations + Seed Test Data
 
 ```bash
-php artisan migrate
+php artisan migrate:fresh --seed
 ```
 
-### 7. Start Local Development Server
+This creates all tables and populates them with:
+
+- 1 admin, 1 organiser, 1 attendee (see [Test Accounts](#test-accounts) below)
+- 5 categories
+- 4 published events
+- 1 sample booking
+
+### 7. Link Storage (for event image uploads)
+
+```bash
+php artisan storage:link
+```
+
+This makes uploaded event images at `storage/app/public/events/` accessible via `/storage/events/...`.
+
+### 8. Start Local Development Server
 
 ```bash
 php artisan serve
 ```
 
-Open the project in a browser:
+Open in browser:
+
+```
+http://127.0.0.1:8000
+```
+
+### 9. Clear Caches When Things Look Stale
+
+After pulling new changes or editing `.env`:
+
+```bash
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+```
+
+---
+
+## Test Accounts
+
+After running `php artisan migrate:fresh --seed`, the following accounts are available for local testing:
+
+| Role | Email | Password |
+|---|---|---|
+| Admin | `admin@test` | `admin123!@` |
+| Organiser | `organiser@kit502.test` | `Organiser@123` |
+| Attendee | `attendee@kit502.test` | `Attendee@123` |
+
+> The admin account credentials must also be included in the final Assignment 2 submission README so markers can evaluate admin functionality.
+
+---
+
+## API Authentication (for frontend / Postman)
+
+The backend uses **session-based authentication**, not tokens.
+
+### From Blade pages (fetch calls)
+
+Already handled by the shared layout. Just use `apiFetch()` if available, or include the CSRF token manually:
+
+```js
+fetch('/api/events', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content,
+    },
+    body: JSON.stringify({ /* ... */ }),
+});
+```
+
+### From Postman
+
+CSRF is disabled on `/api/*` routes for development convenience, so you only need to log in once:
+
+1. **POST** `http://localhost:8000/login`
+   - Headers: `Accept: application/json`
+   - Body (raw JSON): `{"email": "attendee@kit502.test", "password": "Attendee@123"}`
+2. Postman saves the session cookie automatically.
+3. All subsequent `/api/*` calls work without further setup.
+
+> See `docs/API_LISTS.md` for the full request/response contract.
+
+---
+
+## Current Routes
+
+### Page Routes (Blade views)
+
+| Route | Page | View File |
+|-------|------|-----------|
+| `/` | Landing Page | `index.blade.php` |
+| `/login` | Login | `login.blade.php` |
+| `/register` | Registration | `register.blade.php` |
+| `/events` | Events list | `events.blade.php` |
+| `/create_event` | Create Event | `create_event.blade.php` |
+| `/manage_events` | Event Management | `manage_events.blade.php` |
+| `/my_bookings` | My Bookings (attendee) | `my_bookings.blade.php` |
+| `/admin_dashboard` | Admin Dashboard | `admin_dashboard.blade.php` |
+
+### Auth Actions (POST)
+
+| Method | Route | Purpose |
+|---|---|---|
+| POST | `/register` | Submit registration |
+| POST | `/login` | Submit login |
+| POST | `/logout` | Log out |
+| GET | `/me` | Current user info (used by navbar JS) |
+
+### API Routes
+
+Full request/response specs in [`docs/API_LISTS.md`](docs/API_LISTS.md).
+
+| Method | Route | Who |
+|---|---|---|
+| GET | `/api/events` | Anyone |
+| GET | `/api/events/recent` | Anyone |
+| GET | `/api/events/{id}` | Anyone |
+| GET | `/api/events/mine` | Organiser, Admin |
+| POST | `/api/events` | Organiser, Admin |
+| PUT | `/api/events/{id}` | Owner organiser, Admin |
+| DELETE | `/api/events/{id}` | Owner organiser, Admin |
+| GET | `/api/events/{id}/bookings` | Owner organiser, Admin |
+| POST | `/api/bookings` | Attendee |
+| GET | `/api/bookings/mine` | Attendee |
+| DELETE | `/api/bookings/{id}` | Owner attendee |
+| GET | `/api/categories` | Anyone |
+| GET | `/api/admin/*` | Admin |
+
+---
+
+## API Documentation
+
+Full request/response contract: [`docs/API_LISTS.md`](docs/API_LISTS.md) (last updated 13 May)
+
+---
+
+## Project Structure
 
 ```text
-http://127.0.0.1:8000
+KIT502_GroupAssignment/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/      # Auth, Event, Booking, Category, Admin controllers
+│   │   └── Middleware/       # EnsureUserHasRole, VerifyCsrfToken (api/* excluded)
+│   └── Models/               # User, Event, Booking, Category, Notification
+├── bootstrap/
+├── config/
+├── database/
+│   ├── migrations/           # users, categories, events, bookings, notifications
+│   └── seeders/              # DatabaseSeeder (admin + sample data)
+├── docs/
+│   └── API_LISTS.md          # Full API contract
+├── public/
+│   ├── css/                  # variables.css, login_style.css, etc.
+│   ├── data/
+│   ├── images/
+│   └── js/
+├── resources/
+│   └── views/
+│       ├── partials/         # navbar.blade.php (shared across pages)
+│       ├── layouts/          # app.blade.php (master layout)
+│       └── *.blade.php       # page templates
+├── routes/
+│   └── web.php               # all routes (pages + API)
+├── storage/
+├── tests/
+├── README.md                 # This file
+├── composer.json
+├── composer.lock
+├── package.json
+├── artisan
+└── vite.config.js
 ```
 
 ---
 
 ## School Server Deployment Plan
 
-The project will be deployed to the university-provided internal server for final testing and submission.
+The project will be deployed to the university-provided internal server (`usermin`) for final testing and submission.
 
-Recommended deployment workflow:
+Recommended workflow:
 
 ```bash
 git pull
-composer install
+composer install --no-dev
 php artisan migrate
 php artisan config:clear
 php artisan cache:clear
+php artisan storage:link
 ```
 
-For the school server, update `.env` to use MySQL credentials provided by the university.
-
-Example:
+For the school server, update `.env` to use MySQL:
 
 ```env
 DB_CONNECTION=mysql
 DB_HOST=localhost
 DB_PORT=3306
-DB_DATABASE=school_database_name
-DB_USERNAME=school_database_user
-DB_PASSWORD=school_database_password
+DB_DATABASE=kit502-group-17
+DB_USERNAME=<from kit502-group-17-mysql-pass.txt>
+DB_PASSWORD=<from kit502-group-17-mysql-pass.txt>
 ```
 
-Sensitive files such as `.env`, database files, logs, and local tool metadata should not be committed to Git.
+Storage and bootstrap/cache permissions may need adjusting on the school server. Refer to deployment notes in the project notion / chat.
 
 ---
 
@@ -233,10 +357,10 @@ Sensitive files such as `.env`, database files, logs, and local tool metadata sh
 
 | Role | Description |
 |------|-------------|
-| **Visitor** | Can browse the landing page and view events. Cannot book tickets or modify anything. |
-| **Attendee** | Can view events, book tickets, check registered events, and cancel bookings before the deadline. |
-| **Organiser** | Can create, update, and delete events. Can also view attendee lists for their own events. |
-| **Admin** | Highest level of access. Can manage users and organisers, review all events, and view system statistics. |
+| **Visitor** | Browse landing page and view events. Cannot book or modify anything. |
+| **Attendee** | View events, book tickets, view registered events, cancel bookings before the cutoff. |
+| **Organiser** | Create, update, delete their own events. View attendee lists for their events. |
+| **Admin** | Manage all users (create/update/delete/promote/demote). Manage all events. View system statistics. |
 
 ---
 
@@ -244,19 +368,21 @@ Sensitive files such as `.env`, database files, logs, and local tool metadata sh
 
 ### Core Features
 
-- User registration and login
-- Role-based access control
-- Event creation and management
-- Ticket booking system
-- Event filtering and browsing
-- Admin dashboard with statistics
+- User registration and login (session-based)
+- Role-based access control (admin / organiser / attendee / visitor)
+- Event CRUD with image upload
+- Event filtering (by category, date, location)
+- Ticket booking with capacity validation
+- Booking cancellation (until 1 day before the event)
+- Admin dashboard with system statistics
+- Admin user management (create/update/delete + role changes)
 
-### Advanced Features *(Optional)*
+### Advanced Features *(optional)*
 
-- Notification system
+- Notification system (database schema ready)
 - Payment simulation
-- Waitlist system when events are full
-- Monthly event calendar
+- Waitlist when events are full
+- Monthly calendar view
 
 ---
 
@@ -264,14 +390,13 @@ Sensitive files such as `.env`, database files, logs, and local tool metadata sh
 
 | Page | Purpose |
 |------|---------|
-| Landing Page | Displays website information and featured events |
-| Registration Page | Allows new users to create an account |
-| Login Page | Allows existing users to sign in |
-| Events Page | Displays the list of available events |
-| Booking Page | Allows attendees to book tickets |
-| Create Event Page | Allows organisers to create a new event |
-| Event Management Page | Allows organisers/admins to update or delete existing events |
-| Admin Dashboard | Displays users, events, and system statistics |
+| Landing Page | Website intro + 2 most recent events (dynamic) |
+| Registration | Create attendee or organiser account |
+| Login | Sign in (with Remember Me) |
+| Events | List of published events with filters |
+| Create Event | Organiser form to create an event |
+| Event Management | Organiser sees their events; attendee sees their bookings |
+| Admin Dashboard | Stats + user/event management for admins |
 
 ---
 
@@ -281,49 +406,43 @@ Sensitive files such as `.env`, database files, logs, and local tool metadata sh
 
 <img src="./docs/TeamProgress.png">
 
-The project is divided among four team members.
+The project is divided among the team. Sidd's original auth work was not completed and has been absorbed by Jay.
 
 ---
 
-### YoungHyun Kim (`JayKimyh`) — Backend + Database + Management
+### YoungHyun (Jay) Kim (`JayKimyh`) — Backend / Database / Auth
 
-- Project setup
-- README management
+- Project setup, README management
 - ERD and schema design
-- Login page
-- Navigation bar
-- Signup validation
-- Merge management
 - Laravel project structure migration
-- Login, Signup develop 
-
----
+- Database migrations, models, seeders
+- Authentication API (register / login / logout / me)
+- Events CRUD API + image upload
+- Bookings API (ticket purchase, capacity check, cancellation)
+- Admin API (stats, user management, role changes)
+- API contract documentation
+- Navigation bar (shared partial)
+- Login + Register pages wired to backend (originally Sidd's work)
 
 ### Guneet (`guneet0526kaur-lang`) — Public Pages
 
 - Landing page
-- Events page
-- CSS for landing, events, and variables
+- Events page (filtering UI + buy ticket flow)
+- CSS for landing, events, variables
 - Image assets
-
----
-
-### Siddharth (Sidd) — Authentication
-
-- Register page
-- Login page
-
----
+- Wiring the public pages to backend API (`/api/events`, `/api/events/recent`)
 
 ### Pragun (`pragun11`) — Event & Admin Interfaces
 
-Responsible for event management and administrative interfaces.
+- Page design (Figma)
+- Create Event form
+- Event Management page
+- Admin Dashboard layout
+- Wiring create/manage/admin pages to backend API
 
-- Web page design using Figma
-- Event creation form
-- Event management page with dummy events
-- Admin dashboard layout
-- Shared JSON data files
+### Siddharth (Sidd) — *Not completed*
+
+Originally assigned to Register and Login pages; work not delivered. Reassigned to Jay.
 
 ---
 
@@ -342,111 +461,113 @@ To keep the Laravel project consistent and maintainable, all team members should
 | JavaScript variables | `camelCase` | `eventTitle`, `bookingQuantity` |
 | CSS classes | `kebab-case` | `event-card`, `stats-card` |
 | Route names | Dot notation | `events.store`, `admin.dashboard` |
+| URLs | `snake_case` | `/create_event`, `/manage_events` |
 
 ### Fixed Value Naming
 
 #### User Roles
-
-Use lowercase values in the database and backend logic.
-
-```text
-admin
-organiser
-attendee
+```
+admin, organiser, attendee
 ```
 
 #### Event Statuses
-
-```text
-draft
-published
-cancelled
+```
+draft, published, cancelled
 ```
 
 #### Booking Statuses
-
-```text
-confirmed
-cancelled
+```
+confirmed, cancelled
 ```
 
 #### Payment Statuses
-
-```text
-free
-unpaid
-paid
+```
+free, unpaid, paid
 ```
 
 ### Form Input Naming
 
 #### Register Form
-
-```text
-role
-name
-email
-password
-password_confirmation
+```
+role, name, email, password, password_confirmation
 ```
 
 #### Login Form
-
-```text
-email
-password
+```
+email, password, remember
 ```
 
 #### Create Event Form
-
-```text
-title
-description
-category_id
-start_datetime
-end_datetime
-location
-capacity
-price
-status
-image
+```
+title, description, category_id, start_datetime, end_datetime,
+location, capacity, price, status, image
 ```
 
 ### Notes
 
-- Database values should use lowercase names where possible.
-- Form `name` attributes should match the controller validation keys.
-- Route names should be used with Laravel’s `route()` helper instead of hardcoded `.html` links.
-- Uploaded event images should use `image` as the form input name, but should be stored in the database as `image_path`.
+- Database values should use lowercase names.
+- Form `name` attributes must match controller validation keys.
+- Use Laravel's `route()` helper or `url()` instead of hardcoding `.html` links.
+- Uploaded event images use `image` as the form input name; stored in DB as `image_path`.
 
-
+---
 
 ## Team Expectations and Work Quality Standards
 
-- **Communication:** Team communication is mainly handled through WhatsApp.
-- **Internal Deadline:** Team members aim to complete assigned work at least three days before the final submission deadline.
+- **Communication:** WhatsApp group chat.
+- **Internal Deadline:** Aim to complete assigned work at least 3 days before the final submission deadline.
 - **Work Quality:** Code should be checked before commit and reviewed after commit where possible.
 - **Task Distribution:** Each member is responsible for at least one screen and related functionality.
-- **Mutual Support:** Team members should ask questions, provide help, and review each other’s work when needed.
+- **Mutual Support:** Ask questions, provide help, and review each other's work when needed.
 
 ---
 
 ## Database Design
 
-### ERD Design
+### ERD
 
 <img src="./docs/KIT502_GrupAssERD.drawio.png">
 
-### Schema
+> The ERD above was the original Assignment 1 design. The Laravel migrations have been refactored to follow Laravel conventions (plural `snake_case` tables, `id` BIGINT auto-increment primary keys, FK constraints, timestamps). See actual schema below.
 
-> Note:  
-> The following schema was originally designed during Assignment 1.  
-> It may be refactored during the Laravel migration process using Laravel migrations and Eloquent models.
+### Current Schema (Laravel migrations)
+
+```
+users
+  id, name, email (unique), password (hashed),
+  role enum(admin|organiser|attendee), timestamps
+
+categories
+  id, name (unique), timestamps
+
+events
+  id, organiser_id → users.id, category_id → categories.id (nullable),
+  title, description, start_datetime, end_datetime, location,
+  capacity, price, status enum(draft|published|cancelled),
+  image_path, timestamps
+
+bookings
+  id, event_id → events.id, attendee_id → users.id,
+  booking_reference (unique, BK-XXXXXXXX format),
+  status enum(confirmed|cancelled),
+  payment_status enum(free|unpaid|paid),
+  timestamps
+  UNIQUE (event_id, attendee_id)
+
+notifications
+  id, user_id → users.id, type, message, related_id,
+  is_read, timestamps
+```
+
+### Original Assignment 1 Schema (deprecated)
+
+> Kept for reference only — does not reflect the current Laravel migrations.
 
 ```sql
 /**
  * Author: YoungHyun Kim
  * Version: 0.1
+ * NOTE: Replaced by Laravel migrations in Assignment 2.
  */
 
 -- User Table (supports admin, organiser, attendee roles)
@@ -463,14 +584,12 @@ CREATE TABLE user_TB (
     PRIMARY KEY (login_id)
 );
 
--- Event Category Table
 CREATE TABLE category_TB (
     category_id   INT          NOT NULL,
     category_name VARCHAR(100) NOT NULL,
     PRIMARY KEY (category_id)
 );
 
--- Event Table
 CREATE TABLE event_TB (
     event_id     CHAR(12)     NOT NULL,
     title        VARCHAR(100) NOT NULL,
@@ -489,7 +608,6 @@ CREATE TABLE event_TB (
     FOREIGN KEY (category_ID) REFERENCES category_TB(category_id)
 );
 
--- Booking Table
 CREATE TABLE booking_TB (
     booking_id   CHAR(12)     NOT NULL,
     booking_date DATE         NOT NULL,
@@ -501,7 +619,6 @@ CREATE TABLE booking_TB (
     FOREIGN KEY (login_id)  REFERENCES user_TB(login_id)
 );
 
--- Notification Table (Beta v0.1)
 CREATE TABLE notification_TB (
     notification_id VARCHAR(12)  NOT NULL,
     login_id        VARCHAR(100) NOT NULL,
@@ -515,7 +632,6 @@ CREATE TABLE notification_TB (
     FOREIGN KEY (booking_id) REFERENCES booking_TB(booking_id)
 );
 
--- Activity Logs Table
 CREATE TABLE activies_logs_TB (
     log_id          VARCHAR(25)  NOT NULL,
     login_id        VARCHAR(100) NOT NULL,
@@ -537,28 +653,39 @@ The following files and folders should not be committed:
 - `.env`
 - `vendor/`
 - `node_modules/`
-- SQLite database files
-- Log files
+- SQLite database files (`database/database.sqlite`)
+- Log files (`storage/logs/*.log`)
 - Local tool metadata such as `.claude/`
 - Local editor settings such as `.vscode/`
 
-Before pushing, check sensitive files with:
+Before pushing, check for sensitive files:
 
 ```bash
-git ls-files | grep -E "\.env|sqlite|pass|secret|key|log"
+git ls-files | grep -E "\.env$|sqlite$|pass|secret|key$|\.log$"
 ```
 
-Only `.env.example` and normal Laravel configuration files should appear.
+Only `.env.example` and standard Laravel config files should appear in the output.
 
 ---
 
 ## Useful Laravel Commands
 
 ```bash
-php artisan serve
-php artisan route:list
-php artisan migrate
+# Development
+php artisan serve              # Start local dev server
+php artisan route:list         # See all routes
+php artisan tinker             # Interactive shell
+
+# Database
+php artisan migrate            # Run new migrations
+php artisan migrate:fresh      # Drop all tables and re-run
+php artisan migrate:fresh --seed  # Drop, re-create, and seed test data
+php artisan db:seed            # Re-run seeders
+
+# Caches (run after pulling new changes or editing .env)
 php artisan config:clear
+php artisan route:clear
+php artisan view:clear
 php artisan cache:clear
 ```
 
@@ -566,15 +693,15 @@ php artisan cache:clear
 
 ## Future Development Plan
 
-The next stage of development will focus on:
+Next stage focuses on frontend integration:
 
-- Connecting registration and login pages to Laravel authentication
-- Implementing user roles
-- Creating event migrations, models, and controllers
-- Connecting event creation and event management pages to the database
-- Implementing ticket booking with capacity validation
-- Displaying dynamic event data from the database
-- Implementing admin dashboard statistics
+- Wire registration / login UI to backend (done — Jay)
+- Wire landing page and events page to `/api/events` (Guneet)
+- Wire create event / manage events to backend (Pragun)
+- Wire admin dashboard to `/api/admin/*` (Pragun)
+- Demo video recording
+- Final testing on school server
+- Optional: advanced features (notifications, payment simulation, waitlist, calendar)
 
 ---
 
