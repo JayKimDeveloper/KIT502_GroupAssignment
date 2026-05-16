@@ -104,3 +104,8 @@
     text-align: center;
   }
 }
+
+.form-message {
+    margin: 8px 0 18px;
+    font-weight: 600;
+}

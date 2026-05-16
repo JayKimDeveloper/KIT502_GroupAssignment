@@ -19,10 +19,6 @@ class Booking extends Model
         'payment_status',
     ];
 
-    /**
-     * Auto-generate a unique booking_reference if one isn't supplied.
-     * Format: BK-XXXXXXXX (8 uppercase chars). Collision-resistant for our scale.
-     */
     protected static function booted(): void
     {
         static::creating(function (Booking $booking) {
@@ -31,10 +27,6 @@ class Booking extends Model
             }
         });
     }
-
-    /* ------------------------------------------------------------------ */
-    /* Relationships                                                       */
-    /* ------------------------------------------------------------------ */
 
     public function event(): BelongsTo
     {
@@ -46,16 +38,12 @@ class Booking extends Model
         return $this->belongsTo(User::class, 'attendee_id');
     }
 
-    /* ------------------------------------------------------------------ */
-    /* Business rule — cancellation cutoff is 1 day before event start    */
-    /* (assignment spec, section 7 — Event Management for Attendees).      */
-    /* ------------------------------------------------------------------ */
-
     public function canBeCancelled(): bool
     {
         if ($this->status !== 'confirmed') {
             return false;
         }
-        return $this->event->start_datetime->subDay()->isFuture();
+
+        return $this->event->start_datetime->copy()->subDay()->isFuture();
     }
 }

@@ -258,3 +258,23 @@
         display: none;
     }
 }
+.panel-header-with-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.role-btn {
+    width: auto;
+    min-width: 50px;
+    padding: 0 8px;
+    font-size: 0.75rem;
+    border: 1px solid #dcc1af;
+    border-radius: 8px;
+    background: #fffaf6;
+}
+
+.role-btn::before {
+    content: "";
+}

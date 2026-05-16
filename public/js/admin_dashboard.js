@@ -1,77 +1,109 @@
-const eventStorageKey = "techevents_events";
-const userStorageKey = "techevents_users";
 
-let events = [];
 let users = [];
+let events = [];
 
 document.addEventListener("DOMContentLoaded", async function () {
-    await loadUsers();
-    await loadEvents();
+    const createUserButton = document.getElementById("createUserBtn");
 
-    sortEvents();
-    renderAdminStats();
-    renderUsers();
-    renderEvents();
+    if (createUserButton) {
+        createUserButton.addEventListener("click", createUser);
+    }
+
+    await loadDashboard();
 });
 
-async function loadEvents() {
-    const response = await fetch("data/events.json");
-    events = await response.json();
+async function loadDashboard() {
+    try {
+        await Promise.all([
+            loadStats(),
+            loadUsers(),
+            loadEvents()
+        ]);
+
+        renderUsers();
+        renderEvents();
+        setMessage("");
+    } catch (error) {
+        setMessage(error.message || "Please log in as an admin to view this dashboard.");
+    }
+}
+
+async function apiRequest(url, options = {}) {
+    const headers = options.headers || {};
+    headers["Accept"] = "application/json";
+
+    if (!(options.body instanceof FormData)) {
+        headers["Content-Type"] = headers["Content-Type"] || "application/json";
+    }
+
+    if (options.method && options.method !== "GET") {
+        headers["X-CSRF-TOKEN"] = getCsrfToken();
+    }
+
+    const response = await fetch(url, {
+        credentials: "same-origin",
+        ...options,
+        headers
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(getErrorMessage(result));
+    }
+
+    return result;
+}
+
+async function loadStats() {
+    const result = await apiRequest("/api/admin/stats");
+    const stats = result.data;
+
+    document.getElementById("totalUsers").textContent = stats.total_users;
+    document.getElementById("totalEvents").textContent = stats.total_events;
+    document.getElementById("upcomingEvents").textContent = stats.upcoming_events;
+    document.getElementById("totalRegistrations").textContent = stats.total_registrations;
 }
 
 async function loadUsers() {
-    const response = await fetch("data/users.json");
-    users = await response.json();
-}
-function saveUsers() {
-    localStorage.setItem(userStorageKey, JSON.stringify(users));
+    const result = await apiRequest("/api/admin/users");
+    users = result.data;
 }
 
-function saveEvents() {
-    localStorage.setItem(eventStorageKey, JSON.stringify(events));
+async function loadEvents() {
+    const result = await apiRequest("/api/admin/events");
+    events = result.data;
+    sortEvents();
 }
 
 function sortEvents() {
     events.sort(function (a, b) {
-        return new Date(b.dateTime) - new Date(a.dateTime);
+        return new Date(b.start_datetime) - new Date(a.start_datetime);
     });
 }
 
-function renderAdminStats() {
-    let confirmedCount = 0;
-    let registrations = 0;
-
-    for (let i = 0; i < events.length; i++) {
-        if (events[i].status === "Confirmed") {
-            confirmedCount++;
-        }
-
-        registrations += events[i].sold;
-    }
-
-    document.getElementById("totalUsers").textContent = users.length;
-    document.getElementById("totalEvents").textContent = events.length;
-    document.getElementById("confirmedEvents").textContent = confirmedCount;
-    document.getElementById("totalRegistrations").textContent = registrations;
-}
-
 function renderUsers() {
-    let tableBody = document.getElementById("usersTableBody");
+    const tableBody = document.getElementById("usersTableBody");
     tableBody.innerHTML = "";
 
+    if (users.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="5">No users found.</td></tr>`;
+        return;
+    }
+
     for (let i = 0; i < users.length; i++) {
-        let user = users[i];
+        const user = users[i];
 
         tableBody.innerHTML += `
             <tr>
-                <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td><span class="role-badge">${user.role}</span></td>
-                <td>${user.registered}</td>
-                <td><span class="status-badge">${user.status}</span></td>
+                <td>${escapeHtml(user.name)}</td>
+                <td>${escapeHtml(user.email)}</td>
+                <td><span class="role-badge">${escapeHtml(user.role)}</span></td>
+                <td>${formatDate(user.created_at)}</td>
                 <td class="actions-cell">
-                    <button type="button" class="action-btn edit-btn" onclick="editUser(${user.id})" aria-label="Edit"></button>
-                    <button type="button" class="action-btn delete-btn" onclick="deleteUser(${user.id})" aria-label="Delete"></button>
+                    <button type="button" class="action-btn edit-btn" onclick="editUser(${user.id})" title="Edit user"></button>
+                    <button type="button" class="action-btn role-btn" onclick="changeUserRole(${user.id})" title="Promote or demote user">Role</button>
+                    <button type="button" class="action-btn delete-btn" onclick="deleteUser(${user.id})" title="Delete user"></button>
                 </td>
             </tr>
         `;
@@ -79,36 +111,40 @@ function renderUsers() {
 }
 
 function renderEvents() {
-    let tableBody = document.getElementById("adminEventsTableBody");
+    const tableBody = document.getElementById("adminEventsTableBody");
     tableBody.innerHTML = "";
 
+    if (events.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="9">No events found.</td></tr>`;
+        return;
+    }
+
     for (let i = 0; i < events.length; i++) {
-        let event = events[i];
+        const event = events[i];
+        const registered = Number(event.registered_count ?? (event.capacity - event.available_seats));
 
         tableBody.innerHTML += `
             <tr>
-                <td>${event.title}</td>
-                <td>${event.organiser}</td>
-                <td>${formatDateTime(event.dateTime)}</td>
+                <td>${escapeHtml(event.title)}</td>
+                <td>${escapeHtml(event.organiser?.name || "Unknown")}</td>
+                <td>${formatDateTime(event.start_datetime)}</td>
                 <td>${event.capacity}</td>
-                <td>${event.sold}</td>
-                <td><span class="${event.status === "Draft" ? "draft-badge" : "status-badge"}">${event.status}</span></td>
-                <td class="view-text">
-                    <button type="button" onclick="viewEvent(${event.id})">View</button>
-                </td>
-                <td class="actions-cell">
-                    <button type="button" class="action-btn edit-btn" onclick="editEvent(${event.id})" aria-label="Edit"></button>
-                </td>
-                <td class="actions-cell">
-                    <button type="button" class="action-btn delete-btn" onclick="deleteEvent(${event.id})" aria-label="Delete"></button>
-                </td>
+                <td>${registered}</td>
+                <td><span class="${event.status === "draft" ? "draft-badge" : "status-badge"}">${escapeHtml(event.status)}</span></td>
+                <td class="view-text"><button type="button" onclick="viewEvent(${event.id})">View</button></td>
+                <td class="actions-cell"><button type="button" class="action-btn edit-btn" onclick="editEvent(${event.id})" title="Edit event"></button></td>
+                <td class="actions-cell"><button type="button" class="action-btn delete-btn" onclick="deleteEvent(${event.id})" title="Delete event"></button></td>
             </tr>
         `;
     }
 }
 
 function formatDateTime(dateTime) {
-    let date = new Date(dateTime);
+    const date = new Date(dateTime);
+
+    if (Number.isNaN(date.getTime())) {
+        return "Not set";
+    }
 
     return date.toLocaleString("en-AU", {
         day: "numeric",
@@ -120,8 +156,22 @@ function formatDateTime(dateTime) {
     });
 }
 
+function formatDate(dateTime) {
+    const date = new Date(dateTime);
+
+    if (Number.isNaN(date.getTime())) {
+        return "Not set";
+    }
+
+    return date.toLocaleDateString("en-AU", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+    });
+}
+
 function viewEvent(id) {
-    let event = getEventById(id);
+    const event = getEventById(id);
 
     if (!event) {
         return;
@@ -129,101 +179,193 @@ function viewEvent(id) {
 
     alert(
         "Event: " + event.title + "\n" +
-        "Category: " + event.category + "\n" +
+        "Category: " + (event.category?.name || "No category") + "\n" +
         "Description: " + event.description + "\n" +
-        "Organiser: " + event.organiser + "\n" +
-        "Date & Time: " + formatDateTime(event.dateTime) + "\n" +
+        "Organiser: " + (event.organiser?.name || "Unknown") + "\n" +
+        "Date & Time: " + formatDateTime(event.start_datetime) + "\n" +
         "Location: " + event.location + "\n" +
         "Status: " + event.status
     );
 }
 
-function editEvent(id) {
-    let event = getEventById(id);
+async function editEvent(id) {
+    const event = getEventById(id);
 
     if (!event) {
         return;
     }
 
-    let newTitle = prompt("Edit event title:", event.title);
+    const newTitle = prompt("Edit event title:", event.title);
     if (newTitle === null || newTitle.trim() === "") {
         return;
     }
 
-    let newStatus = prompt("Edit status (Draft, Confirmed, Cancelled):", event.status);
-    if (newStatus === null || newStatus.trim() === "") {
+    const newStatus = prompt("Edit status (draft, published, cancelled):", event.status);
+    if (newStatus === null || !["draft", "published", "cancelled"].includes(newStatus.trim())) {
+        alert("Status must be draft, published, or cancelled.");
         return;
     }
 
-    event.title = newTitle.trim();
-    event.status = newStatus.trim();
+    try {
+        await apiRequest(`/api/events/${id}`, {
+            method: "PUT",
+            body: JSON.stringify({
+                title: newTitle.trim(),
+                status: newStatus.trim()
+            })
+        });
 
-    sortEvents();
-    renderAdminStats();
-    renderEvents();
-
-    alert("Event updated");
+        await loadDashboard();
+        alert("Event updated.");
+    } catch (error) {
+        alert(error.message);
+    }
 }
 
-function deleteEvent(id) {
-    let confirmed = confirm("Are you sure you want to delete this event?");
+async function deleteEvent(id) {
+    const confirmed = confirm("Are you sure you want to delete this event?");
 
     if (!confirmed) {
         return;
     }
 
-    events = events.filter(function (event) {
-        return event.id !== id;
-    });
+    try {
+        await apiRequest(`/api/events/${id}`, {
+            method: "DELETE"
+        });
 
-    renderAdminStats();
-    renderEvents();
-
-    alert("Event deleted");
+        await loadDashboard();
+        alert("Event deleted.");
+    } catch (error) {
+        alert(error.message);
+    }
 }
 
-function editUser(id) {
-    let user = getUserById(id);
+async function createUser() {
+    const name = prompt("Enter user name:");
+    if (name === null || name.trim() === "") {
+        return;
+    }
+
+    const email = prompt("Enter user email:");
+    if (email === null || email.trim() === "") {
+        return;
+    }
+
+    const role = prompt("Enter role (admin, organiser, attendee):", "attendee");
+    if (role === null || !["admin", "organiser", "attendee"].includes(role.trim())) {
+        alert("Role must be admin, organiser, or attendee.");
+        return;
+    }
+
+    const password = prompt("Enter temporary password, for example Pass@123:");
+    if (password === null || password.trim().length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+    }
+
+    try {
+        await apiRequest("/api/admin/users", {
+            method: "POST",
+            body: JSON.stringify({
+                name: name.trim(),
+                email: email.trim(),
+                role: role.trim(),
+                password: password.trim(),
+                password_confirmation: password.trim()
+            })
+        });
+
+        await loadDashboard();
+        alert("User created.");
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
+async function editUser(id) {
+    const user = getUserById(id);
 
     if (!user) {
         return;
     }
 
-    let newName = prompt("Edit user name:", user.name);
+    const newName = prompt("Edit user name:", user.name);
     if (newName === null || newName.trim() === "") {
         return;
     }
 
-    let newRole = prompt("Edit role (Attendee or Organiser):", user.role);
-    if (newRole === null || newRole.trim() === "") {
+    const newEmail = prompt("Edit user email:", user.email);
+    if (newEmail === null || newEmail.trim() === "") {
         return;
     }
 
-    user.name = newName.trim();
-    user.role = newRole.trim();
+    const newRole = prompt("Edit role (admin, organiser, attendee):", user.role);
+    if (newRole === null || !["admin", "organiser", "attendee"].includes(newRole.trim())) {
+        alert("Role must be admin, organiser, or attendee.");
+        return;
+    }
 
-    saveUsers();
-    renderUsers();
+    try {
+        await apiRequest(`/api/admin/users/${id}`, {
+            method: "PUT",
+            body: JSON.stringify({
+                name: newName.trim(),
+                email: newEmail.trim(),
+                role: newRole.trim()
+            })
+        });
 
-    alert("User updated");
+        await loadDashboard();
+        alert("User updated.");
+    } catch (error) {
+        alert(error.message);
+    }
 }
 
-function deleteUser(id) {
-    let confirmed = confirm("Are you sure you want to delete this user?");
+async function changeUserRole(id) {
+    const user = getUserById(id);
+
+    if (!user) {
+        return;
+    }
+
+    const newRole = prompt("Promote/demote role (admin, organiser, attendee):", user.role);
+    if (newRole === null || !["admin", "organiser", "attendee"].includes(newRole.trim())) {
+        alert("Role must be admin, organiser, or attendee.");
+        return;
+    }
+
+    try {
+        await apiRequest(`/api/admin/users/${id}/role`, {
+            method: "PATCH",
+            body: JSON.stringify({ role: newRole.trim() })
+        });
+
+        await loadDashboard();
+        alert("Role updated.");
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
+async function deleteUser(id) {
+    const confirmed = confirm("Are you sure you want to delete this user?");
 
     if (!confirmed) {
         return;
     }
 
-    users = users.filter(function (user) {
-        return user.id !== id;
-    });
+    try {
+        await apiRequest(`/api/admin/users/${id}`, {
+            method: "DELETE"
+        });
 
-    saveUsers();
-    renderAdminStats();
-    renderUsers();
-
-    alert("User deleted");
+        await loadDashboard();
+        alert("User deleted.");
+    } catch (error) {
+        alert(error.message);
+    }
 }
 
 function getEventById(id) {
@@ -244,4 +386,30 @@ function getUserById(id) {
     }
 
     return null;
+}
+
+function getCsrfToken() {
+    return document.querySelector('meta[name="csrf-token"]').content;
+}
+
+function getErrorMessage(result) {
+    if (result.errors) {
+        const firstField = Object.keys(result.errors)[0];
+        return result.errors[firstField][0];
+    }
+
+    return result.message || "Request failed.";
+}
+
+function setMessage(message) {
+    document.getElementById("adminMessage").textContent = message;
+}
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 }

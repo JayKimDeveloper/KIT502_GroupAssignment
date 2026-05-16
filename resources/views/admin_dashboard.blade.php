@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin Dashboard | TechEvents UTAS</title>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
@@ -36,42 +38,43 @@
             <section class="page-header">
                 <h1 class="page-title">Admin Dashboard</h1>
                 <p class="page-subtitle">Manage users, events, and view system statistics</p>
+                <p id="adminMessage" class="page-subtitle"></p>
             </section>
 
             <section class="stats-grid">
                 <div class="stats-card">
                     <div class="stats-info">
                         <h3>Total Users</h3>
-                        <p id="totalUsers">4</p>
+                        <p id="totalUsers">0</p>
                     </div>
                 </div>
 
                 <div class="stats-card">
                     <div class="stats-info">
                         <h3>Total Events</h3>
-                        <p id="totalEvents">4</p>
+                        <p id="totalEvents">0</p>
                     </div>
-
                 </div>
 
                 <div class="stats-card">
                     <div class="stats-info">
-                        <h3>Confirmed Events</h3>
-                        <p id="confirmedEvents">3</p>
+                        <h3>Upcoming Events</h3>
+                        <p id="upcomingEvents">0</p>
                     </div>
                 </div>
 
                 <div class="stats-card">
                     <div class="stats-info">
                         <h3>Total Registrations</h3>
-                        <p id="totalRegistrations">175</p>
+                        <p id="totalRegistrations">0</p>
                     </div>
                 </div>
             </section>
 
             <section class="dashboard-panel">
-                <div class="panel-header">
+                <div class="panel-header panel-header-with-action">
                     <h2>User Management</h2>
+                    <button type="button" class="btn btn-primary" id="createUserBtn">Create User</button>
                 </div>
 
                 <div class="table-wrapper">
@@ -82,14 +85,11 @@
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th>Registered</th>
-                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
 
-                        <tbody id="usersTableBody">
-                            <!-- Users will come from JavaScript -->
-                        </tbody>
+                        <tbody id="usersTableBody"></tbody>
                     </table>
                 </div>
             </section>
@@ -115,9 +115,7 @@
                             </tr>
                         </thead>
 
-                        <tbody id="adminEventsTableBody">
-                            <!-- Events will come from JavaScript -->
-                        </tbody>
+                        <tbody id="adminEventsTableBody"></tbody>
                     </table>
                 </div>
             </section>
@@ -135,6 +133,7 @@
             </div>
         </div>
     </footer>
+
     <script src="{{ asset('js/admin_dashboard.js') }}"></script>
 </body>
 </html>
