@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
-
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -13,12 +10,12 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function register(Request $request): JsonResponse|RedirectResponse
+    public function register(Request $request)
     {
         $data = $request->validate([
-            'role'     => ['required', Rule::in(['attendee', 'organiser'])],
-            'name'     => ['required', 'string', 'max:255'],
-            'email'    => ['required', 'email', 'max:255', 'unique:users,email'],
+            'role' => ['required', Rule::in(['attendee', 'organiser'])],
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
             'password' => [
                 'required',
                 'confirmed',
@@ -28,15 +25,15 @@ class AuthController extends Controller
                 'regex:/[^A-Za-z0-9]/',
             ],
         ], [
-            'email.unique' => 'This email is already registered. Please use a different email.',
-            'password.regex' => 'Password must include uppercase, lowercase, and a special character.',
+            'email.unique' => 'This email already exist. Please use different email.',
+            'password.regex' => 'Password need uppercase, lowercase, and special character.',
         ]);
 
         $user = User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
+            'name' => $data['name'],
+            'email' => $data['email'],
             'password' => $data['password'],
-            'role'     => $data['role'],
+            'role' => $data['role'],
         ]);
 
         Auth::login($user);
@@ -44,32 +41,32 @@ class AuthController extends Controller
 
         if ($request->wantsJson()) {
             return response()->json([
-                'message' => 'Registration successful.',
-                'user'    => $user->only(['id', 'name', 'email', 'role']),
+                'message' => 'Register success.',
+                'user' => $user->only(['id', 'name', 'email', 'role']),
             ], 201);
         }
 
-        return redirect()->intended('/')->with('status', 'Registration successful.');
+        return redirect()->intended('/')->with('status', 'Register success.');
     }
 
-    public function login(Request $request): JsonResponse|RedirectResponse
+    public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email'    => ['required', 'email'],
-            'password' => ['required', 'string'],
+            'email' => 'required|email',
+            'password' => 'required|string',
         ]);
 
+        // check if email exist
         $user = User::where('email', $credentials['email'])->first();
-
-        if (! $user) {
+        if (!$user) {
             throw ValidationException::withMessages([
                 'email' => 'Email not registered.',
             ]);
         }
 
-        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
+        if (!Auth::attempt($credentials, $request->boolean('remember'))) {
             throw ValidationException::withMessages([
-                'password' => 'Incorrect password.',
+                'password' => 'Wrong password.',
             ]);
         }
 
@@ -77,37 +74,34 @@ class AuthController extends Controller
 
         if ($request->wantsJson()) {
             return response()->json([
-                'message' => 'Login successful.',
-                'user'    => Auth::user()->only(['id', 'name', 'email', 'role']),
+                'message' => 'Login success.',
+                'user' => Auth::user()->only(['id', 'name', 'email', 'role']),
             ]);
         }
 
         return redirect()->intended('/');
     }
 
-    public function logout(Request $request): JsonResponse|RedirectResponse
+    public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         if ($request->wantsJson()) {
-            return response()->json(['message' => 'Logged out.']);
+            return response()->json(['message' => 'Logged out']);
         }
 
         return redirect('/');
     }
 
-    public function me(Request $request): JsonResponse
+    public function me(Request $request)
     {
         $user = $request->user();
 
         return response()->json([
-            'authenticated' => (bool) $user,
-            'user' => $user
-                ? $user->only(['id', 'name', 'email', 'role'])
-                : null,
+            'authenticated' => $user ? true : false,
+            'user' => $user ? $user->only(['id', 'name', 'email', 'role']) : null,
         ]);
     }
 }

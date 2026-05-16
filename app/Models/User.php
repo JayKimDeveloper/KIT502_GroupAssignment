@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -29,32 +28,32 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function organisedEvents(): HasMany
+    public function organisedEvents()
     {
         return $this->hasMany(Event::class, 'organiser_id');
     }
 
-    public function bookings(): HasMany
+    public function bookings()
     {
         return $this->hasMany(Booking::class, 'attendee_id');
     }
 
-    public function notifications(): HasMany
+    public function notifications()
     {
         return $this->hasMany(Notification::class);
     }
 
-    public function isAdmin(): bool
+    public function isAdmin()
     {
         return $this->role === 'admin';
     }
 
-    public function isOrganiser(): bool
+    public function isOrganiser()
     {
         return $this->role === 'organiser';
     }
 
-    public function isAttendee(): bool
+    public function isAttendee()
     {
         return $this->role === 'attendee';
     }

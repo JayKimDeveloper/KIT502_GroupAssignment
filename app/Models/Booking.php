@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 class Booking extends Model
@@ -19,26 +18,28 @@ class Booking extends Model
         'payment_status',
     ];
 
+    // auto generate booking reference when creating
     protected static function booted(): void
     {
-        static::creating(function (Booking $booking) {
+        static::creating(function ($booking) {
             if (empty($booking->booking_reference)) {
                 $booking->booking_reference = 'BK-' . strtoupper(Str::random(8));
             }
         });
     }
 
-    public function event(): BelongsTo
+    public function event()
     {
         return $this->belongsTo(Event::class);
     }
 
-    public function attendee(): BelongsTo
+    public function attendee()
     {
         return $this->belongsTo(User::class, 'attendee_id');
     }
 
-    public function canBeCancelled(): bool
+    // check if booking can still be cancelled (1 day before event)
+    public function canBeCancelled()
     {
         if ($this->status !== 'confirmed') {
             return false;

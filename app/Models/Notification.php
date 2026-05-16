@@ -4,12 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * Notification model — custom (not Laravel's built-in notifications system).
- * Kept simple so we control exactly when/where messages get written and read.
- */
 class Notification extends Model
 {
     use HasFactory;
@@ -26,7 +21,7 @@ class Notification extends Model
         'is_read' => 'boolean',
     ];
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

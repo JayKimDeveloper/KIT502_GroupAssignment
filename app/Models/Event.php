@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Event extends Model
 {
@@ -28,47 +25,48 @@ class Event extends Model
 
     protected $casts = [
         'start_datetime' => 'datetime',
-        'end_datetime'   => 'datetime',
-        'price'          => 'decimal:2',
-        'capacity'       => 'integer',
+        'end_datetime' => 'datetime',
+        'price' => 'decimal:2',
+        'capacity' => 'integer',
     ];
 
-    public function organiser(): BelongsTo
+    public function organiser()
     {
         return $this->belongsTo(User::class, 'organiser_id');
     }
 
-    public function category(): BelongsTo
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function bookings(): HasMany
+    public function bookings()
     {
         return $this->hasMany(Booking::class);
     }
 
-    public function confirmedBookings(): HasMany
+    public function confirmedBookings()
     {
         return $this->hasMany(Booking::class)->where('status', 'confirmed');
     }
 
-    public function scopePublished(Builder $query): Builder
+    // scope for published events only
+    public function scopePublished($query)
     {
         return $query->where('status', 'published');
     }
 
-    public function scopeUpcoming(Builder $query): Builder
+    public function scopeUpcoming($query)
     {
         return $query->where('start_datetime', '>=', now());
     }
 
-    public function availableSeats(): int
+    public function availableSeats()
     {
         return max(0, $this->capacity - $this->confirmedBookings()->count());
     }
 
-    public function isFull(): bool
+    public function isFull()
     {
         return $this->availableSeats() === 0;
     }
