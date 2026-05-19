@@ -512,11 +512,21 @@ The project is divided among the team. Sidd's original auth work was not complet
 - Laravel project structure migration
 - Database migrations, models, seeders
 - Authentication API (register / login / logout / me)
-- Events CRUD API + image upload
+- Events CRUD API
 - Bookings API (ticket purchase, capacity check, cancellation)
 - API contract documentation
-- Navigation bar (shared partial)
 - Login + Register pages wired to backend (originally Sidd's work)
+
+
+### Pragun (`pragun11`) — Prontend Lead - Event & Admin Interfaces
+
+- Page design (Figma)
+- Create Event form
+- Event Management page
+- Admin Dashboard layout
+- Wiring create/manage/admin pages to backend API
+- Admin API (stats, user management, role changes)
+
 
 ### Guneet (`guneet0526kaur-lang`) — Public Pages
 
@@ -525,15 +535,6 @@ The project is divided among the team. Sidd's original auth work was not complet
 - CSS for landing, events, variables
 - Image assets
 - Wiring the public pages to backend API (`/api/events`, `/api/events/recent`)
-
-### Pragun (`pragun11`) — Event & Admin Interfaces
-
-- Page design (Figma)
-- Create Event form
-- Event Management page
-- Admin Dashboard layout
-- Wiring create/manage/admin pages to backend API
-- Admin API (stats, user management, role changes)
 
 ### Siddharth (Sidd) — Login & Register Pages
 
