@@ -35,7 +35,7 @@ async function apiRequest(url, options = {}) {
 
 async function loadBookings() {
     try {
-        const result = await apiRequest("/api/bookings/mine");
+        const result = await apiRequest(APP_URL + "/api/bookings/mine");
         bookings = result.data;
         setMessage("");
     } catch (error) {
@@ -82,7 +82,7 @@ async function cancelBooking(id) {
     }
 
     try {
-        await apiRequest(`/api/bookings/${id}`, {
+        await apiRequest(`${APP_URL}/api/bookings/${id}`, {
             method: "DELETE"
         });
 

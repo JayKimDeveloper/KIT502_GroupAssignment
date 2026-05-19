@@ -116,6 +116,7 @@
         </div>
     </footer>
 
+    <script>window.APP_URL = "{{ url('/') }}";</script>
     <script src="{{ asset('js/admin_dashboard.js') }}"></script>
 </body>
 </html>

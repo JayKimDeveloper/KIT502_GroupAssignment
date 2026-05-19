@@ -103,6 +103,7 @@
         </div>
     </footer>
 
+    <script>window.APP_URL = "{{ url('/') }}";</script>
     <script src="{{ asset('js/create_event.js') }}"></script>
 </body>
 </html>

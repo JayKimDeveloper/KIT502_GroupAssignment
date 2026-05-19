@@ -56,7 +56,7 @@ async function apiRequest(url, options = {}) {
 }
 
 async function loadStats() {
-    const result = await apiRequest("/api/admin/stats");
+    const result = await apiRequest(APP_URL + "/api/admin/stats");
     const stats = result.data;
 
     document.getElementById("totalUsers").textContent = stats.total_users;
@@ -66,12 +66,12 @@ async function loadStats() {
 }
 
 async function loadUsers() {
-    const result = await apiRequest("/api/admin/users");
+    const result = await apiRequest(APP_URL + "/api/admin/users");
     users = result.data;
 }
 
 async function loadEvents() {
-    const result = await apiRequest("/api/admin/events");
+    const result = await apiRequest(APP_URL + "/api/admin/events");
     events = result.data;
     sortEvents();
 }
@@ -207,7 +207,7 @@ async function editEvent(id) {
     }
 
     try {
-        await apiRequest(`/api/events/${id}`, {
+        await apiRequest(`${APP_URL}/api/events/${id}`, {
             method: "PUT",
             body: JSON.stringify({
                 title: newTitle.trim(),
@@ -230,7 +230,7 @@ async function deleteEvent(id) {
     }
 
     try {
-        await apiRequest(`/api/events/${id}`, {
+        await apiRequest(`${APP_URL}/api/events/${id}`, {
             method: "DELETE"
         });
 
@@ -265,7 +265,7 @@ async function createUser() {
     }
 
     try {
-        await apiRequest("/api/admin/users", {
+        await apiRequest(APP_URL + "/api/admin/users", {
             method: "POST",
             body: JSON.stringify({
                 name: name.trim(),
@@ -307,7 +307,7 @@ async function editUser(id) {
     }
 
     try {
-        await apiRequest(`/api/admin/users/${id}`, {
+        await apiRequest(`${APP_URL}/api/admin/users/${id}`, {
             method: "PUT",
             body: JSON.stringify({
                 name: newName.trim(),
@@ -337,7 +337,7 @@ async function changeUserRole(id) {
     }
 
     try {
-        await apiRequest(`/api/admin/users/${id}/role`, {
+        await apiRequest(`${APP_URL}/api/admin/users/${id}/role`, {
             method: "PATCH",
             body: JSON.stringify({ role: newRole.trim() })
         });
@@ -357,7 +357,7 @@ async function deleteUser(id) {
     }
 
     try {
-        await apiRequest(`/api/admin/users/${id}`, {
+        await apiRequest(`${APP_URL}/api/admin/users/${id}`, {
             method: "DELETE"
         });
 

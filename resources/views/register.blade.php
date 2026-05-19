@@ -100,6 +100,8 @@
           </div>
       </div>
     </div>
+    
+    <script>window.APP_URL = "{{ url('/') }}";</script>
     <script src="{{ asset('js/register_script.js') }}"></script>
 </body>
 </html>

@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const formData = new FormData(form);
 
         try {
-            const response = await fetch("/api/events", {
+            const response = await fetch(APP_URL + "/api/events", {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
             form.reset();
 
             setTimeout(function () {
-                window.location.href = "/manage_events";
+                window.location.href = APP_URL + "/manage_events";
             }, 800);
         } catch (error) {
             showMessage("Something went wrong while creating the event.", true);
@@ -69,13 +69,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cancelButton.addEventListener("click", function () {
         if (confirm("Are you sure you want to cancel? All changes will be lost.")) {
-            window.location.href = "/manage_events";
+            window.location.href = APP_URL + "/manage_events";
         }
     });
 
     async function loadCategories() {
         try {
-            const response = await fetch("/api/categories", {
+            const response = await fetch(APP_URL + "/api/categories", {
                 headers: { "Accept": "application/json" },
                 credentials: "same-origin"
             });

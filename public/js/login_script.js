@@ -1,9 +1,9 @@
 function goToLogin() {
-    window.location.href = "/login";
+    window.location.href = APP_URL + "/login";
 }
  
 function goToSignup() {
-    window.location.href = "/register";
+    window.location.href = APP_URL + "/register";
 }
  
 document.getElementById('login-form').addEventListener('submit', function (e) {

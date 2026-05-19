@@ -88,6 +88,7 @@
         </div>
     </footer>
 
+    <script>window.APP_URL = "{{ url('/') }}";</script>
     <script src="{{ asset('js/manage_events.js') }}"></script>
 </body>
 </html>

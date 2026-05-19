@@ -55,6 +55,7 @@
         </div>
     </footer>
 
+    <script>window.APP_URL = "{{ url('/') }}";</script>
     <script src="{{ asset('js/booking.js') }}"></script>
 </body>
 </html>     

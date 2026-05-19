@@ -11,7 +11,7 @@ class BookingController extends Controller
 {
     // buy ticket - create booking
     public function store(Request $request)
-    {
+    { 
         $user = $request->user();
 
         if (!$user->isAttendee()) {

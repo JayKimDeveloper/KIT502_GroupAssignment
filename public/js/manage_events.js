@@ -36,7 +36,7 @@ async function apiRequest(url, options = {}) {
 
 async function loadEvents() {
     try {
-        const result = await apiRequest("/api/events/mine");
+        const result = await apiRequest(APP_URL + "/api/events/mine");
         events = result.data;
         sortEvents();
         setMessage("");
@@ -185,7 +185,7 @@ async function editEvent(id) {
     }
 
     try {
-        await apiRequest(`/api/events/${id}`, {
+        await apiRequest(`${APP_URL}/api/events/${id}`, {
             method: "PUT",
             body: JSON.stringify({
                 title: newTitle.trim(),
@@ -212,7 +212,7 @@ async function deleteEvent(id) {
     }
 
     try {
-        await apiRequest(`/api/events/${id}`, {
+        await apiRequest(`${APP_URL}/api/events/${id}`, {
             method: "DELETE"
         });
 
