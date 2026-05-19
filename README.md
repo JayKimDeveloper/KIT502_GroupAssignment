@@ -264,7 +264,7 @@ CSRF is disabled on `/api/*` routes for development convenience, so you only nee
 
 The screenshot below shows an example API request tested in Insomnia.
 
-![API example in Insomnia](docs/insomnia.png)
+![API example in Insomnia](docs/Insomnia.png)
 
 
 ---
