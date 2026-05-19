@@ -93,7 +93,7 @@
 
         async function loadMe() {
             try {
-                const res  = await fetch("{{ url('/me') }}", {
+                const res  = await fetch('/me', {
                     headers: { 'Accept': 'application/json' },
                     credentials: 'same-origin',
                 });
@@ -107,7 +107,7 @@
         // ── Categories ───────────────────────────────────────────
         async function loadCategories() {
             try {
-                const res  = await fetch("{{ url('/api/categories') }}", {
+                const res  = await fetch('/api/categories', {
                     headers: { 'Accept': 'application/json' },
                     credentials: 'same-origin',
                 });
@@ -170,7 +170,7 @@
             if (date)       params.set('date', date);
             if (location)   params.set('location', location);
 
-            const url = "{{ url('/api/events') }}" + (params.toString() ? '?' + params.toString() : '');
+            const url = '/api/events' + (params.toString() ? '?' + params.toString() : '');
 
             try {
                 const res  = await fetch(url, {
@@ -200,7 +200,7 @@
         async function handleBuyTicket(eventId, btn) {
             // Visitor: redirect to login
             if (!currentUser) {
-                window.location.href = "{{ url('/login') }}";
+                window.location.href = '/login';
                 return;
             }
 
@@ -214,7 +214,7 @@
             btn.textContent  = 'Booking…';
 
             try {
-                const res  = await fetch("{{ url('/api/bookings') }}", {
+                const res  = await fetch('/api/bookings', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

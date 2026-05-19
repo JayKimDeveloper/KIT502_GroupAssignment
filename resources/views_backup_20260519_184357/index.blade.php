@@ -93,7 +93,7 @@
             const grid    = document.getElementById('recent-events-grid');
             const loading = document.getElementById('recent-loading');
             try {
-                const res  = await fetch("{{ url('/api/events/recent') }}", {
+                const res  = await fetch('/api/events/recent', {
                     headers: { 'Accept': 'application/json' },
                     credentials: 'same-origin',
                 });
