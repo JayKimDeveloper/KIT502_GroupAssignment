@@ -36,6 +36,16 @@ The system provides a role-based event management platform where university-rela
 http://192.168.200.4/groupwork/kit502-group-17/myApp/public/
 ```
 
+### Database / phpMyAdmin URL
+
+The final deployment uses MySQL on the university server. The database can be checked through phpMyAdmin:
+
+```text
+http://192.168.200.4/phpmyadmin
+```
+
+The MySQL login details are available in the group account file `kit502-group-17-mysql-pass.txt`.
+
 ### Marker Login Credentials
 
 The following seeded accounts can be used by the marker to test the main system roles.
@@ -84,8 +94,9 @@ The Laravel full-stack application has been implemented for Assignment 2 and dep
 
 **Infrastructure:**
 
-- SQLite was used for local development.
-- MySQL is used/planned for the school usermin deployment.
+- SQLite was used during local development.
+- MySQL is used for the final school usermin deployment.
+- phpMyAdmin is available at `http://192.168.200.4/phpmyadmin`.
 - API contract is documented in `docs/API_LISTS.md`.
 
 ---
@@ -104,7 +115,7 @@ The Laravel full-stack application has been implemented for Assignment 2 and dep
 - Laravel 10
 - PHP 8.2
 - Blade templates
-- SQLite (local), MySQL (school server)
+- SQLite (local development), MySQL (final school server deployment)
 - Composer, Git/GitHub
 
 ---
@@ -244,7 +255,7 @@ CSRF is disabled on `/api/*` routes for development convenience, so you only nee
 1. **POST** `http://localhost:8000/login`
    - Headers: `Accept: application/json`
    - Body (raw JSON): `{"email": "attendee@kit502.test", "password": "Attendee123!@"}`
-2. Postman saves the session cookie automatically.
+2. Insomnia saves the session cookie automatically.
 3. All subsequent `/api/*` calls work without further setup.
 
 > See `docs/API_LISTS.md` for the full request/response contract.
@@ -349,7 +360,7 @@ KIT502_GroupAssignment/
 
 ## School Server Deployment Information
 
-The final Assignment 2 project is deployed to the university-provided internal server (`usermin`) for marking.
+The final Assignment 2 project is deployed to the university-provided internal server (`usermin`) for marking. The final school server version uses MySQL as the active database.
 
 Project path:
 
@@ -363,6 +374,19 @@ Public URL:
 http://192.168.200.4/groupwork/kit502-group-17/myApp/public/
 ```
 
+Database management URL:
+
+```text
+http://192.168.200.4/phpmyadmin
+```
+
+Database notes:
+
+- The deployed school server version uses MySQL.
+- Database credentials are stored in the group account file `kit502-group-17-mysql-pass.txt`.
+- The Laravel `.env` file on the school server has been configured to connect to the MySQL database.
+- Do not run `php artisan migrate:fresh --seed` on the final deployed database unless the database must be intentionally reset.
+
 Recommended workflow for deployment or verification:
 
 ```bash
@@ -374,13 +398,13 @@ php artisan cache:clear
 php artisan storage:link
 ```
 
-For the school server, update `.env` to use MySQL:
+The school server `.env` should use MySQL:
 
 ```env
 DB_CONNECTION=mysql
 DB_HOST=localhost
 DB_PORT=3306
-DB_DATABASE=kit502-group-17
+DB_DATABASE=<from kit502-group-17-mysql-pass.txt>
 DB_USERNAME=<from kit502-group-17-mysql-pass.txt>
 DB_PASSWORD=<from kit502-group-17-mysql-pass.txt>
 ```
