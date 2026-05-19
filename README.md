@@ -499,9 +499,11 @@ The following advanced features were considered but are not part of the complete
 
 ### Team Progress Timeline
 
+## Assignment 01 Progress
 <img src="./docs/TeamProgress.png">
 
-The project is divided among the team. Sidd's original auth work was not completed and has been absorbed by Jay.
+## Assignment 02 Progress
+<img src="./docs/TeamProgress02.png">
 
 ---
 
@@ -515,7 +517,7 @@ The project is divided among the team. Sidd's original auth work was not complet
 - Events CRUD API
 - Bookings API (ticket purchase, capacity check, cancellation)
 - API contract documentation
-- Login + Register pages wired to backend (originally Sidd's work)
+- Login + Register pages wired to backend 
 
 
 ### Pragun (`pragun11`) — Prontend Lead - Event & Admin Interfaces
