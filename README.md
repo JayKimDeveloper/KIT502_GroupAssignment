@@ -22,36 +22,71 @@ The system provides a role-based event management platform where university-rela
 
 ---
 
+## Assignment 2 Submission Information
+
+### Usermin Project Path
+
+```text
+/groupwork/kit502-group-17/myApp
+```
+
+### Public Project URL
+
+```text
+http://192.168.200.4/groupwork/kit502-group-17/myApp/public/
+```
+
+### Marker Login Credentials
+
+The following seeded accounts can be used by the marker to test the main system roles.
+
+| Role | Email | Password |
+|---|---|---|
+| Admin | `admin@kit502.test` | `Admin123!@` |
+| Organiser | `organiser@kit502.test` | `Organiser123!@` |
+| Attendee | `attendee@kit502.test` | `Attendee123!@` |
+
+The admin account should be used to evaluate administrator functions such as dashboard statistics, user management, event management, and role promotion/demotion.
+
+### Demo Video
+
+A 5-10 minute demo video is submitted separately through MyLO. The video demonstrates the main implemented features, including authentication, role-based navigation, event management, event listing, booking-related functions, and the admin dashboard.
+
+---
+
 ## Development Stages
 
 | Stage | Focus | Status |
 |-------|-------|--------|
 | Assignment 1 | Frontend design and database planning | ✅ Completed |
-| Assignment 2 | Full-stack Laravel implementation | 🧑‍🚒 In progress |
+| Assignment 2 | Full-stack Laravel implementation | ✅ Completed with noted limitations |
 
-### Current Assignment 2 Progress
+### Final Assignment 2 Status
 
-**Backend (complete):**
+The Laravel full-stack application has been implemented for Assignment 2 and deployed in the group usermin directory. The main backend functions are complete, including authentication, role-based access control, event APIs, booking APIs, admin APIs, migrations, models, seeders, and database integration.
 
-- Database migrations, Eloquent models, seeders
-- Session-based authentication (register / login / logout / me)
-- Events CRUD API + image upload + organiser ownership checks
-- Bookings API (ticket purchase, capacity check, cancellation cutoff)
-- Admin API (statistics, user management, role promotion/demotion)
-- Categories endpoint for filter and create-event dropdowns
-
-**Frontend (in progress):**
-
-- Static HTML pages migrated into Blade templates
-- Shared navbar partial with role-based menu visibility
-- Login / Register pages wired to backend
-- Event listing, create event, manage events, admin dashboard — being wired to API
+| Feature | Status | Notes |
+|---|---|---|
+| User registration | Completed | Visitor can register as attendee or organiser |
+| Login / logout | Completed | Session-based authentication |
+| Role-based navigation | Completed | Navbar changes based on login state and role |
+| Role-based access control | Completed | Restricted pages and APIs are protected by middleware/checks |
+| Landing page with recent events | Completed | Recent event data is loaded dynamically |
+| Published events page | Completed | Events are retrieved from the database |
+| Event filtering | Completed | Category/date/location filtering supported where implemented in the UI |
+| Organiser event CRUD | Completed | Organisers can manage their own events |
+| Admin dashboard statistics | Completed | Counts are retrieved from the database |
+| Admin user management | Completed | Admin can manage and change user roles |
+| Ticket booking API | Partially completed | Backend booking logic exists; final booking UI flow is not fully completed |
+| Event detail page | Partially completed | Event detail functionality is still limited |
+| Booking management page | Partially completed | Some attendee booking UI functions are still limited |
+| Advanced features | Not included in final scope | Payment simulation, waitlist, and monthly calendar are optional and not fully implemented |
 
 **Infrastructure:**
 
-- SQLite for local development
-- MySQL planned for school server deployment
-- API contract documented in `docs/API_LISTS.md`
+- SQLite was used for local development.
+- MySQL is used/planned for the school usermin deployment.
+- API contract is documented in `docs/API_LISTS.md`.
 
 ---
 
@@ -173,15 +208,15 @@ After running `php artisan migrate:fresh --seed`, the following accounts are ava
 
 | Role | Email | Password |
 |---|---|---|
-| Admin | `admin@test` | `admin123!@` |
-| Organiser | `organiser@kit502.test` | `Organiser@123` |
-| Attendee | `attendee@kit502.test` | `Attendee@123` |
+| Admin | `admin@kit502.test` | `Admin123!@` |
+| Organiser | `organiser@kit502.test` | `Organiser123!@` |
+| Attendee | `attendee@kit502.test` | `Attendee123!@` |
 
-> The admin account credentials must also be included in the final Assignment 2 submission README so markers can evaluate admin functionality.
+These accounts are also the marker login credentials for Assignment 2 testing.
 
 ---
 
-## API Authentication (for frontend / Postman)
+## API Authentication (for frontend / Insomnia)
 
 The backend uses **session-based authentication**, not tokens.
 
@@ -202,17 +237,21 @@ fetch('/api/events', {
 });
 ```
 
-### From Postman
+### From Insomnia
 
 CSRF is disabled on `/api/*` routes for development convenience, so you only need to log in once:
 
 1. **POST** `http://localhost:8000/login`
    - Headers: `Accept: application/json`
-   - Body (raw JSON): `{"email": "attendee@kit502.test", "password": "Attendee@123"}`
+   - Body (raw JSON): `{"email": "attendee@kit502.test", "password": "Attendee123!@"}`
 2. Postman saves the session cookie automatically.
 3. All subsequent `/api/*` calls work without further setup.
 
 > See `docs/API_LISTS.md` for the full request/response contract.
+
+> API Example
+`docs/insomnia.png`
+
 
 ---
 
@@ -308,11 +347,23 @@ KIT502_GroupAssignment/
 
 ---
 
-## School Server Deployment Plan
+## School Server Deployment Information
 
-The project will be deployed to the university-provided internal server (`usermin`) for final testing and submission.
+The final Assignment 2 project is deployed to the university-provided internal server (`usermin`) for marking.
 
-Recommended workflow:
+Project path:
+
+```text
+/groupwork/kit502-group-17/myApp
+```
+
+Public URL:
+
+```text
+http://192.168.200.4/groupwork/kit502-group-17/myApp/public/
+```
+
+Recommended workflow for deployment or verification:
 
 ```bash
 git pull
@@ -353,6 +404,19 @@ Storage and bootstrap/cache permissions may need adjusting on the school server.
 
 ---
 
+## External Resources Used
+
+- Laravel 10 documentation and framework conventions
+- jQuery v3.7.1
+- Google Fonts: Poppins
+- Google Material Icons
+- Color palette from ColorHunt
+- Team-created or locally stored image assets in `public/images`
+
+Image source details should be checked before the final MyLO submission if any third-party images are included.
+
+---
+
 ## System Roles
 
 | Role | Description |
@@ -372,17 +436,21 @@ Storage and bootstrap/cache permissions may need adjusting on the school server.
 - Role-based access control (admin / organiser / attendee / visitor)
 - Event CRUD with image upload
 - Event filtering (by category, date, location)
-- Ticket booking with capacity validation
-- Booking cancellation (until 1 day before the event)
+- Ticket booking with capacity validation (backend implemented; final UI flow partially completed)
+- Booking cancellation until 1 day before the event (backend implemented; final UI flow partially completed)
 - Admin dashboard with system statistics
 - Admin user management (create/update/delete + role changes)
 
 ### Advanced Features *(optional)*
 
-- Notification system (database schema ready)
-- Payment simulation
-- Waitlist when events are full
-- Monthly calendar view
+The following advanced features were considered but are not part of the completed final scope unless otherwise demonstrated in the running system:
+
+| Advanced Feature | Status |
+|---|---|
+| Notification system | Database schema prepared / partial support |
+| Payment simulation | Not fully implemented |
+| Waitlist when events are full | Not implemented |
+| Monthly calendar view | Not implemented |
 
 ---
 
@@ -395,7 +463,7 @@ Storage and bootstrap/cache permissions may need adjusting on the school server.
 | Login | Sign in (with Remember Me) |
 | Events | List of published events with filters |
 | Create Event | Organiser form to create an event |
-| Event Management | Organiser sees their events; attendee sees their bookings |
+| Event Management | Organiser sees their events; attendee booking view is partially completed |
 | Admin Dashboard | Stats + user/event management for admins |
 
 ---
@@ -691,17 +759,15 @@ php artisan cache:clear
 
 ---
 
-## Future Development Plan
+## Known Limitations and Future Improvements
 
-Next stage focuses on frontend integration:
+The main Laravel backend and role-based system have been implemented. The following areas are known limitations or possible future improvements:
 
-- Wire registration / login UI to backend (done — Jay)
-- Wire landing page and events page to `/api/events` (Guneet)
-- Wire create event / manage events to backend (Pragun)
-- Wire admin dashboard to `/api/admin/*` (Pragun)
-- Demo video recording
-- Final testing on school server
-- Optional: advanced features (notifications, payment simulation, waitlist, calendar)
+- Complete the event detail page so each event can be viewed in a dedicated detailed page.
+- Complete the final attendee booking UI flow and booking management page.
+- Improve frontend validation and user feedback messages across all forms.
+- Add optional advanced features such as payment simulation, waitlist management, and monthly calendar view.
+- Continue testing in the school usermin environment before the final deadline.
 
 ---
 
