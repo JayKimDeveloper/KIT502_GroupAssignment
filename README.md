@@ -260,8 +260,11 @@ CSRF is disabled on `/api/*` routes for development convenience, so you only nee
 
 > See `docs/API_LISTS.md` for the full request/response contract.
 
-> API Example
-`docs/insomnia.png`
+### API Example
+
+The screenshot below shows an example API request tested in Insomnia.
+
+![API example in Insomnia](docs/insomnia.png)
 
 
 ---
@@ -778,7 +781,7 @@ php artisan db:seed            # Re-run seeders
 php artisan config:clear
 php artisan route:clear
 php artisan view:clear
-php artisan cache:clear
+php artisan cache:clearㄹ
 ```
 
 ---
