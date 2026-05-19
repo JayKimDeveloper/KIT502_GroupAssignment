@@ -37,6 +37,10 @@ class DatabaseSeeder extends Seeder
             'role'     => 'attendee',
         ]);
  
+
+
+
+
         /* ---------- Categories ---------- */
  
         $categories = collect([
@@ -47,10 +51,12 @@ class DatabaseSeeder extends Seeder
             'Conference',
         ])->map(fn ($name) => Category::create(['name' => $name]));
  
+
+
+
+
+
         /* ---------- Events ---------- */
-        // Four published events, all in the future, on different dates
-        // so reverse-chronological ordering on the management page is visible.
- 
         $eventsData = [
             [
                 'title'       => 'Intro to Laravel for Students',
@@ -108,10 +114,13 @@ class DatabaseSeeder extends Seeder
             ]));
         }
  
+
+
+
+
+        
         /* ---------- One sample booking ---------- */
-        // So the admin dashboard's "total registrations" stat isn't 0 at first run.
- 
-        Booking::create([
+                Booking::create([
             'event_id'       => $events->first()->id,
             'attendee_id'    => $attendee->id,
             'status'         => 'confirmed',

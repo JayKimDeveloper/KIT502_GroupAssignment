@@ -7,10 +7,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
-/* ------------------------------------------------------------------ */
-/* Page routes                                                         */
-/* ------------------------------------------------------------------ */
-
 Route::view('/', 'index');
 Route::view('/index', 'index');
 Route::view('/login', 'login')->name('login');
@@ -23,10 +19,7 @@ Route::view('/manage_events', 'manage_events');
 Route::view('/admin_dashboard', 'admin_dashboard');
 Route::view('/test_api', 'Test_api');
 
-/* ------------------------------------------------------------------ */
-/* Auth actions                                                        */
-/* ------------------------------------------------------------------ */
-
+// Auth                                                        
 Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
     Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
@@ -38,10 +31,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/me', [AuthController::class, 'me'])->name('auth.me');
 
-/* ------------------------------------------------------------------ */
-/* API — Events                                                        */
-/* ------------------------------------------------------------------ */
 
+
+// Events
 Route::get('/api/events', [EventController::class, 'index'])->name('api.events.index');
 Route::get('/api/events/recent', [EventController::class, 'recent'])->name('api.events.recent');
 
@@ -69,16 +61,11 @@ Route::middleware('auth')->group(function () {
         ->name('api.events.bookings');
 });
 
-/* ------------------------------------------------------------------ */
-/* API — Categories                                                    */
-/* ------------------------------------------------------------------ */
 
+//Categories
 Route::get('/api/categories', [CategoryController::class, 'index'])->name('api.categories.index');
 
-/* ------------------------------------------------------------------ */
-/* API — Bookings                                                      */
-/* ------------------------------------------------------------------ */
-
+//Bookings
 Route::middleware('auth')->group(function () {
     Route::post('/api/bookings', [BookingController::class, 'store'])->name('api.bookings.store');
 
@@ -89,10 +76,7 @@ Route::middleware('auth')->group(function () {
         ->name('api.bookings.destroy');
 });
 
-/* ------------------------------------------------------------------ */
-/* API — Admin                                                         */
-/* ------------------------------------------------------------------ */
-
+//Admin
 Route::middleware('auth')->group(function () {
     Route::get('/api/admin/stats', [AdminController::class, 'stats'])->name('api.admin.stats');
 

@@ -157,7 +157,6 @@ class AdminController extends Controller
         ]);
     }
 
-    // delete user
     public function destroyUser(Request $request, $id)
     {
         $user = $request->user();

@@ -514,7 +514,6 @@ The project is divided among the team. Sidd's original auth work was not complet
 - Authentication API (register / login / logout / me)
 - Events CRUD API + image upload
 - Bookings API (ticket purchase, capacity check, cancellation)
-- Admin API (stats, user management, role changes)
 - API contract documentation
 - Navigation bar (shared partial)
 - Login + Register pages wired to backend (originally Sidd's work)
@@ -534,10 +533,11 @@ The project is divided among the team. Sidd's original auth work was not complet
 - Event Management page
 - Admin Dashboard layout
 - Wiring create/manage/admin pages to backend API
+- Admin API (stats, user management, role changes)
 
-### Siddharth (Sidd) — *Not completed*
+### Siddharth (Sidd) — Login & Register Pages
 
-Originally assigned to Register and Login pages; work not delivered. Reassigned to Jay.
+- Develop login and Register front page
 
 ---
 
@@ -738,28 +738,6 @@ CREATE TABLE activies_logs_TB (
     FOREIGN KEY (login_id) REFERENCES user_TB(login_id)
 );
 ```
-
----
-
-## Git and Security Notes
-
-The following files and folders should not be committed:
-
-- `.env`
-- `vendor/`
-- `node_modules/`
-- SQLite database files (`database/database.sqlite`)
-- Log files (`storage/logs/*.log`)
-- Local tool metadata such as `.claude/`
-- Local editor settings such as `.vscode/`
-
-Before pushing, check for sensitive files:
-
-```bash
-git ls-files | grep -E "\.env$|sqlite$|pass|secret|key$|\.log$"
-```
-
-Only `.env.example` and standard Laravel config files should appear in the output.
 
 ---
 
