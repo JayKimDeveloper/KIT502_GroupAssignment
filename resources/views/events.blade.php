@@ -5,6 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Events | TechEvents</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
@@ -15,26 +16,7 @@
 </head>
 
 <body>
-
-    <nav class="navbar">
-        <div class="container">
-            <a href="{{ url('/index') }}" class="nav-brand">Tech<span>Events</span></a>
-
-            <ul class="nav-links">
-                <li><a href="{{ url('/index') }}">Home</a></li>
-                <li><a href="{{ url('/events') }}" class="active">Events</a></li>
-                <li><a href="{{ url('/create_event') }}">Create Event</a></li>
-                <li><a href="{{ url('/manage_events') }}">Manage Events</a></li>
-                <li><a href="{{ url('/admin_dashboard') }}">Admin</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <a href="{{ url('/login') }}" class="btn btn-outline">Log in</a>
-                <a href="{{ url('/register') }}" class="btn btn-primary">Sign up</a>
-            </div>
-        </div>
-    </nav>
-
+@include('partials.navbar')
 
     <div class="page">
 
@@ -45,121 +27,32 @@
             <!-- FILTERS -->
             <div class="filters-section">
                 <div class="filter-group">
-                    <label>Category</label>
-                    <select>
-                        <option>All Categories</option>
-                        <option>Workshop</option>
-                        <option>Hackathon</option>
-                        <option>Tech Talk</option>
-                        <option>Networking</option>
-                        <option>Career Event</option>
+                    <label for="category-filter">Category</label>
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
                     </select>
                 </div>
 
                 <div class="filter-group">
-                    <label>Date</label>
-                    <input type="date" placeholder="dd/mm/yyyy">
+                    <label for="date-filter">Date</label>
+                    <input type="date" id="date-filter">
                 </div>
 
                 <div class="filter-group">
-                    <label>Location</label>
-                    <select>
-                        <option>All Locations</option>
-                        <option>Hobart Campus</option>
-                        <option>Launceston Campus</option>
+                    <label for="location-filter">Location</label>
+                    <select id="location-filter">
+                        <option value="">All Locations</option>
+                        <option value="Hobart">Hobart Campus</option>
+                        <option value="Launceston">Launceston Campus</option>
                     </select>
                 </div>
 
-                <button class="btn btn-primary">Apply Filter</button>
+                <button id="apply-filter-btn" class="btn btn-primary">Apply Filter</button>
             </div>
 
             <!-- EVENTS GRID -->
-            <div class="events-grid">
-
-                <div class="event-card">
-                    <div class="event-image">
-                        <img src="{{ asset('images/event1.png') }}" alt="AI Hackathon">
-                    </div>
-                    <div class="event-badge">Hackathon</div>
-                    <h3>AI Hackathon 2025</h3>
-                    <div class="event-meta">
-                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">location_on</span> Hobart Campus</span>
-                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">event</span> 12 June 2025</span>
-                        <span class="meta-item price">$10</span>
-                    </div>
-                    <a href="event_details/event-ai-hackathon.html" class="btn btn-primary btn-block">View Details</a>
-                </div>
-
-                <div class="event-card">
-                    <div class="event-image">
-                        <img src="{{ asset('images/event2.png') }}" alt="Cyber Security Workshop">
-                    </div>
-                    <div class="event-badge">Workshop</div>
-                    <h3>Cyber Security Workshop</h3>
-                    <div class="event-meta">
-                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">location_on</span> Launceston Campus</span>
-                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">event</span> 20 June 2025</span>
-                        <span class="meta-item price">Free</span>
-                    </div>
-                    <a href="event_details/event-cyber-workshop.html" class="btn btn-primary btn-block">View Details</a>
-                </div>
-
-                <div class="event-card">
-                    <div class="event-image">
-                        <img src="{{ asset('images/event3.png') }}" alt="Tech Industry Panel">
-                    </div>
-                    <div class="event-badge">Tech Talk</div>
-                    <h3>Tech Industry Panel Discussion</h3>
-                    <div class="event-meta">
-                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">location_on</span> Hobart Campus</span>
-                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">event</span> 25 June 2025</span>
-                        <span class="meta-item price">Free</span>
-                    </div>
-                    <a href="event_details/event-panel-discussion.html" class="btn btn-primary btn-block">View Details</a>
-                </div>
-
-                <div class="event-card">
-                    <div class="event-image">
-                        <img src="{{ asset('images/event4.png') }}" alt="Networking Night">
-                    </div>
-                    <div class="event-badge">Networking</div>
-                    <h3>Student Tech Networking Night</h3>
-                    <div class="event-meta">
-                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">location_on</span> Hobart Campus</span>
-                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">event</span> 28 June 2025</span>
-                        <span class="meta-item price">$5</span>
-                    </div>
-                    <a href="event_details/event-networking-night.html" class="btn btn-primary btn-block">View Details</a>
-                </div>
-
-                <div class="event-card">
-                    <div class="event-image">
-                        <img src="{{ asset('images/event5.png') }}" alt="Web Development">
-                    </div>
-                    <div class="event-badge">Workshop</div>
-                    <h3>Web Development Bootcamp</h3>
-                    <div class="event-meta">
-                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">location_on</span> Launceston Campus</span>
-                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">event</span> 5 July 2025</span>
-                        <span class="meta-item price">$15</span>
-                    </div>
-                    <a href="event_details/event-web-bootcamp.html" class="btn btn-primary btn-block">View Details</a>
-                </div>
-
-                <div class="event-card">
-                    <div class="event-image">
-                        <img src="{{ asset('images/event6.png') }}" alt="Tech Careers Fair">
-                    </div>
-                    <div class="event-badge">Career Event</div>
-                    <h3>Tech Careers Fair 2025</h3>
-                    <div class="event-meta">
-                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">location_on</span> Hobart Campus</span>
-                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">event</span> 10 July 2025</span>
-                        <span class="meta-item price">Free</span>
-                    </div>
-                    <a href="event_details/event-careers-fair.html" class="btn btn-primary btn-block">View Details</a>
-                </div>
-
+            <div id="events-grid" class="events-grid">
+                <p id="events-loading" style="color:#888;">Loading events…</p>
             </div>
 
         </div>
@@ -180,6 +73,187 @@
         </div>
 
     </footer>
+
+    <script>
+        const csrf = document.querySelector('meta[name=csrf-token]').content;
+
+        // ── Helpers ──────────────────────────────────────────────
+        function formatDate(iso) {
+            if (!iso) return '';
+            const d = new Date(iso);
+            return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+        }
+
+        function formatPrice(price) {
+            return parseFloat(price) === 0 ? 'Free' : '$' + parseFloat(price).toFixed(2);
+        }
+
+        // ── Auth state ───────────────────────────────────────────
+        let currentUser = null;
+
+        async function loadMe() {
+            try {
+                const res  = await fetch('/me', {
+                    headers: { 'Accept': 'application/json' },
+                    credentials: 'same-origin',
+                });
+                const json = await res.json();
+                currentUser = json.authenticated ? json.user : null;
+            } catch (e) {
+                currentUser = null;
+            }
+        }
+
+        // ── Categories ───────────────────────────────────────────
+        async function loadCategories() {
+            try {
+                const res  = await fetch('/api/categories', {
+                    headers: { 'Accept': 'application/json' },
+                    credentials: 'same-origin',
+                });
+                const json = await res.json();
+                const sel  = document.getElementById('category-filter');
+                (json.data || []).forEach(cat => {
+                    const opt = document.createElement('option');
+                    opt.value       = cat.id;
+                    opt.textContent = cat.name;
+                    sel.appendChild(opt);
+                });
+            } catch (e) { /* silently ignore */ }
+        }
+
+        // ── Event card builder ───────────────────────────────────
+        function buildEventCard(event) {
+            const imgSrc  = event.image_url ? event.image_url : '{{ asset("images/event1.png") }}';
+            const badge   = event.category ? event.category.name : 'Event';
+            const seats   = event.available_seats;
+            const isFull  = seats === 0;
+
+            let btnHtml;
+            if (currentUser && (currentUser.role === 'organiser' || currentUser.role === 'admin')) {
+                // Organisers / admins cannot book tickets
+                btnHtml = `<button class="btn btn-primary btn-block" disabled style="opacity:0.5;cursor:not-allowed;">Buy Ticket</button>`;
+            } else if (isFull) {
+                btnHtml = `<button class="btn btn-primary btn-block" disabled style="opacity:0.5;cursor:not-allowed;">Sold Out</button>`;
+            } else {
+                btnHtml = `<button class="btn btn-primary btn-block buy-ticket-btn" data-event-id="${event.id}">Buy Ticket</button>`;
+            }
+
+            return `
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="${imgSrc}" alt="${event.title}" onerror="this.src='{{ asset('images/event1.png') }}'">
+                    </div>
+                    <div class="event-badge">${badge}</div>
+                    <h3>${event.title}</h3>
+                    <div class="event-meta">
+                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">location_on</span> ${event.location}</span>
+                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">event</span> ${formatDate(event.start_datetime)}</span>
+                        <span class="meta-item price">${formatPrice(event.price)}</span>
+                        <span class="meta-item"><span class="material-icons" style="font-size:1em;vertical-align:middle;">confirmation_number</span> ${seats} seat${seats !== 1 ? 's' : ''} left</span>
+                    </div>
+                    ${btnHtml}
+                </div>`;
+        }
+
+        // ── Load events ──────────────────────────────────────────
+        async function loadEvents() {
+            const grid    = document.getElementById('events-grid');
+            grid.innerHTML = '<p id="events-loading" style="color:#888;">Loading events…</p>';
+
+            const categoryId = document.getElementById('category-filter').value;
+            const date       = document.getElementById('date-filter').value;
+            const location   = document.getElementById('location-filter').value;
+
+            const params = new URLSearchParams();
+            if (categoryId) params.set('category_id', categoryId);
+            if (date)       params.set('date', date);
+            if (location)   params.set('location', location);
+
+            const url = '/api/events' + (params.toString() ? '?' + params.toString() : '');
+
+            try {
+                const res  = await fetch(url, {
+                    headers: { 'Accept': 'application/json' },
+                    credentials: 'same-origin',
+                });
+                const json = await res.json();
+                const events = json.data || [];
+
+                if (events.length === 0) {
+                    grid.innerHTML = '<p style="color:#888;">No events found matching your filters.</p>';
+                    return;
+                }
+
+                grid.innerHTML = events.map(buildEventCard).join('');
+
+                // Attach Buy Ticket handlers
+                grid.querySelectorAll('.buy-ticket-btn').forEach(btn => {
+                    btn.addEventListener('click', () => handleBuyTicket(parseInt(btn.dataset.eventId, 10), btn));
+                });
+            } catch (e) {
+                grid.innerHTML = '<p style="color:#c0392b;">Failed to load events. Please try again.</p>';
+            }
+        }
+
+        // ── Buy Ticket handler ───────────────────────────────────
+        async function handleBuyTicket(eventId, btn) {
+            // Visitor: redirect to login
+            if (!currentUser) {
+                window.location.href = '/login';
+                return;
+            }
+
+            // Only attendees may book
+            if (currentUser.role !== 'attendee') {
+                alert('Only attendees can buy tickets.');
+                return;
+            }
+
+            btn.disabled     = true;
+            btn.textContent  = 'Booking…';
+
+            try {
+                const res  = await fetch('/api/bookings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept':       'application/json',
+                        'X-CSRF-TOKEN': csrf,
+                    },
+                    credentials: 'same-origin',
+                    body: JSON.stringify({ event_id: eventId }),
+                });
+
+                const json = await res.json();
+
+                if (res.ok) {
+                    alert(json.message || 'Booking confirmed!');
+                    // Refresh events to reflect updated seat count
+                    await loadEvents();
+                } else {
+                    const msg = json.message || 'Booking failed. Please try again.';
+                    alert(msg);
+                    btn.disabled    = false;
+                    btn.textContent = 'Buy Ticket';
+                }
+            } catch (e) {
+                alert('Network error. Please try again.');
+                btn.disabled    = false;
+                btn.textContent = 'Buy Ticket';
+            }
+        }
+
+        // ── Filter button ────────────────────────────────────────
+        document.getElementById('apply-filter-btn').addEventListener('click', loadEvents);
+
+        // ── Init ─────────────────────────────────────────────────
+        (async () => {
+            await Promise.all([loadMe(), loadCategories()]);
+            await loadEvents();
+        })();
+    </script>
+
 </body>
 
 </html>

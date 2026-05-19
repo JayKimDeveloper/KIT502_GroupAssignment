@@ -12,25 +12,8 @@
     <link rel="stylesheet" href="{{ asset('css/booking.css') }}">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="{{ url('/index') }}" class="nav-brand">Tech<span>Events</span></a>
+@include('partials.navbar')
 
-            <ul class="nav-links">
-                <li><a href="{{ url('/index') }}">Home</a></li>
-                <li><a href="{{ url('/events') }}">Events</a></li>
-                <li><a href="{{ url('/booking') }}" class="active">My Bookings</a></li>
-                <li><a href="{{ url('/create_event') }}">Create Event</a></li>
-                <li><a href="{{ url('/manage_events') }}">Manage Events</a></li>
-                <li><a href="{{ url('/admin_dashboard') }}">Admin</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <a href="{{ url('/login') }}" class="btn btn-outline">Log in</a>
-                <a href="{{ url('/register') }}" class="btn btn-primary">Sign up</a>
-            </div>
-        </div>
-    </nav>
 
     <main class="page bookings-page">
         <div class="container">

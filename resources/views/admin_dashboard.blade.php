@@ -12,25 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin_dashboard.css') }}">
 </head>
 <body>
-
-    <nav class="navbar">
-        <div class="container">
-            <a href="{{ url('/index') }}" class="nav-brand">Tech<span>Events</span></a>
-
-            <ul class="nav-links">
-                <li><a href="{{ url('/index') }}">Home</a></li>
-                <li><a href="{{ url('/events') }}">Events</a></li>
-                <li><a href="{{ url('/create_event') }}">Create Event</a></li>
-                <li><a href="{{ url('/manage_events') }}">Manage Events</a></li>
-                <li><a href="{{ url('/admin_dashboard') }}" class="active">Admin</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <a href="{{ url('/login') }}" class="btn btn-outline">Log in</a>
-                <a href="{{ url('/register') }}" class="btn btn-primary">Sign up</a>
-            </div>
-        </div>
-    </nav>
+@include('partials.navbar')
 
     <main class="page admin-dashboard-page">
         <div class="container">

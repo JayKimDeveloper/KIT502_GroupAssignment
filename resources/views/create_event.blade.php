@@ -12,25 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <body>
-
-    <nav class="navbar">
-        <div class="container">
-            <a href="{{ url('/index') }}" class="nav-brand">Tech<span>Events</span></a>
-
-            <ul class="nav-links">
-                <li><a href="{{ url('/index') }}">Home</a></li>
-                <li><a href="{{ url('/events') }}">Events</a></li>
-                <li><a href="{{ url('/create_event') }}" class="active">Create Event</a></li>
-                <li><a href="{{ url('/manage_events') }}">Manage Events</a></li>
-                <li><a href="{{ url('/admin_dashboard') }}">Admin</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <a href="{{ url('/login') }}" class="btn btn-outline">Log in</a>
-                <a href="{{ url('/register') }}" class="btn btn-primary">Sign up</a>
-            </div>
-        </div>
-    </nav>
+@include('partials.navbar')
 
     <div class="page">
         <div class="container">

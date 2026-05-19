@@ -11,8 +11,10 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    public function boot()
+    public function boot(): void
     {
-        //
+        \URL::forceRootUrl(config('app.url'));
+        \URL::forceScheme('http');
     }
+
 }

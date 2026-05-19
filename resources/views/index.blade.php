@@ -7,6 +7,7 @@
 
     <title>TechEvents UTAS</title>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/variables.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
@@ -14,25 +15,7 @@
 </head>
 
 <body>
-
-    <nav class="navbar">
-        <div class="container">
-            <a href="{{ url('/index') }}" class="nav-brand">Tech<span>Events</span></a>
-
-            <ul class="nav-links">
-                <li><a href="{{ url('/index') }}">Home</a></li>
-                <li><a href="{{ url('/events') }}">Events</a></li>
-                <li><a href="{{ url('/create_event') }}" class="active">Create Event</a></li>
-                <li><a href="{{ url('/manage_events') }}">Manage Events</a></li>
-                <li><a href="{{ url('/admin_dashboard') }}">Admin</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <a href="{{ url('/login') }}" class="btn btn-outline">Log in</a>
-                <a href="{{ url('/register') }}" class="btn btn-primary">Sign up</a>
-            </div>
-        </div>
-    </nav>
+@include('partials.navbar')
 
     <div class="page">
         <!-- HERO -->
@@ -53,34 +36,8 @@
             <!-- LATEST EVENTS -->
             <section class="featured">
                 <h2>Latest Events</h2>
-                <div class="event-grid">
-                    <div class="event-card">
-                        <div class="event-image">
-                            <img src="{{ asset('images/event1.png') }}" alt="AI Hackathon">
-                        </div>
-                        <div class="event-badge">Hackathon</div>
-                        <h3>AI Hackathon 2025</h3>
-                        <div class="event-meta">
-                            <span class="meta-item">📍 Hobart Campus</span>
-                            <span class="meta-item">📅 12 June 2025</span>
-                            <span class="meta-item price">$10</span>
-                        </div>
-                        <a href="event_details/event-ai-hackathon.html" class="btn btn-primary btn-block">View Details</a>
-                    </div>
-
-                    <div class="event-card">
-                        <div class="event-image">
-                            <img src="{{ asset('images/event2.png') }}" alt="Cyber Security Workshop">
-                        </div>
-                        <div class="event-badge">Workshop</div>
-                        <h3>Cyber Security Workshop</h3>
-                        <div class="event-meta">
-                            <span class="meta-item">📍 Launceston Campus</span>
-                            <span class="meta-item">📅 20 June 2025</span>
-                            <span class="meta-item price">Free</span>
-                        </div>
-                        <a href="event_details/event-cyber-workshop.html" class="btn btn-primary btn-block">View Details</a>
-                    </div>
+                <div id="recent-events-grid" class="event-grid">
+                    <p id="recent-loading" style="color:#888;">Loading events…</p>
                 </div>
             </section>
         </div>
@@ -99,6 +56,64 @@
         </div>
 
     </footer>
+
+    <script>
+        function formatDate(iso) {
+            if (!iso) return '';
+            const d = new Date(iso);
+            return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+        }
+
+        function formatPrice(price) {
+            return parseFloat(price) === 0 ? 'Free' : '$' + parseFloat(price).toFixed(2);
+        }
+
+        function buildRecentCard(event) {
+            const imgSrc = event.image_url ? event.image_url : '{{ asset("images/event1.png") }}';
+            const badge  = event.category ? event.category.name : 'Event';
+            const seats  = event.available_seats;
+            return `
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="${imgSrc}" alt="${event.title}" onerror="this.src='{{ asset('images/event1.png') }}'">
+                    </div>
+                    <div class="event-badge">${badge}</div>
+                    <h3>${event.title}</h3>
+                    <div class="event-meta">
+                        <span class="meta-item">📍 ${event.location}</span>
+                        <span class="meta-item">📅 ${formatDate(event.start_datetime)}</span>
+                        <span class="meta-item price">${formatPrice(event.price)}</span>
+                        <span class="meta-item">🎟 ${seats} seat${seats !== 1 ? 's' : ''} left</span>
+                    </div>
+                    <a href="{{ url('/events') }}" class="btn btn-primary btn-block">View Details</a>
+                </div>`;
+        }
+
+        async function loadRecentEvents() {
+            const grid    = document.getElementById('recent-events-grid');
+            const loading = document.getElementById('recent-loading');
+            try {
+                const res  = await fetch('/api/events/recent', {
+                    headers: { 'Accept': 'application/json' },
+                    credentials: 'same-origin',
+                });
+                const json = await res.json();
+                const events = json.data || [];
+
+                console.log("JKYH Event recents: "+events);
+
+                if (events.length === 0) {
+                    grid.innerHTML = '<p style="color:#888;">No upcoming events yet.</p>';
+                    return;
+                }
+                grid.innerHTML = events.map(buildRecentCard).join('');
+            } catch (e) {
+                if (loading) loading.textContent = 'Could not load events.';
+            }
+        }
+
+        loadRecentEvents();
+    </script>
 
 </body>
 

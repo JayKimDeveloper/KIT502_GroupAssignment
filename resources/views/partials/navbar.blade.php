@@ -35,28 +35,28 @@
             {{-- Organisers & admins can create / manage events --}}
             @if ($user && ($user->isOrganiser() || $user->isAdmin()))
                 <li>
-                    <a href="{{ url('/create-event') }}"
-                       class="{{ request()->is('create-event*') ? 'active' : '' }}">Create Event</a>
+                    <a href="{{ url('/create_event') }}"
+                       class="{{ request()->is('create_event*') ? 'active' : '' }}">Create Event</a>
                 </li>
                 <li>
-                    <a href="{{ url('/manage-events') }}"
-                       class="{{ request()->is('manage-events*') ? 'active' : '' }}">Manage Events</a>
+                    <a href="{{ url('/manage_events') }}"
+                       class="{{ request()->is('manage_events*') ? 'active' : '' }}">Manage Events</a>
                 </li>
             @endif
 
             {{-- Attendees see their bookings --}}
             @if ($user && $user->isAttendee())
                 <li>
-                    <a href="{{ url('/my-bookings') }}"
-                       class="{{ request()->is('my-bookings*') ? 'active' : '' }}">My Bookings</a>
+                    <a href="{{ url('/my_bookings') }}"
+                       class="{{ request()->is('my_bookings*') ? 'active' : '' }}">My Bookings</a>
                 </li>
             @endif
 
             {{-- Admin dashboard --}}
             @if ($user && $user->isAdmin())
                 <li>
-                    <a href="{{ url('/admin-dashboard') }}"
-                       class="{{ request()->is('admin-dashboard*') ? 'active' : '' }}">Admin</a>
+                    <a href="{{ url('/admin_dashboard') }}"
+                       class="{{ request()->is('admin_dashboard*') ? 'active' : '' }}">Admin</a>
                 </li>
             @endif
         </ul>
@@ -68,12 +68,12 @@
                 <a href="{{ url('/register') }}" class="btn btn-primary">Sign up</a>
             @else
                 {{-- Logged in --}}
-                <span class="nav-welcome">Welcome, {{ $user->name }}</span>
+                <span class="nav_welcome">Welcome, {{ $user->name }}</span>
 
                 {{-- Logout must be POST for CSRF + session invalidation --}}
                 <form method="POST" action="{{ url('/logout') }}" class="nav-logout-form">
                     @csrf
-                    <button type="submit" class="btn btn-outline">Logout</button>
+                    <button type="submit" class="btn btn_outline">Logout</button>
                 </form>
             @endguest
         </div>

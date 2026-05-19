@@ -10,9 +10,9 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
+@include('partials.navbar')
 
-    @include('partials.navbar')
-
+    
     <div class="page">
     <div class="container">
         <div class="register-box">
