@@ -53,7 +53,7 @@
                 <div class="event-detail-side">
                     <div style="font-size: 1.5rem; color: var(--primary); font-weight: 700; margin-bottom: 2px;">{{$data->price}}</div>
                     <div style="font-size: 0.98rem; color: #5A4A4A; margin-bottom: 16px;">per ticket</div>
-                    <a href="{{url('api/bookings')}}" class="btn btn-primary" style="width: 100%; margin-bottom: 18px;">Buy Tickets</a>
+                    <button id="buyTicket" class="btn btn-primary"  style="width: 100%; margin-bottom: 18px;">Buy Tickets</button>
                     <div style="font-size: 1.08rem; font-weight: 600; margin-bottom: 8px;">Event Details</div>
                     <div style="font-size: 0.97rem; color: #5A4A4A;">
                         <b>Category</b><br>{{$data->category->name}}<br><br>
@@ -79,9 +79,16 @@
 
     <script>
         const csrf = document.querySelector('meta[name=csrf-token]').content;
-    
+        const buyTicketBtn = document.getElementById('buyTicket');
 
-        async function handleBuyTicket(eventId, btn) {
+        if (buyTicketBtn) {
+            buyTicketBtn.addEventListener('click', function () {
+                handleBuyTicket({{ $data->id }}, this);
+            });
+        }
+
+        
+        function handleBuyTicket(eventId, btn) {
             // Visitor: redirect to login
             if (!currentUser) {
                 window.location.href = '/login';
