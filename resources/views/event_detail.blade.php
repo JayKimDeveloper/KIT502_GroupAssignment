@@ -40,7 +40,7 @@
                     </div>
                     <div class="about-section">
                         <h4>About This Event</h4>
-                        <p{{$data->description}}</p>
+                        <p> {{$data->description}}</p>
                         {{-- <b>Event Agenda</b>
                         <ul class="event-agenda">
                             <li>11:00 AM – Doors Open</li>

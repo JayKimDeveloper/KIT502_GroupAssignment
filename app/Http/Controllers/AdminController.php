@@ -43,7 +43,6 @@ class AdminController extends Controller
         }
 
         $users = User::orderBy('created_at', 'desc')->get();
-
         $result = [];
         foreach ($users as $u) {
             $result[] = [
@@ -61,7 +60,9 @@ class AdminController extends Controller
     // admin create new user
     public function storeUser(Request $request)
     {
+
         $user = $request->user();
+
         if (!$user || !$user->isAdmin()) {
             return response()->json(['message' => 'Forbidden'], 403);
         }
@@ -74,7 +75,7 @@ class AdminController extends Controller
         ]);
 
         $newUser = User::create($data);
-
+        
         return response()->json([
             'message' => 'User created.',
             'data' => [
