@@ -97,20 +97,12 @@
     }
 
     function getEventImage(event) {
-        let imgSrc = defaultImage;
-
-        if (event.image_path) {
-            imgSrc = event.image_path;
-
-            // If image_path is stored like "events/image.jpg",
-            // convert it to "/storage/events/image.jpg"
-            if (!imgSrc.startsWith('http') && !imgSrc.startsWith('/')) {
-                imgSrc = `${window.location.origin}/storage/${imgSrc}`;
-            }
-        }
-
-        return imgSrc;
+    if (event.image_path) {
+        return event.image_path;
     }
+
+    return defaultImage;
+}
 
     // Auth state
     let currentUser = null;

@@ -28,9 +28,10 @@
 
                 <div class="event-detail-main">
                     <img
-                        src="{{ $data->image_path ? asset('storage/' . $data->image_path) : asset('images/default-event.jpg') }}"
+                        src="{{ $data->image_url ?? asset('images/event1.png') }}"
                         alt="{{ $data->title }}"
                         class="event-detail-image"
+                        onerror="this.onerror=null; this.src='{{ asset('images/event1.png') }}';"
                     >
 
                     <div class="event-badge" style="background: #7A1F2B;">
