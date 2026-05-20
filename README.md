@@ -266,6 +266,8 @@ The screenshot below shows an example API request tested in Insomnia.
 
 ![API example in Insomnia](docs/Insomnia.png)
 
+
+## Pair Programing
 ![Pair Programming](docs/pair_programing.png)
 
 ---
