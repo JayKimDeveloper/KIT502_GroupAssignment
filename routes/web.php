@@ -12,7 +12,7 @@ Route::view('/index', 'index');
 Route::view('/login', 'login')->name('login');
 Route::view('/register', 'register');
 Route::view('/events', 'events');
-Route::view('/events/{id}', 'event_detail');
+// Route::view('/events/{id}', 'event_detail');
 Route::view('/booking', 'booking');
 Route::view('/my_bookings', 'booking');
 Route::view('/create_event', 'create_event');
