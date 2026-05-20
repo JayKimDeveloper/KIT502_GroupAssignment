@@ -126,7 +126,7 @@
         function buildEventCard(event) {
 
 
-            console.log(event.image_path)
+            console.log(JSON.stringify(event, null, 2));
 
             const imgSrc  = event.image_path ? event.image_path : '{{ asset("images/event1.png") }}';
             const badge   = event.category ? event.category.name : 'Event';
