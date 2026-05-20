@@ -243,7 +243,13 @@ class EventController extends Controller
             'available_seats' => max(0, $event->capacity - $confirmed),
             'price' => (string)$event->price,
             'status' => $event->status,
-            'image_path' => $event->image_path ? Storage::url($event->image_path) : null,
+            
+            'image_path' => $event->image_path
+                ? (str_starts_with($event->image_path, 'images/')
+                    ? asset($event->image_path)
+                    : Storage::url($event->image_path))
+                : null,            
+            
             'category' => null,
             'organiser' => null,
         ];
