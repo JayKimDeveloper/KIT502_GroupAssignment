@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Event;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class EventController extends Controller
 {
-    // list all published events with optional filters
+    // List all published events with optional filters
     public function index(Request $request)
     {
         $query = Event::where('status', 'published')
@@ -33,14 +33,17 @@ class EventController extends Controller
         $events = $query->orderBy('start_datetime', 'asc')->get();
 
         $result = [];
+
         foreach ($events as $event) {
             $result[] = $this->formatEvent($event);
         }
 
-        return response()->json(['data' => $result]);
+        return response()->json([
+            'data' => $result,
+        ]);
     }
 
-    // get 2 most recent events for homepage
+    // Get 2 most recent events for homepage
     public function recent()
     {
         $events = Event::where('status', 'published')
@@ -53,14 +56,17 @@ class EventController extends Controller
             ->get();
 
         $result = [];
+
         foreach ($events as $event) {
             $result[] = $this->formatEvent($event);
         }
 
-        return response()->json(['data' => $result]);
+        return response()->json([
+            'data' => $result,
+        ]);
     }
 
-    // show single event detail
+    // Show single event detail
     public function show($id)
     {
         $event = Event::with(['category', 'organiser'])
@@ -77,17 +83,22 @@ class EventController extends Controller
 
         $event->registered_count = $confirmed;
         $event->available_seats = max(0, $event->capacity - $confirmed);
+        $event->image_url = $this->imageUrl($event->image_path);
 
-        return view('event_detail', ['data' => $event]);
+        return view('event_detail', [
+            'data' => $event,
+        ]);
     }
 
-    // get events for logged in organiser or admin
+    // Get events for logged in organiser or admin
     public function mine(Request $request)
     {
         $user = $request->user();
 
         if (!$user->isOrganiser() && !$user->isAdmin()) {
-            return response()->json(['message' => 'Forbidden'], 403);
+            return response()->json([
+                'message' => 'Forbidden',
+            ], 403);
         }
 
         $query = Event::with(['category', 'organiser'])
@@ -95,7 +106,7 @@ class EventController extends Controller
                 $q->where('status', 'confirmed');
             }]);
 
-        // admin see all, organiser only their own
+        // Admin can see all events, organiser can only see their own events
         if (!$user->isAdmin()) {
             $query->where('organiser_id', $user->id);
         }
@@ -103,20 +114,25 @@ class EventController extends Controller
         $events = $query->orderBy('start_datetime', 'desc')->get();
 
         $result = [];
+
         foreach ($events as $event) {
             $result[] = $this->formatEvent($event);
         }
 
-        return response()->json(['data' => $result]);
+        return response()->json([
+            'data' => $result,
+        ]);
     }
 
-    // create new event
+    // Create new event
     public function store(Request $request)
     {
         $user = $request->user();
 
         if (!$user->isOrganiser() && !$user->isAdmin()) {
-            return response()->json(['message' => 'You dont have permission'], 403);
+            return response()->json([
+                'message' => 'You dont have permission',
+            ], 403);
         }
 
         $data = $request->validate([
@@ -147,21 +163,29 @@ class EventController extends Controller
         ], 201);
     }
 
-    // update existing event
+    // Update existing event
     public function update(Request $request, $id)
     {
         $event = Event::find($id);
 
         if (!$event) {
-            return response()->json(['message' => 'Event not found'], 404);
+            return response()->json([
+                'message' => 'Event not found',
+            ], 404);
         }
 
         $user = $request->user();
+
         if (!$user) {
-            return response()->json(['message' => 'Unauthenticated'], 401);
+            return response()->json([
+                'message' => 'Unauthenticated',
+            ], 401);
         }
+
         if (!$user->isAdmin() && !($user->isOrganiser() && $event->organiser_id === $user->id)) {
-            return response()->json(['message' => 'You dont own this event'], 403);
+            return response()->json([
+                'message' => 'You dont own this event',
+            ], 403);
         }
 
         $data = $request->validate([
@@ -177,9 +201,10 @@ class EventController extends Controller
             'image' => 'sometimes|nullable|image|max:2048',
         ]);
 
-        // check capacity not less than current bookings
+        // Capacity cannot be less than confirmed bookings
         if (isset($data['capacity'])) {
             $confirmed = $event->confirmedBookings()->count();
+
             if ($data['capacity'] < $confirmed) {
                 return response()->json([
                     'message' => "Capacity cant be less than confirmed bookings ({$confirmed})",
@@ -187,11 +212,12 @@ class EventController extends Controller
             }
         }
 
-        // replace old image if new one uploaded
+        // Replace old image if a new one is uploaded
         if ($request->hasFile('image')) {
             if ($event->image_path) {
                 Storage::disk('public')->delete($event->image_path);
             }
+
             $data['image_path'] = $request->file('image')->store('events', 'public');
         }
 
@@ -204,34 +230,43 @@ class EventController extends Controller
         ]);
     }
 
-    // delete event
+    // Delete event
     public function destroy(Request $request, $id)
     {
         $event = Event::find($id);
 
         if (!$event) {
-            return response()->json(['message' => 'Event not found'], 404);
+            return response()->json([
+                'message' => 'Event not found',
+            ], 404);
         }
 
         $user = $request->user();
+
         if (!$user) {
-            return response()->json(['message' => 'Unauthenticated'], 401);
-        }
-        if (!$user->isAdmin() && !($user->isOrganiser() && $event->organiser_id === $user->id)) {
-            return response()->json(['message' => 'You dont own this event'], 403);
+            return response()->json([
+                'message' => 'Unauthenticated',
+            ], 401);
         }
 
-        // delete image file too
+        if (!$user->isAdmin() && !($user->isOrganiser() && $event->organiser_id === $user->id)) {
+            return response()->json([
+                'message' => 'You dont own this event',
+            ], 403);
+        }
+
         if ($event->image_path) {
             Storage::disk('public')->delete($event->image_path);
         }
 
         $event->delete();
 
-        return response()->json(['message' => 'Event deleted']);
+        return response()->json([
+            'message' => 'Event deleted',
+        ]);
     }
 
-    // format event for response
+    // Format event for API response
     private function formatEvent($event)
     {
         $confirmed = $event->confirmed_bookings_count ?? $event->confirmedBookings()->count();
@@ -246,15 +281,9 @@ class EventController extends Controller
             'capacity' => $event->capacity,
             'registered_count' => $confirmed,
             'available_seats' => max(0, $event->capacity - $confirmed),
-            'price' => (string)$event->price,
+            'price' => (string) $event->price,
             'status' => $event->status,
-            
-            'image_path' => $event->image_path
-                ? (str_starts_with($event->image_path, 'images/')
-                    ? asset($event->image_path)
-                    : Storage::url($event->image_path))
-                : null,            
-            
+            'image_path' => $this->imageUrl($event->image_path),
             'category' => null,
             'organiser' => null,
         ];
@@ -265,6 +294,7 @@ class EventController extends Controller
                 'name' => $event->category->name,
             ];
         }
+
         if ($event->organiser) {
             $data['organiser'] = [
                 'id' => $event->organiser->id,
@@ -273,5 +303,27 @@ class EventController extends Controller
         }
 
         return $data;
+    }
+
+    // Create correct browser image URL
+    private function imageUrl($imagePath)
+    {
+        if (!$imagePath) {
+            return null;
+        }
+
+        if (str_starts_with($imagePath, 'http://') || str_starts_with($imagePath, 'https://')) {
+            return $imagePath;
+        }
+
+        if (str_starts_with($imagePath, '/')) {
+            return url($imagePath);
+        }
+
+        if (str_starts_with($imagePath, 'images/')) {
+            return asset($imagePath);
+        }
+
+        return asset('storage/' . $imagePath);
     }
 }
