@@ -28,10 +28,10 @@
 
                 <div class="event-detail-main">
                     <img
-                        src="{{ $data->image_url ?? asset('images/event1.png') }}"
+                        src="{{ $data->image_url ?? $defaultImage }}"
                         alt="{{ $data->title }}"
                         class="event-detail-image"
-                        onerror="this.onerror=null; this.src='{{ asset('images/event1.png') }}';"
+                        onerror="this.onerror=null; this.src='{{ $defaultImage }}';"
                     >
 
                     <div class="event-badge" style="background: #7A1F2B;">
