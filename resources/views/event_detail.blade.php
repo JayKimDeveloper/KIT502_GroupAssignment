@@ -21,7 +21,7 @@
                 <div class="event-detail-main">
                     <img src="{{ asset($data->image_path) }}" alt="{{ $data -> title }}" class="event-detail-image">
                     <div class="event-badge" style="background: #7A1F2B;">Career Event</div>
-                    <div class="event-title">{{ event -> title }}</div>
+                    <div class="event-title">{{ $data->title }}</div>
                     <div class="event-meta-row">
                         <span class="meta-item"><span class="material-icons">event</span>{{$data->start_datetime}}</span>
                         <span class="meta-item"><span class="material-icons">schedule</span>{{$data->start_datetime}} - {{$data->end_datetime}}</span>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="about-section">
                         <h4>About This Event</h4>
-                        <p>Meet with top tech companies actively recruiting students for internships and graduate positions. Bring your resume, practice your elevator pitch, and explore career opportunities with leading organizations. Representatives from software companies, startups, and tech giants will be present.</p>
+                        <p{{$data->description}}</p>
                         <b>Event Agenda</b>
                         <ul class="event-agenda">
                             <li>11:00 AM – Doors Open</li>
@@ -56,8 +56,8 @@
                     <a href="{{url('api/bookings')}}" class="btn btn-primary" style="width: 100%; margin-bottom: 18px;">Buy Tickets</a>
                     <div style="font-size: 1.08rem; font-weight: 600; margin-bottom: 8px;">Event Details</div>
                     <div style="font-size: 0.97rem; color: #5A4A4A;">
-                        <b>Category</b><br>Career Event<br><br>
-                        <b>Location</b><br>Hobart Campus<br><br>
+                        <b>Category</b><br>{{$data->category->name}}<br><br>
+                        <b>Location</b><br>{{$data->location}}<br><br>
                         <b>Date & Time</b><br>10 July 2025<br>11:00 AM - 3:00 PM
                     </div>
                 </div>
