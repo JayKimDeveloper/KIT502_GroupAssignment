@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Careers Fair 2025 | TechEvents UTAS</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="stylesheet" href="../css/events.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+</head>
+<body>
+    @include('partials.navbar')
+
+    <div class="page">
+        <div class="container">
+            <a href="{{ url('/api/events') }}" style="color: var(--primary); font-size: 1rem; display: inline-block; margin: 32px 0 0 0; text-decoration: none;">← Back to Events</a>
+            <div class="event-detail-container">
+                <div class="event-detail-main">
+                    <img src="../images/event6.png" alt="Tech Careers Fair 2025" class="event-detail-image">
+                    <div class="event-badge" style="background: #7A1F2B;">Career Event</div>
+                    <div class="event-title">Tech Careers Fair 2025</div>
+                    <div class="event-meta-row">
+                        <span class="meta-item"><span class="material-icons">event</span>10 July 2025</span>
+                        <span class="meta-item"><span class="material-icons">schedule</span>11:00 AM - 3:00 PM</span>
+                        <span class="meta-item"><span class="material-icons">location_on</span>Hobart Campus</span>
+                        <span class="meta-item price"><span class="material-icons">attach_money</span>Free</span>
+                        <span class="meta-item"><span class="material-icons">groups</span>120 / 150 available</span>
+                    </div>
+                    <div class="event-progress">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.97rem; color: #5A4A4A;">
+                            <span>Tickets Sold</span>
+                            <span>20%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" style="width: 20%;"></div>
+                        </div>
+                    </div>
+                    <div class="about-section">
+                        <h4>About This Event</h4>
+                        <p>Meet with top tech companies actively recruiting students for internships and graduate positions. Bring your resume, practice your elevator pitch, and explore career opportunities with leading organizations. Representatives from software companies, startups, and tech giants will be present.</p>
+                        <b>Event Agenda</b>
+                        <ul class="event-agenda">
+                            <li>11:00 AM – Doors Open</li>
+                            <li>11:30 AM – Career Tips Presentation</li>
+                            <li>12:00 PM – Company Expo Begins</li>
+                            <li>2:30 PM – Final Networking</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="event-detail-side">
+                    <div style="font-size: 1.5rem; color: var(--primary); font-weight: 700; margin-bottom: 2px;">Free</div>
+                    <div style="font-size: 0.98rem; color: #5A4A4A; margin-bottom: 16px;">per ticket</div>
+                    <a href="{{url('api/bookings')}}" class="btn btn-primary" style="width: 100%; margin-bottom: 18px;">Buy Tickets</a>
+                    <div style="font-size: 1.08rem; font-weight: 600; margin-bottom: 8px;">Event Details</div>
+                    <div style="font-size: 0.97rem; color: #5A4A4A;">
+                        <b>Category</b><br>Career Event<br><br>
+                        <b>Location</b><br>Hobart Campus<br><br>
+                        <b>Date & Time</b><br>10 July 2025<br>11:00 AM - 3:00 PM
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>TechEvents UTAS — connecting students with the tech community.</p>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                © 2026 TechEvents UTAS
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

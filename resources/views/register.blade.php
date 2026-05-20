@@ -28,7 +28,7 @@
             <div class="register-form-box">
                 <h2>Create Account</h2>
 
-                {{-- Show backend validation errors --}}
+                <!-- Error box -->
                 @if ($errors->any())
                     <div class="error-box">
                         @foreach ($errors->all() as $error)
@@ -37,16 +37,6 @@
                     </div>
                 @endif
 
-                {{--
-                    FIXES (same as login.blade.php):
-                    - method="POST"  so it hits AuthController@register
-                    - action="/register"
-                    - @csrf token
-                    - name="..." on every input so values get sent
-                    - name="password_confirmation" — this exact name is required
-                      by Laravel's 'confirmed' validation rule that matches it
-                      against the 'password' field
-                --}}
                 <form id="register-form" method="POST" action="{{ url('/register') }}">
                     @csrf
 

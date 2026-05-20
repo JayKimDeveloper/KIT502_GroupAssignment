@@ -25,7 +25,7 @@
 
           <h2>Login</h2>
 
-          {{-- Show validation errors from AuthController --}}
+          <!-- Error box -->
           @if ($errors->any())
             <div class="error-box">
               @foreach ($errors->all() as $error)
@@ -34,16 +34,7 @@
             </div>
           @endif
 
-          {{--
-            FIXES:
-            - method="POST"    so it hits AuthController@login
-            - action="/login"  so it goes to the right endpoint
-            - @csrf            Laravel CSRF token (required)
-            - name="..."       on each input so the form data actually sends
-            - Removed the 'role' select — login doesn't need it. Role is set
-              at registration and stored against the user record. Asking for
-              role at login lets someone elevate by picking the wrong option.
-          --}}
+          <!-- Login Form -->
           <form id="login-form" method="POST" action="{{ url('/login') }}">
             @csrf
 
@@ -60,7 +51,7 @@
                        placeholder="Password" required>
             </div>
 
-            {{-- Remember Me (Tutorial 5 requirement) --}}
+            <!-- Remeber me checkvox -->
             <div class="form-group">
                 <label>
                     <input type="checkbox" name="remember" value="1"> Remember Me

@@ -1,7 +1,4 @@
-{{--
-    Site footer — included by layouts/app.blade.php on every page.
-    Kept minimal; expand later if needed.
---}}
+{{-- Footer --}}
 <footer class="footer">
     <div class="footer__inner">
         <p class="footer__copy">

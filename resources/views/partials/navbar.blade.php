@@ -1,24 +1,11 @@
-{{--
-    Navbar partial — uses the team's existing classes from create_event.html /
-    login.html etc.: navbar, container, nav-brand, nav-links, nav-actions, btn.
-    Drop this in to replace the inline <nav> block on every page.
-
-    Usage:    @include('partials.navbar')
-
-    Login state and role visibility (assignment spec §2):
-      - Visitor:    Home, Events, Login, Sign up
-      - Attendee:   Home, Events, My Bookings, Welcome, Logout
-      - Organiser:  Home, Events, Create Event, Manage Events, Welcome, Logout
-      - Admin:      Home, Events, Manage Events, Admin, Welcome, Logout
-
-    Active link uses request()->is(). URL patterns match README routes.
---}}
 
 @php
     $user = auth()->user();
 @endphp
 
+{{-- Comm Nav bar --}}
 <nav class="navbar">
+
     <div class="container">
         <a href="{{ url('/') }}" class="nav-brand">Tech<span>Events</span></a>
 
@@ -32,7 +19,7 @@
                    class="{{ request()->is('events*') ? 'active' : '' }}">Events</a>
             </li>
 
-            {{-- Organisers & admins can create / manage events --}}
+            {{-- Organiser, Admin --}}
             @if ($user && ($user->isOrganiser() || $user->isAdmin()))
                 <li>
                     <a href="{{ url('/create_event') }}"
@@ -44,7 +31,7 @@
                 </li>
             @endif
 
-            {{-- Attendees see their bookings --}}
+            {{-- Attendees -> bookings --}}
             @if ($user && $user->isAttendee())
                 <li>
                     <a href="{{ url('/my_bookings') }}"
@@ -52,7 +39,7 @@
                 </li>
             @endif
 
-            {{-- Admin dashboard --}}
+            {{-- Admin -> Admin dashboard --}}
             @if ($user && $user->isAdmin())
                 <li>
                     <a href="{{ url('/admin_dashboard') }}"
@@ -63,14 +50,14 @@
 
         <div class="nav-actions">
             @guest
-                {{-- Not logged in --}}
+                {{-- For Not login --}}
                 <a href="{{ url('/login') }}" class="btn btn-outline">Log in</a>
                 <a href="{{ url('/register') }}" class="btn btn-primary">Sign up</a>
             @else
-                {{-- Logged in --}}
+                {{-- For login --}}
                 <span class="nav_welcome">Welcome, {{ $user->name }}</span>
 
-                {{-- Logout must be POST for CSRF + session invalidation --}}
+                {{-- Logout --}}
                 <form method="POST" action="{{ url('/logout') }}" class="nav-logout-form">
                     @csrf
                     <button type="submit" class="btn btn_outline">Logout</button>
