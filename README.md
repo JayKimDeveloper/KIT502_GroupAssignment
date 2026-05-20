@@ -520,7 +520,7 @@ The following advanced features were considered but are not part of the complete
 - Login + Register pages wired to backend 
 
 
-### Pragun (`pragun11`) — Prontend Lead - Event & Admin Interfaces
+### Pragun (`pragun11`) — Frontend Lead - Event & Admin Interfaces
 
 - Page design (Figma)
 - Create Event form
