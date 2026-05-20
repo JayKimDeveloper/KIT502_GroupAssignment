@@ -10,6 +10,8 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+
+ // register 
     public function register(Request $request)
     {
         $data = $request->validate([
@@ -82,6 +84,7 @@ class AuthController extends Controller
         return redirect()->intended('/');
     }
 
+    // Logout 
     public function logout(Request $request)
     {
         Auth::logout();
@@ -95,6 +98,7 @@ class AuthController extends Controller
         return redirect('/');
     }
 
+    // currently login user checked 
     public function me(Request $request)
     {
         $user = $request->user();

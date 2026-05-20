@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
 
 
         
-        /* ---------- One sample booking ---------- */
+        /* ---------- Booking  ---------- */
                 Booking::create([
             'event_id'       => $events->first()->id,
             'attendee_id'    => $attendee->id,
