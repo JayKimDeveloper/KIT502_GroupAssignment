@@ -538,6 +538,10 @@ The following advanced features were considered but are not part of the complete
 - Image assets
 - Wiring the public pages to backend API (`/api/events`, `/api/events/recent`)
 
+```
+Please note that although some commits appear under my name (YoungHyun Kim), the actual development work was carried out by Guneet. I committed and pushed the code on her behalf, so the commit history does not accurately reflect the individual contributions for those parts.
+```
+
 ### Siddharth (Sidd) — Login & Register Pages
 
 - Develop login and Register front page
