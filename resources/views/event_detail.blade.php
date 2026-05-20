@@ -153,7 +153,7 @@
         function loadEvents(event) {
 
             const capacity = {{ $data->capacity }};
-            const availableSeats = {{ $data->available_seats }};
+            const availableSeats = {{ $data->available_seats ?? 0 }};
             const soldSeats = capacity - availableSeats;
             const soldPercent = capacity > 0 ? Math.round((soldSeats / capacity) * 100) : 0;
 
