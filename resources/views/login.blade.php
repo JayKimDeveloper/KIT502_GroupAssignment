@@ -54,7 +54,8 @@
             <!-- Remeber me checkvox -->
             <div class="form-group">
                 <label>
-                    <input type="checkbox" name="remember" value="1"> Remember Me
+                    <input type="checkbox" name="remember" value="1"> 
+                    <span> Remember Me </span>
                 </label>
             </div>
 
