@@ -74,5 +74,26 @@
             </div>
         </div>
     </footer>
+
+
+
+    <script>
+        const csrf = document.querySelector('meta[name=csrf-token]').content;
+    
+
+        // event detail main
+        function buldEventDetailMain(){
+            
+        }
+
+
+        async function loadEvents() {
+
+            const grid = document.getElementByClass('event-detail-container');
+            grid.innerHTML = 
+
+        }
+
+    </script>
 </body>
 </html>

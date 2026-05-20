@@ -136,7 +136,7 @@
             } else if (isFull) {
                 btnHtml = `<button class="btn btn-primary btn-block" disabled style="opacity:0.5;cursor:not-allowed;">Sold Out</button>`;
             } else {
-                btnHtml = `<a href="{{ url('/api/events') }}/${event.id}"  class="btn btn-primary btn-block details-ticket-btn" data-event-id="${event.id}">View Details</a>`;
+                btnHtml = `<a href="{{ url('/events') }}/${event.id}"  class="btn btn-primary btn-block details-ticket-btn" data-event-id="${event.id}">View Details</a>`;
             }
 
             return `

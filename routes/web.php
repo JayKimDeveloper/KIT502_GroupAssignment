@@ -12,12 +12,12 @@ Route::view('/index', 'index');
 Route::view('/login', 'login')->name('login');
 Route::view('/register', 'register');
 Route::view('/events', 'events');
+Route::view('/events/{id}', 'event_detail');
 Route::view('/booking', 'booking');
 Route::view('/my_bookings', 'booking');
 Route::view('/create_event', 'create_event');
 Route::view('/manage_events', 'manage_events');
 Route::view('/admin_dashboard', 'admin_dashboard');
-Route::view('/test_api', 'Test_api');
 
 // Auth                                                        
 Route::middleware('guest')->group(function () {
