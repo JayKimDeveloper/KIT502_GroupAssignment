@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('attendee_id')
                   ->constrained('users')
                   ->cascadeOnDelete();
+            $table->integer('quantity')->default(1);
             $table->string('booking_reference', 20)->unique();
             $table->enum('status', ['confirmed', 'cancelled'])->default('confirmed');
             $table->enum('payment_status', ['free', 'unpaid', 'paid'])->default('free');

@@ -73,6 +73,10 @@ class BookingController extends Controller
         ]);
 
         $booking->load('event');
+        
+        // 20th May - Evnet added
+        $event->available_seats -= $quantity;
+        $event->save();
 
         return response()->json([
             'message' => 'Booking confirmed!',

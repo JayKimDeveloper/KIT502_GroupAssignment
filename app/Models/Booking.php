@@ -15,6 +15,7 @@ class Booking extends Model
         'attendee_id',
         'booking_reference',
         'status',
+        'quantity',
         'payment_status',
     ];
 
