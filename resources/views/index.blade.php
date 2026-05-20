@@ -69,9 +69,10 @@
         }
 
         function buildRecentCard(event) {
-            const imgSrc = event.image_url ? event.image_url : '{{ asset("images/event1.png") }}';
+            const imgSrc = event.image_path ? event.image_path : '{{ asset("images/event1.png") }}';
             const badge  = event.category ? event.category.name : 'Event';
             const seats  = event.available_seats;
+
             return `
                 <div class="event-card">
                     <div class="event-image">

@@ -27,7 +27,7 @@
             <div class="event-detail-container">
 
                 <div class="event-detail-main">
-                    <img src="{{ asset($data->image_path) }}"
+                    <img src="{{ asset('storage/' . $data->image_path) }}"
                          alt="{{ $data->title }}"
                          class="event-detail-image">
 

@@ -44,6 +44,7 @@
                         <option value="">All Locations</option>
                         <option value="Hobart">Hobart Campus</option>
                         <option value="Launceston">Launceston Campus</option>
+                        <option value="Melbourne">Melbourne Campus</option>
                     </select>
                 </div>
 

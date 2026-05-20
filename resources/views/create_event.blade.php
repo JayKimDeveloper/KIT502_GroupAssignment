@@ -54,7 +54,12 @@
 
                     <div class="form-group">
                         <label for="location">Location</label>
-                        <input type="text" id="location" name="location" placeholder="Enter event location" required>
+                        <select id="location" name="location" required>
+                            <option value="">Select event location</option>
+                            <option value="Hobart">Hobart Campus</option>
+                            <option value="Launceston">Launceston Campus</option>
+                            <option value="Melbourne">Melbourne Campus</option>
+                        </select>
                     </div>
 
                     <div class="form-group">

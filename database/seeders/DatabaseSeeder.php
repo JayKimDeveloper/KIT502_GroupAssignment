@@ -51,13 +51,15 @@ class DatabaseSeeder extends Seeder
             'Conference',
         ])->map(fn ($name) => Category::create(['name' => $name]));
  
+
+
         /* ---------- Events ---------- */
         $eventsData = [
             [
                 'title'       => 'Intro to Laravel for Students',
                 'description' => 'Hands-on workshop covering routing, Eloquent, and Blade. Bring a laptop.',
                 'days_ahead'  => 7,
-                'location'    => 'UTAS Sandy Bay, Room 101',
+                'location'    => 'Hobart Campus',
                 'capacity'    => 30,
                 'price'       => 0,
                 'category'    => 'Workshop',
@@ -67,7 +69,7 @@ class DatabaseSeeder extends Seeder
                 'title'       => 'Cybersecurity Career Panel',
                 'description' => 'Industry panel discussion with security professionals from Hobart.',
                 'days_ahead'  => 14,
-                'location'    => 'UTAS Centenary Building',
+                'location'    => 'Hobart Campus',
                 'capacity'    => 100,
                 'price'       => 5.00,
                 'category'    => 'Tech Talk',
@@ -77,7 +79,7 @@ class DatabaseSeeder extends Seeder
                 'title'       => 'UTAS Hackathon 2026',
                 'description' => '24-hour hackathon — build something that helps the community. Prizes for top three teams.',
                 'days_ahead'  => 21,
-                'location'    => 'IT Building, Sandy Bay',
+                'location'    => 'Launceston Campus',
                 'capacity'    => 50,
                 'price'       => 10.00,
                 'category'    => 'Hackathon',
@@ -87,7 +89,7 @@ class DatabaseSeeder extends Seeder
                 'title'       => 'Tech Networking Night',
                 'description' => 'Meet local developers, recruiters, and founders. Light refreshments provided.',
                 'days_ahead'  => 30,
-                'location'    => 'Hobart CBD, Tech Hub',
+                'location'    => 'Melbourne Campus',
                 'capacity'    => 80,
                 'price'       => 0,
                 'category'    => 'Networking',
