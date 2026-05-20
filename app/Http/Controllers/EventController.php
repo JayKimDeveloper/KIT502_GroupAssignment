@@ -61,7 +61,7 @@ class EventController extends Controller
     }
 
     // show single event detail
-    public function show(Request $request, $id)
+    public function show($id)
     {
         $event = Event::with(['category', 'organiser'])
             ->withCount(['bookings as confirmed_bookings_count' => function ($q) {
@@ -69,19 +69,11 @@ class EventController extends Controller
             }])
             ->find($id);
 
-        if (!$event) {
-            return response()->json(['message' => 'Event not found'], 404);
+        if (!$event || $event->status !== 'published') {
+            abort(404, 'Event not found');
         }
 
-        // only admin or organiser can see unpublished event
-        if ($event->status !== 'published') {
-            $user = $request->user();
-            if (!$user || (!$user->isAdmin() && $event->organiser_id !== $user->id)) {
-                return response()->json(['message' => 'Event not found'], 404);
-            }
-        }
-
-        return response()->json(['data' => $this->formatEvent($event)]);
+        return view('event_detail', ['data' => $event]);
     }
 
     // get events for logged in organiser or admin

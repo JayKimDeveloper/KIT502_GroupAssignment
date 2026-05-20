@@ -19,15 +19,15 @@
             <a href="{{ url('/api/events') }}" style="color: var(--primary); font-size: 1rem; display: inline-block; margin: 32px 0 0 0; text-decoration: none;">← Back to Events</a>
             <div class="event-detail-container">
                 <div class="event-detail-main">
-                    <img src="../images/event6.png" alt="Tech Careers Fair 2025" class="event-detail-image">
+                    <img src="{{ $data -> image_url }}" alt="{{ $data -> title }}" class="event-detail-image">
                     <div class="event-badge" style="background: #7A1F2B;">Career Event</div>
-                    <div class="event-title">Tech Careers Fair 2025</div>
+                    <div class="event-title">{{ event -> title }}</div>
                     <div class="event-meta-row">
-                        <span class="meta-item"><span class="material-icons">event</span>10 July 2025</span>
-                        <span class="meta-item"><span class="material-icons">schedule</span>11:00 AM - 3:00 PM</span>
-                        <span class="meta-item"><span class="material-icons">location_on</span>Hobart Campus</span>
-                        <span class="meta-item price"><span class="material-icons">attach_money</span>Free</span>
-                        <span class="meta-item"><span class="material-icons">groups</span>120 / 150 available</span>
+                        <span class="meta-item"><span class="material-icons">event</span>{{$data->start_datetime}}</span>
+                        <span class="meta-item"><span class="material-icons">schedule</span>{{$data->start_datetime}} - {{$data->end_datetime}}</span>
+                        <span class="meta-item"><span class="material-icons">location_on</span>{{$data->location}}</span>
+                        <span class="meta-item price"><span class="material-icons">attach_money</span>{{$data->price}}</span>
+                        <span class="meta-item"><span class="material-icons">groups</span>{{$data->available_seats}} / {{$data->capacity}}</span>
                     </div>
                     <div class="event-progress">
                         <div style="display: flex; justify-content: space-between; font-size: 0.97rem; color: #5A4A4A;">
@@ -83,14 +83,16 @@
 
         // event detail main
         function buldEventDetailMain(){
+            const container = document.getElementByClass('event-detail-container');
+            container.innerHTML = "<img src="../images/event6.png" alt="Tech Careers Fair 2025" class="event-detail-image">
+"
 
         }
 
 
         async function loadEvents() {
 
-            const grid = document.getElementByClass('event-detail-container');
-            grid.innerHTML = 
+
 
         }
 
