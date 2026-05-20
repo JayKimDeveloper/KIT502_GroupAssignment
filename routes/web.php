@@ -43,7 +43,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/api/events/{id}', [EventController::class, 'show'])
     ->whereNumber('id')
-    ->name('api.events.show');
+    ->name('events.detail');
+
 
 Route::middleware('auth')->group(function () {
     Route::post('/api/events', [EventController::class, 'store'])->name('api.events.store');
