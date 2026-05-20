@@ -22,8 +22,6 @@
 
         <h1>All Events</h1>
 
-        <h1>All Events</h1>
-
             <!-- FILTERS -->
             <div class="filters-section">
                 <div class="filter-group">
@@ -52,22 +50,6 @@
 
             </div>
 
-            <div class="filter-group">
-                <label for="date-filter">Date</label>
-                <input type="date" id="date-filter">
-            </div>
-
-            <div class="filter-group">
-                <label for="location-filter">Location</label>
-                <select id="location-filter">
-                    <option value="">All Locations</option>
-                    <option value="Hobart">Hobart Campus</option>
-                    <option value="Launceston">Launceston Campus</option>
-                </select>
-            </div>
-
-            <button id="apply-filter-btn" class="btn btn-primary">Apply Filter</button>
-        </div>
 
         <!-- EVENTS GRID -->
         <div id="events-grid" class="events-grid">
