@@ -73,6 +73,11 @@ class EventController extends Controller
             abort(404, 'Event not found');
         }
 
+        $confirmed = $event->confirmed_bookings_count ?? 0;
+
+        $event->registered_count = $confirmed;
+        $event->available_seats = max(0, $event->capacity - $confirmed);
+
         return view('event_detail', ['data' => $event]);
     }
 

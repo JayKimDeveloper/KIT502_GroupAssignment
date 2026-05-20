@@ -41,8 +41,8 @@
 
                     <div class="event-meta-row">
                         <span class="meta-item">
-                            <span class="material-icons">event</span>
-                            {{ $data->start_datetime }}
+                            <span class="material-icons">groups</span>
+                            {{ $data->available_seats ?? $data->capacity }} / {{ $data->capacity }}
                         </span>
 
                         <span class="meta-item">
@@ -62,14 +62,14 @@
 
                         <span class="meta-item">
                             <span class="material-icons">groups</span>
-                            {{ $data->available_seats }} / {{ $data->capacity }}
+                            {{ $data->available_seats ?? $data->capacity }} / {{ $data->capacity }}
                         </span>
                     </div>
 
                     <div
                         class="event-progress"
                         data-capacity="{{ $data->capacity }}"
-                        data-available-seats="{{ $data->available_seats ?? 0 }}">
+                        data-available-seats="{{ $data->available_seats ?? $data->capacity }}">
                     </div>
 
                     <div class="about-section">
