@@ -27,9 +27,11 @@
             <div class="event-detail-container">
 
                 <div class="event-detail-main">
-                    <img src="{{ asset($data->image_path) }}"
-                         alt="{{ $data->title }}"
-                         class="event-detail-image">
+                    <img
+                        src="{{ $data->image_path ? asset('storage/' . $data->image_path) : asset('images/default-event.jpg') }}"
+                        alt="{{ $data->title }}"
+                        class="event-detail-image"
+                    >
 
                     <div class="event-badge" style="background: #7A1F2B;">
                         Career Event
