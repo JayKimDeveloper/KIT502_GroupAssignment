@@ -122,6 +122,7 @@ class DatabaseSeeder extends Seeder
                 Booking::create([
             'event_id'       => $events->first()->id,
             'attendee_id'    => $attendee->id,
+            'quantity'       => 1,
             'status'         => 'confirmed',
             'payment_status' => 'free',
         ]);

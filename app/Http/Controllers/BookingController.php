@@ -11,7 +11,7 @@ class BookingController extends Controller
 {
     // buy ticket - create booking
     public function store(Request $request)
-    { 
+    {
         $user = $request->user();
 
         if (!$user->isAttendee()) {
@@ -25,9 +25,9 @@ class BookingController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $event = Event::find($data['event_id']);
         $quantity = $data['quantity'];
 
+        $event = Event::find($data['event_id']);
 
         if ($event->status !== 'published') {
             return response()->json([
@@ -41,42 +41,67 @@ class BookingController extends Controller
             ], 422);
         }
 
-        // check already booked
-        $alreadyBooked = Booking::where('event_id', $event->id)
-            ->where('attendee_id', $user->id)
-            ->where('status', 'confirmed')
-            ->exists();
+        $paymentStatus = ((float) $event->price === 0.0) ? 'free' : 'unpaid';
 
-        if ($alreadyBooked) {
+        // Check existing booking for this event and user
+        $existingBooking = Booking::where('event_id', $event->id)
+            ->where('attendee_id', $user->id)
+            ->first();
+
+        // If already confirmed, do not create another booking
+        if ($existingBooking && $existingBooking->status === 'confirmed') {
             return response()->json([
                 'message' => 'You already booked this event.',
-                'errors' => ['event_id' => ['You already booked this event.']],
+                'errors' => [
+                    'event_id' => ['You already booked this event.'],
+                ],
             ], 422);
         }
 
-        // check if full
-        $confirmedCount = $event->confirmedBookings()->count();
-        if ($confirmedCount >= $event->capacity) {
+
+        // check the already sold ticekt
+        $soldTickets = Booking::where('event_id', $event->id)
+            ->where('status', 'confirmed')
+            ->sum('quantity');
+
+        if ($soldTickets + $quantity > $event->capacity) {
             return response()->json([
-                'message' => 'Sorry, this event is full.',
+                'message' => 'Not enough seats available.',
             ], 409);
         }
 
-        $paymentStatus = ((float)$event->price === 0.0) ? 'free' : 'unpaid';
+        if ($soldTickets + $quantity > $event->capacity) {
+            return response()->json([
+                'message' => 'Not enough seats available.',
+            ], 409);
+        }
 
+        // If the user had cancelled before, update the existing row instead of inserting a new one
+        if ($existingBooking && $existingBooking->status === 'cancelled') {
+            $existingBooking->update([
+                'quantity' => $quantity,
+                'status' => 'confirmed',
+                'payment_status' => $paymentStatus,
+            ]);
+
+            $existingBooking->load('event');
+
+            return response()->json([
+                'message' => 'Booking confirmed!',
+                'data' => $this->formatBooking($existingBooking),
+            ], 200);
+        }
+
+        // Create new booking if no previous booking exists
         $booking = Booking::create([
             'event_id' => $event->id,
             'attendee_id' => $user->id,
-            'status' => 'confirmed',
             'quantity' => $quantity,
+            'status' => 'confirmed',
             'payment_status' => $paymentStatus,
         ]);
 
         $booking->load('event');
-        
-        // 20th May - Evnet added
-        $event->available_seats -= $quantity;
-        $event->save();
 
         return response()->json([
             'message' => 'Booking confirmed!',
@@ -84,6 +109,7 @@ class BookingController extends Controller
         ], 201);
     }
 
+    
     // get my bookings
     public function mine(Request $request)
     {
