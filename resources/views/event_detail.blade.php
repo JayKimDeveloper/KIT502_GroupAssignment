@@ -81,6 +81,54 @@
         const csrf = document.querySelector('meta[name=csrf-token]').content;
     
 
+        async function handleBuyTicket(eventId, btn) {
+            // Visitor: redirect to login
+            if (!currentUser) {
+                window.location.href = '/login';
+                return;
+            }
+
+            // Only attendees may book
+            if (currentUser.role !== 'attendee') {
+                alert('Only attendees can buy tickets.');
+                return;
+            }
+
+            btn.disabled     = true;
+            btn.textContent  = 'Booking";
+
+            try {
+                const res  = await fetch('/api/bookings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept':       'application/json',
+                        'X-CSRF-TOKEN': csrf,
+                    },
+                    credentials: 'same-origin',
+                    body: JSON.stringify({ event_id: eventId }),
+                });
+
+                const json = await res.json();
+
+                if (res.ok) {
+                    alert(json.message || 'Booking confirmed!');
+                    // Refresh events to reflect updated seat count
+                    await loadEvents();
+                } else {
+                    const msg = json.message || 'Booking failed. Please try again.';
+                    alert(msg);
+                    btn.disabled    = false;
+                    btn.textContent = 'Buy Ticket';
+                }
+            } catch (e) {
+                alert('Network error. Please try again.');
+                btn.disabled    = false;
+                btn.textContent = 'Buy Ticket';
+            }
+        }
+
+
         // event detail main
         function buldEventDetailMain(){
             const container = document.getElementByClass('event-detail-container');

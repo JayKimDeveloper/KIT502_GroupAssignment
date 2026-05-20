@@ -66,6 +66,7 @@ class DatabaseSeeder extends Seeder
                 'capacity'    => 30,
                 'price'       => 0,
                 'category'    => 'Workshop',
+                'image_path'  => 'images/event1.png'
             ],
             [
                 'title'       => 'Cybersecurity Career Panel',
@@ -75,6 +76,7 @@ class DatabaseSeeder extends Seeder
                 'capacity'    => 100,
                 'price'       => 5.00,
                 'category'    => 'Tech Talk',
+                'image_path'  => 'images/event2.png'
             ],
             [
                 'title'       => 'UTAS Hackathon 2026',
@@ -84,6 +86,7 @@ class DatabaseSeeder extends Seeder
                 'capacity'    => 50,
                 'price'       => 10.00,
                 'category'    => 'Hackathon',
+                'image_path'  => 'images/event3.png'
             ],
             [
                 'title'       => 'Tech Networking Night',
@@ -93,6 +96,7 @@ class DatabaseSeeder extends Seeder
                 'capacity'    => 80,
                 'price'       => 0,
                 'category'    => 'Networking',
+                'image_path'  => 'images/event4.png'
             ],
         ];
  
@@ -110,7 +114,7 @@ class DatabaseSeeder extends Seeder
                 'capacity'       => $data['capacity'],
                 'price'          => $data['price'],
                 'status'         => 'published',
-                'image_path'     => null,
+                'image_path'     => $data['image_path'],
             ]));
         }
  
