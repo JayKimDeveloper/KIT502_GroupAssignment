@@ -18,22 +18,22 @@ class DatabaseSeeder extends Seeder
     {
         $admin = User::create([
             'name' => 'Admin',
-            'email' => 'admin@kit502.test',
-            'password' => Hash::make('Admin123!@'),
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('Qazxsw135!@'),
             'role' => 'admin',
         ]);
 
         $organiser = User::create([
             'name'     => 'Test Organiser',
-            'email'    => 'organiser@kit502.test',
-            'password' => Hash::make('Organiser123!@'),
+            'email'    => 'organiser@gmail.com',
+            'password' => Hash::make('Qazxsw135!@'),
             'role'     => 'organiser',
         ]);
  
         $attendee = User::create([
             'name'     => 'Test Attendee',
-            'email'    => 'attendee@kit502.test',
-            'password' => Hash::make('Attendee123!@'),
+            'email'    => 'attendee@gmail.com',
+            'password' => Hash::make('Qazxsw135!@'),
             'role'     => 'attendee',
         ]);
  
