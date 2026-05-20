@@ -22,9 +22,12 @@ class BookingController extends Controller
 
         $data = $request->validate([
             'event_id' => 'required|integer|exists:events,id',
+            'quantity' => 'required|integer|min:1',
         ]);
 
         $event = Event::find($data['event_id']);
+        $quantity = $data['quantity'];
+
 
         if ($event->status !== 'published') {
             return response()->json([
@@ -65,6 +68,7 @@ class BookingController extends Controller
             'event_id' => $event->id,
             'attendee_id' => $user->id,
             'status' => 'confirmed',
+            'quantity' => $quantity,
             'payment_status' => $paymentStatus,
         ]);
 
