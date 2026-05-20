@@ -51,11 +51,6 @@ class DatabaseSeeder extends Seeder
             'Conference',
         ])->map(fn ($name) => Category::create(['name' => $name]));
  
-
-
-
-
-
         /* ---------- Events ---------- */
         $eventsData = [
             [

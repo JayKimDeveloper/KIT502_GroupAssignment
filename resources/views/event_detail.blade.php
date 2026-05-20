@@ -30,13 +30,13 @@
                         <span class="meta-item"><span class="material-icons">groups</span>{{$data->available_seats}} / {{$data->capacity}}</span>
                     </div>
                     <div class="event-progress">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.97rem; color: #5A4A4A;">
+                        {{-- <div style="display: flex; justify-content: space-between; font-size: 0.97rem; color: #5A4A4A;">
                             <span>Tickets Sold</span>
-                            <span>20%</span>
+                            <span>20% {{ 100 - $data->available_seats / $data->capacity }} </span>
                         </div>
                         <div class="progress-bar">
                             <div class="progress-bar-fill" style="width: 20%;"></div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="about-section">
                         <h4>About This Event</h4>
@@ -129,20 +129,26 @@
         }
 
 
-        // event detail main
-        function buldEventDetailMain(){
-            const container = document.getElementByClass('event-detail-container');
-            container.innerHTML = "<img src="../images/event6.png" alt="Tech Careers Fair 2025" class="event-detail-image">
-"
+        function loadEvents(event) {
 
+            const capacity = {{ $data->capacity }};
+            const availableSeats = {{ $data->available_seats }};
+            const soldSeats = capacity - availableSeats;
+            const soldPercent = capacity > 0 ? Math.round((soldSeats / capacity) * 100) : 0;
+
+            const progress_conatiner = document.querySelector('.event-progress')
+            progress_container.innerHTML = `
+                <div style="display: flex; justify-content: space-between; font-size: 0.97rem; color: #5A4A4A;">
+                    <span>Tickets Sold</span>
+                    <span>${soldPercent}%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: ${soldPercent}%;"></div>
+                </div>
+            `;
         }
 
-
-        async function loadEvents() {
-
-
-
-        }
+        loadEvents();
 
     </script>
 </body>
