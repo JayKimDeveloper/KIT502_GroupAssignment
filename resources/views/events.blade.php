@@ -132,11 +132,11 @@
             let btnHtml;
             if (currentUser && (currentUser.role === 'organiser' || currentUser.role === 'admin')) {
                 // Organisers / admins cannot book tickets
-                btnHtml = `<button class="btn btn-primary btn-block" disabled style="opacity:0.5;cursor:not-allowed;">Buy Ticket</button>`;
+                btnHtml = `<button class="btn btn-primary btn-block" disabled style="opacity:0.5;cursor:not-allowed;">Only for atteendee</button>`;
             } else if (isFull) {
                 btnHtml = `<button class="btn btn-primary btn-block" disabled style="opacity:0.5;cursor:not-allowed;">Sold Out</button>`;
             } else {
-                btnHtml = `<button class="btn btn-primary btn-block buy-ticket-btn" data-event-id="${event.id}">Buy Ticket</button>`;
+                btnHtml = `<a href="{{ url('/api/events') }}/${event.id}"  class="btn btn-primary btn-block details-ticket-btn" data-event-id="${event.id}">View Details</a>`;
             }
 
             return `
@@ -156,7 +156,7 @@
                 </div>`;
         }
 
-        // ── Load events ──────────────────────────────────────────
+        // Load events
         async function loadEvents() {
             const grid    = document.getElementById('events-grid');
             grid.innerHTML = '<p id="events-loading" style="color:#888;">Loading events…</p>';
@@ -187,10 +187,10 @@
 
                 grid.innerHTML = events.map(buildEventCard).join('');
 
-                // Attach Buy Ticket handlers
-                grid.querySelectorAll('.buy-ticket-btn').forEach(btn => {
-                    btn.addEventListener('click', () => handleBuyTicket(parseInt(btn.dataset.eventId, 10), btn));
-                });
+                // Attach Event Details handlers
+                // grid.querySelectorAll('.details-ticket-btn').forEach(btn => {
+                //     btn.addEventListener('click', () => handleEventDetails(parseInt(btn.dataset.eventId), btn));
+                // });
             } catch (e) {
                 grid.innerHTML = '<p style="color:#c0392b;">Failed to load events. Please try again.</p>';
             }
