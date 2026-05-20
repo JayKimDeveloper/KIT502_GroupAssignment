@@ -51,11 +51,11 @@
                        placeholder="Password" required>
             </div>
 
-            <!-- Remeber me checkvox -->
-            <div class="form-group">
-                <label>
-                    <input type="checkbox" name="remember" value="1"> 
-                    <span> Remember Me </span>
+            <!-- Remember me~~ checkbox -->
+            <div class="form-group remember-group">
+                <label class="remember-label" for="remember">
+                    <input type="checkbox" id="remember" name="remember" value="1">
+                    <span>Remember Me</span>
                 </label>
             </div>
 
