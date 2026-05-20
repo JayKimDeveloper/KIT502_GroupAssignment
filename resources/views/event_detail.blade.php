@@ -87,8 +87,22 @@
             });
         }
 
+        let currentUser = null;
+
+        async function loadMe() {
+            try {
+                const res  = await fetch("{{ url('/me') }}", {
+                    headers: { 'Accept': 'application/json' },
+                    credentials: 'same-origin',
+                });
+                const json = await res.json();
+                currentUser = json.authenticated ? json.user : null;
+            } catch (e) {
+                currentUser = null;
+            }
+        }
         
-        function handleBuyTicket(eventId, btn) {
+        async function handleBuyTicket(eventId, btn) {
             // Visitor: redirect to login
             if (!currentUser) {
                 window.location.href = '/login';
@@ -102,7 +116,7 @@
             }
 
             btn.disabled     = true;
-            btn.textContent  = 'Booking";
+            btn.textContent  = 'Booking';
 
             try {
                 const res  = await fetch('/api/bookings', {
@@ -121,7 +135,7 @@
                 if (res.ok) {
                     alert(json.message || 'Booking confirmed!');
                     // Refresh events to reflect updated seat count
-                    await loadEvents();
+                    // await loadEvents();
                 } else {
                     const msg = json.message || 'Booking failed. Please try again.';
                     alert(msg);
