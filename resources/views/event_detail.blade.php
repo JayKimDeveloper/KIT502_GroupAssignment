@@ -19,7 +19,7 @@
             <a href="{{ url('/api/events') }}" style="color: var(--primary); font-size: 1rem; display: inline-block; margin: 32px 0 0 0; text-decoration: none;">← Back to Events</a>
             <div class="event-detail-container">
                 <div class="event-detail-main">
-                    <img src="{{ $data -> asset('storage/' . $data->image_path) }}" alt="{{ $data -> title }}" class="event-detail-image">
+                    <img src="{{ asset('storage/' . $data->image_path) }}" alt="{{ $data -> title }}" class="event-detail-image">
                     <div class="event-badge" style="background: #7A1F2B;">Career Event</div>
                     <div class="event-title">{{ event -> title }}</div>
                     <div class="event-meta-row">
