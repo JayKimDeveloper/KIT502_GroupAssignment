@@ -41,24 +41,24 @@
                     <div class="about-section">
                         <h4>About This Event</h4>
                         <p{{$data->description}}</p>
-                        <b>Event Agenda</b>
+                        {{-- <b>Event Agenda</b>
                         <ul class="event-agenda">
                             <li>11:00 AM – Doors Open</li>
                             <li>11:30 AM – Career Tips Presentation</li>
                             <li>12:00 PM – Company Expo Begins</li>
                             <li>2:30 PM – Final Networking</li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
                 <div class="event-detail-side">
-                    <div style="font-size: 1.5rem; color: var(--primary); font-weight: 700; margin-bottom: 2px;">Free</div>
+                    <div style="font-size: 1.5rem; color: var(--primary); font-weight: 700; margin-bottom: 2px;">{{$data->price}}</div>
                     <div style="font-size: 0.98rem; color: #5A4A4A; margin-bottom: 16px;">per ticket</div>
                     <a href="{{url('api/bookings')}}" class="btn btn-primary" style="width: 100%; margin-bottom: 18px;">Buy Tickets</a>
                     <div style="font-size: 1.08rem; font-weight: 600; margin-bottom: 8px;">Event Details</div>
                     <div style="font-size: 0.97rem; color: #5A4A4A;">
                         <b>Category</b><br>{{$data->category->name}}<br><br>
                         <b>Location</b><br>{{$data->location}}<br><br>
-                        <b>Date & Time</b><br>10 July 2025<br>11:00 AM - 3:00 PM
+                        <b>Date & Time</b><br>{{ $data->start_datetime }}<br>{{ $data->start_datetime }}
                     </div>
                 </div>
             </div>
