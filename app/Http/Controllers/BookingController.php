@@ -41,7 +41,7 @@ class BookingController extends Controller
             ], 422);
         }
 
-        $paymentStatus = ((float) $event->price === 0.0) ? 'free' : 'unpaid';
+        $paymentStatus = ((float) $event->price === 0.0) ? 'free' : 'paid';
 
         // Check existing booking for this event and user
         $existingBooking = Booking::where('event_id', $event->id)
