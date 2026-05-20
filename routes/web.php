@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/events/mine', [EventController::class, 'mine'])->name('api.events.mine');
 });
 
-Route::get('/api/events/{id}', [EventController::class, 'show'])
+Route::get('/events/{id}', [EventController::class, 'show'])
     ->whereNumber('id')
     ->name('events.detail');
 
