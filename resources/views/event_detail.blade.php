@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Careers Fair 2025 | TechEvents UTAS</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <link rel="stylesheet" href="{ asset('/css/variables.css)">
-    <link rel="stylesheet" href="{ asset('css/landing.css)">
-    <link rel="stylesheet" href="{ asset('/css/events.css)">
+    <link rel="stylesheet" href="{{ asset('css/variables.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/events.css')}}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
 </head>
