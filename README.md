@@ -69,7 +69,7 @@ A 5-10 minute demo video is submitted separately through MyLO. The video demonst
 | Stage | Focus | Status |
 |-------|-------|--------|
 | Assignment 1 | Frontend design and database planning | ✅ Completed |
-| Assignment 2 | Full-stack Laravel implementation | ✅ Completed with noted limitations |
+| Assignment 2 | Full-stack Laravel implementation | ✅ Completed |
 
 ### Final Assignment 2 Status
 
@@ -87,9 +87,9 @@ The Laravel full-stack application has been implemented for Assignment 2 and dep
 | Organiser event CRUD | Completed | Organisers can manage their own events |
 | Admin dashboard statistics | Completed | Counts are retrieved from the database |
 | Admin user management | Completed | Admin can manage and change user roles |
-| Ticket booking API | Partially completed | Backend booking logic exists; final booking UI flow is not fully completed |
-| Event detail page | Partially completed | Event detail functionality is still limited |
-| Booking management page | Partially completed | Some attendee booking UI functions are still limited |
+| Ticket booking API | completed | Backend booking logic exists; |
+| Event detail page | completed | Event detail functionality |
+| Booking management page | completed | Some attendee booking UI functions |
 | Advanced features | Not included in final scope | Payment simulation, waitlist, and monthly calendar are optional and not fully implemented |
 
 **Infrastructure:**
@@ -219,9 +219,9 @@ After running `php artisan migrate:fresh --seed`, the following accounts are ava
 
 | Role | Email | Password |
 |---|---|---|
-| Admin | `admin@kit502.test` | `Admin123!@` |
-| Organiser | `organiser@kit502.test` | `Organiser123!@` |
-| Attendee | `attendee@kit502.test` | `Attendee123!@` |
+| Admin | `admin@gmail.com` | `Qazxsw135!@` |
+| Organiser | `organiser@gmail.com` | `Qazxsw135!@` |
+| Attendee | `attendee@gmail.com` | `Qazxsw135!@` |
 
 These accounts are also the marker login credentials for Assignment 2 testing.
 
@@ -266,6 +266,7 @@ The screenshot below shows an example API request tested in Insomnia.
 
 ![API example in Insomnia](docs/Insomnia.png)
 
+![Pair Programming](docs/pair_programing.png)
 
 ---
 
