@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/landing.css')}}">
     <link rel="stylesheet" href="{{ asset('css/events.css')}}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     @include('partials.navbar')
@@ -144,7 +144,7 @@
             const soldPercent = capacity > 0 ? Math.round((soldSeats / capacity) * 100) : 0;
 
             const progress_conatiner = document.querySelector('.event-progress')
-            progress_container.innerHTML = `
+            progress_conatiner.innerHTML = `
                 <div style="display: flex; justify-content: space-between; font-size: 0.97rem; color: #5A4A4A;">
                     <span>Tickets Sold</span>
                     <span>${soldPercent}%</span>
